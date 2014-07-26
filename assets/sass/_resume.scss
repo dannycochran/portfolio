@@ -1,6 +1,7 @@
 div.resume {
   width: 100%; height: 100%;
   overflow-y: scroll;
+  overflow-x: hidden;
   position: relative;
   @include flex;
   @include transition(height $animation, transform $animation);
@@ -15,6 +16,7 @@ div.resume {
     max-width: $majorGridWidth * 11;
     background-color: $foreground;
     padding: 0px $elementPadding;
+    overflow-y: auto;
     @include box-shadow(inset -1px 0 $elementPadding / 2 $shadowColor);
     div.section {
       width: 100%;

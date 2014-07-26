@@ -13,7 +13,6 @@ Portfolio.Views.Resume = Backbone.View.extend({
     if (this.$sections) return;
 
     this.$el.html(this.template({'resume': this.model.attributes}));
-    this.$wrapper = this.$el.find('div.wrapper');
     this.$sections = this.$el.find('div.section');
 
     this.$easter = this.$el.find('span[data-id="easter eggs"]');
