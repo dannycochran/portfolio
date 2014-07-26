@@ -11,9 +11,6 @@ header.navbar {
   &.closed { top: -$headerHeight * 2; }
   &.closed + div.home {
     top: 0 !important;
-    div.resume {
-      height: calc(100% + #{$headerHeight});
-    }
   }
   @extend %single-post;
   div#friendlies {

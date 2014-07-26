@@ -1,6 +1,6 @@
 div.resume {
   width: 100%; height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   position: relative;
   @include flex;
   @include transition(height $animation, transform $animation);
@@ -22,7 +22,6 @@ div.resume {
       height: auto;
       position: relative;
       display: inline-block;
-      overflow-y: hidden;
       font-weight: $bodyContentWeight;
       @include transition(max-height $animation);
       &:nth-of-type(1) {
@@ -157,7 +156,6 @@ div.resume {
 }
 @include mobile($THIRD_RESPONSE) {
   div.resume {
-    height: calc(100% - #{$headerHeight});
     span.date-begin:after {
       content: '' !important;
     }
