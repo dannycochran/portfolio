@@ -9,6 +9,7 @@ ol.about {
     div.shield {
       opacity: 0 !important;
     }
+    span { text-shadow: 2px 2px $background !important; }
   }
   li.background-image {
     width: 100%;
@@ -102,6 +103,8 @@ ol.about {
       color: white;
       border-radius: $minorGridWidth;
       outline: none;
+      -webkit-appearance: none;
+      -webkit-border-radius: 0;
       @include transition(background-color $animation);
       &:hover, &:focus {
         cursor: pointer !important;
