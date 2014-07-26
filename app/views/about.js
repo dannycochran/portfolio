@@ -29,6 +29,10 @@ Portfolio.Views.About = Backbone.View.extend({
     this.$message = this.$el.find('#message'); this.$messageErr = this.$el.find('#messageErr');
     this.$submit = this.$el.find('.submit-button');
 
+    if ($.os.phone || $.os.tablet) {
+      this.$el.addClass('hover-off');
+    }
+
     return this;
   },
 

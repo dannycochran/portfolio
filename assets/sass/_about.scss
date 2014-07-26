@@ -5,6 +5,11 @@ ol.about {
   position: absolute;
   margin: auto; left: 0; right: 0;
   max-width: $majorGridWidth * 10.24;
+  &.hover-off {
+    div.shield {
+      opacity: 0 !important;
+    }
+  }
   li.background-image {
     width: 100%;
     height: $majorGridWidth * 6;
@@ -32,7 +37,7 @@ ol.about {
     }
     span {
       width: 100%;
-      line-height: $majorGridWidth * 6;
+      margin-top: 25%;
       position: relative;
       display: inline-block;
       text-align: center;
@@ -40,6 +45,7 @@ ol.about {
       font-weight: $navbarWeight;
       font-size: $brand;
       text-shadow: 0px 0px white;
+      padding: $elementPadding;
       @include transition(color $animation, text-shadow $animation);
     }
   }
@@ -51,7 +57,8 @@ ol.about {
     position: relative;
     background-color: $foreground;
     div.wrapper {
-      width: $majorGridWidth * 4.7;
+      width: 100%;
+      max-width: $majorGridWidth * 4.7;
       height: $majorGridWidth * 6;
       margin: auto; top: 0; left: 0; right: 0; bottom: 0;
       position: absolute;
@@ -61,12 +68,12 @@ ol.about {
       }
     }
     form {
-      width: $majorGridWidth * 4.7;
+      width: 100%;
     }
     input, textarea {
+      width: 100%;
       height: $majorGridWidth * 0.5;
       padding: 5px;
-      width: $majorGridWidth * 4.7;
       margin: 0px 0px 10px 0px;
       border: 1px solid #eee;
       font-family: $primary;
@@ -90,11 +97,10 @@ ol.about {
       color: $warningColor;
     }
     input.submit-button {
+      width: 100%;
       background-color: lighten($background, 20);
       color: white;
       border-radius: $minorGridWidth;
-      width: $majorGridWidth * 3;
-      margin-left: $majorGridWidth * 0.85;
       outline: none;
       @include transition(background-color $animation);
       &:hover, &:focus {
@@ -102,5 +108,10 @@ ol.about {
         background-color: lighten($background, 40);
       }
     }
+  }
+}
+@include mobile($THIRD_RESPONSE) {
+  div.alert {
+    top: 0px !important;
   }
 }

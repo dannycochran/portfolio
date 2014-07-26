@@ -13,6 +13,7 @@ Portfolio.Views.Resume = Backbone.View.extend({
     if (this.$sections) return;
 
     this.$el.html(this.template({'resume': this.model.attributes}));
+    this.$wrapper = this.$el.find('div.wrapper');
     this.$sections = this.$el.find('div.section');
 
     this.$easter = this.$el.find('span[data-id="easter eggs"]');
@@ -32,7 +33,7 @@ Portfolio.Views.Resume = Backbone.View.extend({
 
     _.defer(function () {
       var total = this.$el.find('div.section').length, closed = this.$el.find('div.section.closed').length;
-      if (total === closed) this.$el.addClass('centered');
+      if (total - 1 >= closed) globals.app.navbar.resetNavbar();
       else this.$el.removeClass('centered');
     }.bind(this));
   },
@@ -50,6 +51,7 @@ Portfolio.Views.Resume = Backbone.View.extend({
   },
 
   teardown: function (callback) {
+    $(window).off('resize', this.onResize);
     callback();
   }
 });

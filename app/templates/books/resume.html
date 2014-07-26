@@ -1,10 +1,5 @@
 <script id="resume-template" type="text/template">
   <div class="wrapper">
-    <header>
-      <span class="website"><%= resume.website %> | </span>
-      <span class="email"><%= resume.email %> | </span>
-      <span class="name"><%= resume.name %></span>
-    </header>
     <% _.each([resume.education, resume.professional], function (section) { %>
       <div class="section" id=<%= section.name %>>
         <header class="section-header">
@@ -23,7 +18,7 @@
               <% }); %>
             </ol>
             <div class="date-range">
-              <span class="date-begin"><%= position.date_range[0] %> - </span>
+              <span class="date-begin"><%= position.date_range[0] %></span>
               <span class="date-end"><%= position.date_range[1] %></span>
             </div>
           </div>
