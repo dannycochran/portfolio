@@ -4,7 +4,6 @@ ol.about {
   display: inline-block;
   position: absolute;
   margin: auto; left: 0; right: 0;
-  overflow-y: auto;
   @include flex;
   &.hover-off {
     div.shield {

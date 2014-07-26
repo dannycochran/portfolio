@@ -23,6 +23,7 @@ div.resume {
       position: relative;
       display: inline-block;
       font-weight: $bodyContentWeight;
+      overflow-y: hidden;
       @include transition(max-height $animation);
       &:nth-of-type(1) {
         margin-top: $elementPadding;
