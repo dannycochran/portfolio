@@ -11,18 +11,12 @@ Portfolio.Views.About = Backbone.View.extend({
   },
 
   render: function () {
-    this.model.set('scroller', this.el);
-
     if (this.$el.find('li.background-image').length > 0) return;
 
     _.each(this.model.get('things'), function (thing) {
       this.$el.append(this.template({thing: thing}));
     }.bind(this));
     this.$el.append(this.formTemplate());
-
-    this.alert = new Portfolio.Views.Alert({model: this.model});
-    this.$el.parent().append(this.alert.el);
-    this.alert.render();
 
     this.$email = this.$el.find('#email'); this.$emailErr = this.$el.find('#emailErr');
     this.$name = this.$el.find('#name'); this.$nameErr = this.$el.find('#nameErr');
@@ -84,7 +78,7 @@ Portfolio.Views.About = Backbone.View.extend({
         url: '/email',
         data: credentials,
         complete: function (xhr, status) {
-          if (xhr.status == 200) this.submitSuccess(); else this.submitFailure();
+          // if (xhr.status == 200) this.submitSuccess(); else this.submitFailure();
         }.bind(this)
       });
     } else {

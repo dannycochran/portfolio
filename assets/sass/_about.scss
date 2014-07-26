@@ -4,7 +4,8 @@ ol.about {
   display: inline-block;
   position: absolute;
   margin: auto; left: 0; right: 0;
-  max-width: $majorGridWidth * 10.24;
+  overflow-y: auto;
+  @include flex;
   &.hover-off {
     div.shield {
       opacity: 0 !important;
@@ -14,6 +15,7 @@ ol.about {
   li.background-image {
     width: 100%;
     height: $majorGridWidth * 6;
+    max-width: $majorGridWidth * 10.24;
     display: inline-block;
     position: relative;
     &:hover {
@@ -53,16 +55,15 @@ ol.about {
   div#contact-area {
     width: 100%;
     height: 100%;
+    max-width: $majorGridWidth * 10.24;
     padding: $elementPadding * 2;
     display: inline-block;
     position: relative;
     background-color: $foreground;
+    @include flex;
     div.wrapper {
       width: 100%;
       max-width: $majorGridWidth * 4.7;
-      height: $majorGridWidth * 6;
-      margin: auto; top: 0; left: 0; right: 0; bottom: 0;
-      position: absolute;
       header {
         font-size: $brand;
         padding: $elementPadding;
@@ -111,10 +112,5 @@ ol.about {
         background-color: lighten($background, 40);
       }
     }
-  }
-}
-@include mobile($THIRD_RESPONSE) {
-  div.alert {
-    top: 0px !important;
   }
 }
