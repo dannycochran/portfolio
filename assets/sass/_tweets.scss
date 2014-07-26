@@ -1,0 +1,34 @@
+ol.small-posts {
+  height: 100%; width: calc(25% - #{$elementPadding});
+  left: 75%;
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: darken($foreground, 10);
+  @include transition(width $animation, left $animation);
+  &.open {
+    left: calc(100% - #{$slidePanel}) !important;
+    @include box-shadow(-$minorGridWidth / 4 0px $minorGridWidth / 2 0px lighten($background, 50));
+  }
+  li.small-post {
+    margin: $elementPadding;
+    font-family: $secondary;
+    overflow-x: hidden;
+    letter-spacing: 0.5px;
+    line-height: $elementPadding * 1.25;
+    span { display: inline-block; }
+    span.content {
+      width: 100%;
+      padding: $elementPadding / 2;
+      background-color: lighten($foreground, 10);
+      padding-bottom: $elementPadding / 2;
+      @include box-shadow(inset -1px 0 $elementPadding / 2 $shadowColor);
+    }
+    span.date {
+      width: 100%;
+      color: $iconColor;
+      font-size: $bodySmall;
+      text-align: right;
+    }
+  }
+}

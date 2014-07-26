@@ -1,0 +1,36 @@
+/* ALERT */
+div.alert {
+  width: 100%;
+  height: $headerHeight;
+  top: $headerHeight * 2;
+  position: fixed;
+  background-color: transparentize($color-warningMinor, 0.1);
+  cursor: pointer;
+  @include transition(background-color $animation, top $animation);
+  * { line-height: $headerHeight; }
+  i {
+    font-size: $iconSize / 2;
+    position: absolute;
+    @include transition(color $animation);
+  }
+  i.fa-warning { left: $elementPadding; }
+  i.fa-times {
+    right: $elementPadding;
+    &:hover {
+      color: $warningColor;
+    }
+  }
+  span {
+    width: calc(100% - #{$iconSize*2} - #{$elementPadding*3});
+    position: absolute; left: 0; right: 0; margin: auto;
+    font-weight: $bodyTitleWeight;
+    text-align: center;
+  }
+  &.closed {
+    top: $headerHeight;
+  }
+  &.success {
+    background-color: lighten(transparentize($successColor, 0.1), 10);
+    i.fa-warning { display: none; }
+  }
+}

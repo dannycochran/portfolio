@@ -1,0 +1,8 @@
+<script id="tweets-template" type="text/template">
+  <% _.each(tweets, function (tweet) { %>
+    <li class="small-post">
+      <span class="content"><%= tweet.get('text') %></span>
+      <span class="date"><%= globals.timeFormat(tweet.get('created_at')) %></span>
+    </li>
+  <% }); %>
+</script>

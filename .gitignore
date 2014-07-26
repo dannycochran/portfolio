@@ -1,0 +1,7 @@
+/node_modules/
+/.sass-cache/
+/dist/
+/assets/styles/css/custom.css
+index.html
+.DS_STORE
+configuration.json

@@ -1,0 +1,63 @@
+ol.projects {
+  width: 100%; height: 100%;
+  overflow-y: scroll;
+  position: relative;
+  @include flex;
+  @include transition(transform $animation);
+  &:hover {
+    li.project { opacity: 0.6; }
+  }
+  &.closed {
+    @include transform(translateX(-100%));
+  }
+  li.project {
+    width: $majorGridWidth * 4;
+    min-width: $majorGridWidth * 3.5 !important;
+    height: auto;
+    background-color: $foreground;
+    margin: $elementPadding;
+    @include transition(opacity $animation);
+    @include box-shadow(inset -1px 0 $elementPadding / 2 $shadowColor);
+    &:nth-of-type(1), &:nth-of-type(2) {
+      width: 45%;
+    }
+    &:hover { opacity: 1 !important; }
+    div.wrapper {
+      width: 100%;
+      height: auto;
+      display: inline-block;
+      padding: $elementPadding;
+      a.image-wrapper {
+        width: 100%;
+        height: auto;
+        display: inline-block;
+        padding: $elementPadding 0;
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      header.title {
+        width: 100%;
+        height: auto;
+        font-weight: $bodyContentWeight;
+        font-size: $brand * 1.5;;
+        text-align: center;
+        text-transform: lowercase;
+      }
+      div.description {
+        span {
+          width: 100%;
+          height: auto;
+          display: inline-block;
+          line-height: $elementPadding * 1.25;
+          padding: $elementPadding / 1.5 0;
+          a {
+            text-decoration: underline;
+            color: $actionColor;
+          }
+        }
+      }
+    }
+  }
+}

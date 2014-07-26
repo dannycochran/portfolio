@@ -1,0 +1,1 @@
+Portfolio.Models.Game = Backbone.Model.extend({});

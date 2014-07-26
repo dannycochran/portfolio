@@ -1,0 +1,7 @@
+<script id="post-template" type="text/template">
+  <div class="post-title">
+    <span class="title"><%= post.get('title') %></span>
+    <span class="date"><%= globals.timeFormat(post.get('date')) %></span>
+  </div>
+  <div class="post-body"><%= post.get('body') %></div>
+</script>

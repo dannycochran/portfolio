@@ -1,0 +1,38 @@
+div.social {
+  width: 100%;
+  height: 100%;
+  @include transition(transform $animation);
+  &.closed {
+    @include transform(translateX(-100%));
+  }
+  div.toggle {
+    z-index: 100;
+    width: $elementPadding * 1.5;
+    height: $elementPadding * 4;
+    display: inline-block;
+    visibility: hidden; pointer-events: none;
+    color: $iconColor;
+    right: 0;
+    cursor: pointer;
+    background-color: $foreground;
+    border-top-left-radius: $minorGridWidth;
+    border-bottom-left-radius: $minorGridWidth;
+    position: absolute;
+    @include transform(translateY(150%));
+    @include box-shadow(-$minorGridWidth / 3 0px $minorGridWidth / 3 0px lighten($background, 50));
+    @include transition(color $animation, right $animation, background-color $animation);
+    &.open {
+      background-color: darken($foreground, 10);
+      right: $slidePanel;
+      i { color: $twitter; }
+    }
+    i {
+      width: $iconSize / 1.5; height: $iconSize / 1.5;
+      font-size: $iconSize / 1.5;
+      opacity: inherit;
+      color: inherit;
+      @include center(true, true);
+    }
+    &:hover { color: $twitter; }
+  }
+}

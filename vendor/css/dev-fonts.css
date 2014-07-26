@@ -1,0 +1,46 @@
+@font-face {
+  font-family: "Gotham SSm A";
+  src:url("/assets/fonts/Gotham/GothamSSm-Medium.otf");
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Gotham SSm A";
+  src:url("/assets/fonts/Gotham/GothamSSm-Book.otf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Gotham SSm A";
+  src:url("/assets/fonts/Gotham/GothamSSm-Light.otf");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Gotham SSm A";
+  src:url("/assets/fonts/Gotham/GothamSSm-XLight.otf");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Tisa";
+  src:url("/assets/fonts/Tisa/TisaOT-Medi.otf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Tisa";
+  src:url("/assets/fonts/Tisa/TisaOT.otf");
+  font-weight: 300;
+}
+@font-face {
+  font-family: "TisaPro";
+  src:url("/assets/fonts/Tisa/TisaPro-Medi.otf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "TisaPro";
+  src:url("/assets/fonts/Tisa/TisaPro-Regular.otf");
+  font-weight: 300;
+}
+
+body {
+  -webkit-font-feature-settings: "tnum";
+  -moz-font-feature-settings: "tnum";
+  -ms-font-feature-settings: "tnum";
+}

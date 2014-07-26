@@ -1,0 +1,62 @@
+div.home {
+  width: 100%;
+  height: calc(100% - #{$headerHeight * 1.5});
+  max-width: $maxBodyWidth;
+  top: $headerHeight * 2;
+  position: absolute;
+  background-color: darken($foreground, 10);
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: absolute; margin: auto; left: 0; right: 0;
+  @include box-shadow(inset -1px 0 $elementPadding / 2 $shadowColor);
+  @include transition(top $animation, height $animation);
+}
+
+@include mobile($FIRST_RESPONSE) {
+  div.home {
+    div.social {
+      div.toggle {
+        visibility: visible !important; pointer-events: all !important;
+      }
+      ol.posts {
+        width: calc(100% - #{$elementPadding}) !important;
+      }
+      ol.small-posts {
+        width: $slidePanel;
+        left: 100%;
+      }
+    }
+  }
+}
+
+@include mobile($SECOND_RESPONSE) {
+  div.social ol.posts {
+    li.post {
+      span.title {
+        font-size: $bodyLarger !important;
+        line-height: $headerHeight / 1.5 !important;
+      }
+    }
+  }
+}
+
+@include mobile($THIRD_RESPONSE) {
+  div.home {
+    top: $headerHeight;
+    div.social {
+      ol.posts {
+        width: 100% !important;
+        li.post {
+          margin: $elementPadding/2 0px !important;
+          span.title {
+            max-width: calc(100% - #{$majorGridWidth} + #{$elementPadding}) !important;
+          }
+          span.date {
+            width: $majorGridWidth !important;
+            bottom: $minorGridWidth * 8 !important;
+          }
+        }
+      }
+    }
+  }
+}

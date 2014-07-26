@@ -1,0 +1,80 @@
+// SPECIAL THANKS: http://thecodeplayer.com/ for the clouds code & inspiration
+/*Time to finalise the cloud shape*/
+#clouds {
+  padding-top: $majorGridWidth / 2;
+}
+.cloud {
+  width: $cloudArea; height: $cloudArea * 0.3;
+  background: white;
+  
+  border-radius: $cloudArea;
+  -moz-border-radius: $cloudArea;
+  -webkit-border-radius: $cloudArea;
+  
+  position: relative; 
+}
+
+.cloud:before, .cloud:after {
+  content: '';
+  position: absolute; 
+  background: white;
+  width: $cloudArea / 2; height: $cloudArea * 0.4;
+  position: absolute; top: -15px; left: 10px;
+  
+  border-radius: $cloudArea / 2;
+  -moz-border-radius: $cloudArea / 2;
+  -webkit-border-radius: $cloudArea / 2;
+  
+  @include transform(rotate(30deg));
+}
+
+.cloud:after {
+  width: $majorGridWidth * 1.2;
+  height: $majorGridWidth * 1.2;
+  top: -55px; left: auto; right: 15px;
+}
+
+.x1 {
+  @include transform(translateX(-$gameWidth/2));
+  @include animation(moveclouds $cloudLength linear infinite);
+}
+
+.x2 {
+  left: $majorGridWidth * 2; top: -$majorGridWidth / 2;
+  opacity: 0.6;
+  @include transform(scale(0.6));
+  @include animation(moveclouds $cloudLength * 2.5 linear infinite);
+}
+
+.x3 {
+  left: -$majorGridWidth * 2.5; top: -$majorGridWidth * 2;
+  opacity: 0.8;
+  @include transform(scale(0.8));
+  @include animation(moveclouds $cloudLength * 2 linear infinite);
+}
+
+.x4 {
+  left: $majorGridWidth * 4.7; top: -$majorGridWidth * 2.5;
+  opacity: 0.75;
+  @include transform(scale(0.75));
+  @include animation(moveclouds $cloudLength * 1.8 linear infinite);
+}
+
+.x5 {
+  left: -$majorGridWidth * 1.5; top: -$majorGridWidth * 3.5;
+  opacity: 0.8;
+  @include transform(scale(0.8));
+  @include animation(moveclouds $cloudLength * 2 linear infinite);
+}
+@-webkit-keyframes moveclouds {
+  0% {margin-left: $gameWidth;}
+  100% {margin-left: -$gameWidth;}
+}
+@-moz-keyframes moveclouds {
+  0% {margin-left: $gameWidth;}
+  100% {margin-left: -$gameWidth;}
+}
+@-o-keyframes moveclouds {
+  0% {margin-left: $gameWidth;}
+  100% {margin-left: -$gameWidth;}
+}
