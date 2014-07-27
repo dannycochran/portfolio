@@ -61,3 +61,20 @@ div.slidebar {
     }
   }
 }
+@include mobile($THIRD_RESPONSE) {
+  div.slidebar {
+    a span {
+      margin: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      line-height: $headerHeight * 1.5 !important;
+    }
+    div#selector {
+      span {
+        margin-top: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+    }
+  }
+}

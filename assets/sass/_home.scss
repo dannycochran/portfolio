@@ -8,7 +8,6 @@ div.home {
   overflow-y: auto;
   overflow-x: hidden;
   position: absolute; margin: auto; left: 0; right: 0;
-  -webkit-overflow-scrolling: touch;
   @include box-shadow(inset -1px 0 $elementPadding / 2 $shadowColor);
   @include transition(top $animation, height $animation);
 }

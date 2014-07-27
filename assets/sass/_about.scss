@@ -1,9 +1,9 @@
 ol.about {
   width: 100%;
   height: 100%;
-  display: inline-block;
-  position: absolute;
-  margin: auto; left: 0; right: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
   @include flex;
   &.hover-off {
     div.shield {
@@ -17,6 +17,7 @@ ol.about {
     max-width: $majorGridWidth * 10.24;
     display: inline-block;
     position: relative;
+    overflow: hidden;
     &:hover {
       span { text-shadow: 2px 2px $background; }
       div.shield { opacity: 0.1; }
@@ -62,10 +63,10 @@ ol.about {
     @include flex;
     div.wrapper {
       width: 100%;
-      max-width: $majorGridWidth * 4.7;
       header {
         font-size: $brand;
         padding: $elementPadding;
+        width: 100%;
       }
     }
     form {
@@ -109,6 +110,16 @@ ol.about {
       &:hover, &:focus {
         cursor: pointer !important;
         background-color: lighten($background, 40);
+      }
+    }
+  }
+}
+@include mobile($SECOND_RESPONSE) {
+  ol.about {
+    div#contact-area {
+      padding: $elementPadding / 2;
+      textarea {
+        height: $majorGridWidth !important;
       }
     }
   }

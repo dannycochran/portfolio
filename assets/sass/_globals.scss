@@ -32,7 +32,6 @@ header {
   @include noSelect;
 }
 ol, ul {
-  -webkit-overflow-scrolling: touch;
   list-style-type: none !important;
   margin: 0; padding: 0;
 }
