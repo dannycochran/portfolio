@@ -9,9 +9,7 @@ header.navbar {
   @include transition(top $animation, height $animation);
   @include box-shadow(0px $minorGridWidth / 4 $minorGridWidth / 2 0px lighten($background, 50));
   &.closed { top: -$headerHeight * 2; }
-  &.closed + div.home {
-    top: 0 !important;
-  }
+  &.closed + div.home { top: 0 !important; }
   @extend %single-post;
   div#friendlies {
     position: absolute;
@@ -58,7 +56,7 @@ header.navbar {
       @include transition(line-height $animation, width $animation, color $animation);
     }
     span#mini { width: 87px + $elementPadding * 2; }
-    span#truncated { width: 345px + $elementPadding * 2; }
+    span#truncated { width: 347px + $elementPadding * 2; }
     span#full { width: 495px + $elementPadding * 2; }
     span#mini, span#truncated { display: none; }
   }
