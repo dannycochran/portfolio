@@ -15,8 +15,7 @@ div.resume {
     height: auto;
     max-width: $majorGridWidth * 11;
     background-color: $foreground;
-    padding: 0px $elementPadding;
-    overflow-y: auto;
+    padding: 0px $elementPadding / 2;
     @include box-shadow(inset -1px 0 $elementPadding / 2 $shadowColor);
     div.section {
       width: 100%;

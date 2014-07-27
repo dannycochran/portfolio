@@ -26,6 +26,7 @@ Portfolio.Views.About = Backbone.View.extend({
     if ($.os.phone || $.os.tablet) {
       this.$el.addClass('hover-off');
     }
+    this.el.addEventListener('touchstart', function(event){});
 
     return this;
   },

@@ -15,6 +15,8 @@ Portfolio.Views.Navbar = Backbone.View.extend({
   },
 
   refreshHeadroom: function (view) {
+    view.get('scroller').addEventListener('touchstart', function(event){});
+
     this.headroom = new Headroom(this.el, {
       'tolerance': 1,
       'offset': 20,
