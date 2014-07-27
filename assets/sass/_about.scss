@@ -63,6 +63,7 @@ ol.about {
     @include flex;
     div.wrapper {
       width: 100%;
+      max-width: $majorGridWidth * 4.7;
       header {
         font-size: $brand;
         padding: $elementPadding;
