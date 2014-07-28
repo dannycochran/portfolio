@@ -37,7 +37,7 @@ Portfolio.Views.App = Backbone.View.extend({
   onChangeArea: function (view) { this.home.render(view); },
 
   render: function (view) {
-    if (!view) view = 'home';
+    if (view !== 'home' && view !== 'resume' && view !== 'projects' && view !== 'about') view = 'home';
 
     this.$el.empty();
 

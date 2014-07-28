@@ -163,6 +163,8 @@
     header#portfolio-name {
       span {
         width: 100% !important;
+        display: inline-block;
+        text-align: right;
         line-height: $headerHeight !important;
       }
     }
