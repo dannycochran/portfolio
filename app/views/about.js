@@ -22,8 +22,10 @@ Portfolio.Views.About = Backbone.View.extend({
     this.$name = this.$el.find('#name'); this.$nameErr = this.$el.find('#nameErr');
     this.$message = this.$el.find('#message'); this.$messageErr = this.$el.find('#messageErr');
     this.$submit = this.$el.find('.submit-button');
+    this.$status = this.$el.find('#messageStatus');
 
     if ($.os.phone || $.os.tablet) this.$el.addClass('hover-off');
+    this.listenTo(this.model, 'alert', this.onMessageStatus);
 
     return this;
   },
@@ -42,8 +44,6 @@ Portfolio.Views.About = Backbone.View.extend({
   },
 
   submitSuccess: function () {
-    mixpanel.track('Email submission success');
-    this.$el.find('div.spinner').remove();
     this.model.trigger('alert', {
       message: 'Thanks! I will reply to your message within a few days.',
       type: 'success'
@@ -51,12 +51,22 @@ Portfolio.Views.About = Backbone.View.extend({
   },
 
   submitFailure: function () {
-    mixpanel.track('Email submission failure');
-    this.$el.find('div.spinner').remove();
     this.model.trigger('alert', {
       message: 'Something went wrong, please try again.',
       type: 'error'
     });
+  },
+
+  onMessageStatus: function (alert) {
+    this.$el.find('div.spinner').remove();
+    mixpanel.track('Email submission ' + alert.type);
+
+    this.$status.html(alert.message);
+    this.$status.removeClass('disappear');
+    if (alert.type === 'error') this.$status.addClass('error');
+    else this.$status.removeClass('error');
+
+    _.delay(function () { this.$status.addClass('disappear'); }.bind(this), 5000);
   },
 
   sendMessage: function (e) {

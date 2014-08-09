@@ -18,6 +18,7 @@ ol.about {
     display: inline-block;
     position: relative;
     overflow: hidden;
+    z-index: 1;
     &:hover {
       span { text-shadow: 2px 2px $background; }
       div.shield { opacity: 0.1; }
@@ -94,10 +95,16 @@ ol.about {
     }
     span.error {
       width: $majorGridWidth * 2;
-      margin-left: -$majorGridWidth * 2.5;
-      margin-top: $minorGridWidth * 2;
-      position: absolute;
-      color: $warningColor;
+      color: $warningColor !important;
+    }
+    span.message-status {
+      width: $majorGridWidth * 2;
+      color: $successColor;
+      font-weight: $navbarWeight;
+      @include transition(color $animation);
+      &.disappear {
+        color: $foreground;
+      }
     }
     input.submit-button {
       width: 100%;
