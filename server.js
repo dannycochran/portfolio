@@ -21,8 +21,8 @@ var oauth = {
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: config.email.address,
-        pass: config.email.password
+      user: config.email.from,
+      pass: config.email.password
     }
 });
 
@@ -72,9 +72,15 @@ app.post('/email', function (req, res) {
   };
 
   // send mail with defined transport object
-  transporter.sendMail(mailOptions, function(error, info){
-    if (error) res.send('500');
-    else res.send('200');
+  transporter.sendMail(mailOptions, function (error){
+    if (error) {
+      console.log('error', error, 'info', info);
+      res.send('500');
+    }
+    else {
+      console.log('successfully sent');
+      res.send('200');
+    }
   });
 });
 
