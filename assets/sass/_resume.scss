@@ -78,7 +78,6 @@ div.resume {
           height: auto;
           float: left;
           span.title, span.institution {
-            font-family: $secondary;
             font-weight: $navbarWeight;
           }
         }
@@ -100,7 +99,6 @@ div.resume {
           height: 100%;
           margin-top: -$elementPadding;
           display: inline-block;
-          font-family: $secondary;
           color: #777;
           text-align: center;
           span {
@@ -130,7 +128,6 @@ div.resume {
           text-align: center;
           font-weight: $navbarWeight;
           padding: $elementPadding / 2 0;
-          font-family: $secondary;
         }
         span.detail {
           line-height: $elementPadding * 1.5;

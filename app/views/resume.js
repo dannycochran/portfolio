@@ -49,8 +49,5 @@ Portfolio.Views.Resume = Backbone.View.extend({
     }
   },
 
-  teardown: function (callback) {
-    $(window).off('resize', this.onResize);
-    callback();
-  }
+  teardown: function (callback) { callback(); }
 });

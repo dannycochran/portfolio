@@ -35,7 +35,9 @@ Portfolio.Views.Slidebar = Backbone.View.extend({
     this.moveSelector();
   },
 
-  moveSelector: function () { this.$selector.css('left', this.$selectedTarget.offset().left); },
+  moveSelector: function () {
+    this.$selector.css('left', this.$selectedTarget.offset().left);
+  },
 
   arrowSelect: function (e) {
     var k = e.keyCode;
