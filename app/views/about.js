@@ -76,7 +76,7 @@ Portfolio.Views.About = Backbone.View.extend({
         url: '/email',
         data: credentials,
         complete: function (xhr, status) {
-          // if (xhr.status == 200) this.submitSuccess(); else this.submitFailure();
+          if (xhr.status == 200) this.submitSuccess(); else this.submitFailure();
         }.bind(this)
       });
     } else {
