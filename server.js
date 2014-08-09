@@ -74,7 +74,7 @@ app.post('/email', function (req, res) {
   // send mail with defined transport object
   transporter.sendMail(mailOptions, function (error){
     if (error) {
-      console.log('error', error, 'info', info);
+      console.log('error', error);
       res.send('500');
     }
     else {
