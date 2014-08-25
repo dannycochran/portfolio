@@ -5,7 +5,7 @@ Portfolio.Models.App = Backbone.Model.extend({
     'mini': 'D.C',
     'friendlies': [
       {
-        'url': 'https://github.com/dannycochran/portfolio',
+        'url': 'https://github.com/dannycochran',
         'name': 'github'
       },
       {

@@ -10,7 +10,13 @@ Portfolio.Models.Post = Backbone.Model.extend({
         body += img + caption;
       }.bind(this));
 
-      body += this.get('caption');
+      var caption = this.get('caption'), start = caption.indexOf('blockquote') + 15;
+      if (start <= 14) start = caption.indexOf('target') + 15;
+
+      var photoTitle = caption.substring(start, caption.indexOf('</', start));
+      this.set('title', photoTitle);
+
+      body += caption;
       this.set('body', body);
     }
   }

@@ -6,9 +6,7 @@ Portfolio.Router = Backbone.Router.extend({
     'home/:post': 'routePost'
   },
 
-  routeGame: function () {
-    globals.app.render('home');
-  },
+  routeGame: function () { globals.app.render('home'); },
 
   routePost: function (postId) {
     this.routeArea('home');
@@ -23,7 +21,8 @@ Portfolio.Router = Backbone.Router.extend({
     var CV = globals.app.home.currentView;
     if (CV && CV.name === 'home') {
       if (globals.app.navbar.$el.hasClass('single-post')) globals.app.model.trigger('show:posts', true);
-      else CV.posts.selectedPost.set('selectedPost', true);
+      else if (CV.posts.selectedPost) CV.posts.selectedPost.set('selectedPost', true);
+      else globals.app.render(param);
     }
     else globals.app.render(param);
   }

@@ -2,7 +2,7 @@
   "things": [
   {
     "image": "/assets/img/ayasdi.jpg",
-    "description": "I'm a frontend developer at Ayasdi. But I also enjoy other things."
+    "description": "I am a frontend developer at Ayasdi. But I also enjoy other things."
   },
   {
     "image": "/assets/img/roma.jpg",
@@ -26,7 +26,7 @@
   },
   {
     "image": "/assets/img/jake.jpg",
-    "description": "Not sure how to end this... here's my old cat Jake looking at a turtle."
+    "description": "Not sure how to end this, but it's the internet so here's my old cat Jake looking at a turtle."
   }
   ]
 }
