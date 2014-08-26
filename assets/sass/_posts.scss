@@ -9,12 +9,14 @@ ol.posts {
     background-color: $foreground;
     border: $border darken($panelColor, 10);
     @include box-shadow(0px $minorGridWidth / 3 $minorGridWidth / 4 0px transparentize($panelTextColor, 0.75));
-    div.post-title {
+    a.post-title {
       min-height: $headerHeight;
       border-bottom: $border darken($panelColor, 10);
       color: $iconColor;
       cursor: pointer;
       position: relative;
+      text-decoration: none;
+      display: block;
       &:hover {
         span.title { color: $actionColor; }
       }

@@ -25,6 +25,8 @@ Portfolio.Views.Slidebar = Backbone.View.extend({
   onClickNavigate: function (e) {
     var $el = $(e.currentTarget);
     this.model.trigger('navigate', $el.attr('id'));
+
+    return false;
   },
 
   onChangeArea: function (view) {

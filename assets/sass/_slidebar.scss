@@ -7,6 +7,7 @@ div.slidebar {
   background-color: $foreground;
   z-index: 1;
   cursor: pointer !important;
+  @include noSelect;
   @include transition(height $animation);
   @include box-shadow(0px $minorGridWidth / -4 $minorGridWidth / 2 0px lighten($background, 50));
   &.closed { height: 0px; }
@@ -22,6 +23,7 @@ div.slidebar {
     cursor: pointer;
     z-index: 2;
     position: relative;
+    @include noSelect;
     &.active {
       span {
         font-weight: $navbarWeight;

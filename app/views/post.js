@@ -6,7 +6,7 @@ Portfolio.Views.Post = Backbone.View.extend({
   template: _.template($('#post-template').html()),
 
   events: {
-    'click div.post-title': 'onPostSelect'
+    'click a.post-title': 'onPostSelect'
   },
 
   initialize: function () {
@@ -19,7 +19,10 @@ Portfolio.Views.Post = Backbone.View.extend({
     return this;
   },
 
-  onPostSelect: function () { this.model.set('selectedPost', true); },
+  onPostSelect: function () {
+    this.model.set('selectedPost', true);
+    return false;
+  },
 
   onPostHide: function () {
     if (this.model.get('postHidden')) this.$el.hide();

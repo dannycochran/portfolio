@@ -31,7 +31,7 @@ Portfolio.Views.Home = Backbone.View.extend({
       this.$el.append(this.currentView.el);
 
       this.currentView.render();
-      globals.makeLinksExternal();
+      // globals.makeLinksExternal();
 
      _.delay(function () { this.currentView.$el.removeClass('closed'); }.bind(this), 1);
 

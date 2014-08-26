@@ -5,11 +5,8 @@ Portfolio.Views.Tweets = Backbone.View.extend({
 
   template: _.template($('#tweets-template').html()),
 
-  events: {
-  },
-
   render: function () {
     this.$el.html(this.template({tweets: this.model.models}));
     return this;
-  }
+  },
 });

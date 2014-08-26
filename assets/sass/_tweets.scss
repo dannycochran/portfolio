@@ -11,17 +11,34 @@ ol.small-posts {
     @include box-shadow(-$minorGridWidth / 4 0px $minorGridWidth / 2 0px lighten($background, 50));
   }
   li.small-post {
+    position: relative;
     margin: $elementPadding;
     font-family: $secondary;
     overflow-x: hidden;
     letter-spacing: 0.5px;
     line-height: $elementPadding * 1.25;
-    span { display: inline-block; }
+    cursor: pointer;
+    &:hover, &:active, &:focus {
+      span.content { background-color: lighten($actionColor, 40); }
+    }
+    a.background-link {
+      width: 100%; height: 100%;
+      position: absolute; z-index: 1;
+    }
+    span {
+      display: inline-block; z-index: 100; position: relative;
+      pointer-events: none;
+      a {
+        pointer-events: auto;
+        &:hover { text-decoration: underline; }
+      }
+    }
     span.content {
       width: 100%;
       padding: $elementPadding / 2;
       background-color: lighten($foreground, 10);
       padding-bottom: $elementPadding / 2;
+      @include transition(background-color $animation);
       @include box-shadow(inset -1px 0 $elementPadding / 2 $shadowColor);
     }
     span.date {

@@ -28,9 +28,7 @@ globals = {
   '5': 'June', '6':'July','7':'August','8':'September','9':'October','10':'November',
   '11':'December'},
   spinTemplate: _.template($('#spinner-template').html()),
-  makeLinksExternal: function () {
-    $('a').attr("target","_blank");
-  }
+  makeLinksExternal: function () { $('a').attr("target","_blank"); }
 };
 
 var mixpanel = mixpanel ? mixpanel : {
