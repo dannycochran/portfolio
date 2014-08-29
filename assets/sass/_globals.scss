@@ -26,6 +26,7 @@ body {
   font-family: $primary;
   overflow: hidden;
   background-color: darken($foreground, 5);
+  @include fontSmoothing(off);
 }
 header {
   cursor: default;
