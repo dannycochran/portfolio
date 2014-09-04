@@ -1,4 +1,4 @@
-.game-container {
+div.game-container {
   width: $gameWidth;
   height: $gameHeight;
   min-width: 320px;
@@ -39,64 +39,36 @@
     top: 0; position: absolute;
     overflow: hidden;
     g.ocean-container {
-      path.wave, rect.background {
-        fill: $highlightColor;
-        fill-opacity: 0.8;
-      }
+      rect.background { fill: url(#gradient); }
+      path.wave { fill: $highlightColor; fill-opacity: 0.8; }
+      path.wave, rect.background { fill-opacity: 0.8; }
     }
     g.pelletGroup {
       path {
         fill: none;
-        stroke: black;
-        stroke-width: 2px;
+      }
+      circle {
+        fill: lighten($highlightColor, 5);
+        fill-opacity: 0.8;
       }
     }
   }
 }
 
-@-webkit-keyframes splash-left {
-  1% {
-    opacity: 0.5;
-    -webkit-transform: translate(-5, -10);
-  }
-  25% {
-    opacity: 1;
-    -webkit-transform: translate(-15, -50);
-  }
-  50% {
-    opacity: 1;
-    -webkit-transform: translate(-20, -50);
-  }
-
-  75% {
-    opacity: 0.5;
-    -webkit-transform: translate(0, 0);
-  }
-  100% {
-    opacity: 0;
-    -webkit-transform: translate(0, 0);
+@include mobile($FIRST_RESPONSE + $majorGridWidth * 0.8) {
+  div.game-container {
+    width: $MOBILE_WIDTH;
   }
 }
-@-webkit-keyframes splash-right {
-  1% {
-    opacity: 0.5;
-    -webkit-transform: translate(5, -10);
-  }
-  25% {
-    opacity: 1;
-    -webkit-transform: translate(15, -50);
-  }
-  50% {
-    opacity: 1;
-    -webkit-transform: translate(20, -50);
-  }
 
-  75% {
-    opacity: 0.5;
-    -webkit-transform: translate(0, 0);
+@include mobile($SECOND_RESPONSE) {
+  div.game-container {
+    width: $MOBILE_WIDTH - $majorGridWidth * 2;
   }
-  100% {
-    opacity: 0;
-    -webkit-transform: translate(0, 0);
+}
+
+@include mobile($THIRD_RESPONSE) {
+  div.game-container {
+    width: $MOBILE_WIDTH_PORTRAIT;
   }
 }

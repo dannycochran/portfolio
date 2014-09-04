@@ -1,14 +1,12 @@
 Portfolio.Views.Harpooners = Backbone.View.extend({
   model: Portfolio.Models.Game,
 
-  HARPOONERS_HEIGHT: 130,
-  HARPOONERS_WIDTH: 191,
-  HARPOONERS_SCALE: 0.08,
-
   template: _.template($('#harpooners-template').html()),
 
   initialize: function () {
     this.listenTo(this.model, 'transform', this.naturalHarpoonersMovement);
+    this.listenTo(this.model, 'resize', this.onResize);
+    this.listenTo(this.model, 'teardown', this.teardown);
   },
 
   render: function () {
@@ -18,11 +16,9 @@ Portfolio.Views.Harpooners = Backbone.View.extend({
 
   activate: function (harpooners, dimensions) {
     this.oceanWidth = dimensions.width;
-    this.OCEAN_HEIGHT = dimensions.height;
-    this.START_Y = dimensions.startY;
+    this.startY = dimensions.startY;
     this.DURATION = dimensions.duration;
-    this.transform = [[this.oceanWidth, this.START_Y], this.HARPOONERS_SCALE, 0, 0];
-
+    this.transform = [[this.oceanWidth, this.startY], this.getScale(this.oceanWidth), 0, 0];
 
     this.$harpooners = harpooners;
     this.$innerHarpooners = this.$harpooners.append('g').classed('inner-harpooners', true);
@@ -35,27 +31,40 @@ Portfolio.Views.Harpooners = Backbone.View.extend({
       });
     }.bind(this));
 
-    this.transformHarpooners();
+    this.transformHarpooners(0);
   },
 
   naturalHarpoonersMovement: function (obj) {
-    // Move boat
-    var harpooners = obj.wave.node(),
+    // Move harpooners
+    var height = this.$innerHarpooners.node().getBBox().height * this.transform[1],
+        harpooners = obj.wave.node(),
         p = harpooners.getPointAtLength(obj.interpolated * harpooners.getTotalLength()),
         diff = p.y - this.transform[3] < 0 ? 4 : 2;
     this.transform[3] = p.y; // keeps track of previous Y
-    p.y = p.y - this.HARPOONERS_HEIGHT / 1.25;
+    p.y = p.y - height / 1.1;
 
     this.transform[0] = [p.x, p.y];
     this.transform[2] = diff;
-    this.transformHarpooners();
+    this.transformHarpooners(obj.duration);
   },
 
-  transformHarpooners: function () {
-    this.$innerHarpooners.attr({
+  transformHarpooners: function (duration) {
+    this.$innerHarpooners.transition().duration(duration).attr({
       'transform': 'translate(' + this.transform[0][0] + ',' + this.transform[0][1] +
           ') scale(' + this.transform[1] + ') rotate(' + this.transform[2] + ')',
       'class': 'harpooners'
     });
+  },
+
+  onResize: function (newWidth) {
+    var oldTransform = this.transform[1], newTransform = this.getScale(newWidth);
+    this.transform[1] = newTransform;
+  },
+
+  getScale: function (width) { return width * 0.00008; },
+
+  teardown: function () {
+    this.stopListening(this.model);
+    this.remove();
   }
 });

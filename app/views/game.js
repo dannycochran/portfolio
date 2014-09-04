@@ -4,9 +4,6 @@ Portfolio.Views.Game = Backbone.View.extend({
   template: _.template($('#game-template').html()),
 
   DURATION: 20000,
-  SKY_HEIGHT: 140,
-  OCEAN_HEIGHT: 400,
-
   NUM_WAVES: 5,
 
   events: {
@@ -21,6 +18,10 @@ Portfolio.Views.Game = Backbone.View.extend({
     this.harpoonersView = new Portfolio.Views.Harpooners({model: this.model});
     this.splashView = new Portfolio.Views.Splash({model: this.model});
     this.whaleView = new Portfolio.Views.Whale({model: this.model});
+
+    this.boundOnResize = _.debounce(this.onResize, globals.duration);
+    $(window).on('keydown', this.onKeyDown.bind(this));
+    $(window).on('resize', this.boundOnResize.bind(this));
   },
 
   render: function() {
@@ -28,6 +29,11 @@ Portfolio.Views.Game = Backbone.View.extend({
     this.$game = d3.select(this.el).append('svg').attr({'width': '100%', 'height': '100%'})
       .on('mousemove', this.mouseMove.bind(this))
       .on('touchmove', this.touchMove.bind(this));
+
+    this.$defs = this.$game.append('defs');
+    this.$gradient = this.$defs.append('linearGradient').attr({id: 'gradient', y1: '0%', y2: '100%', x1: '0%', x2: '0%'});
+    this.$stopBegin = this.$gradient.append('stop').attr({offset: '30%', 'stop-color': 'rgb(56, 194, 240)'});
+    this.$stopEnd = this.$gradient.append('stop').attr({offset: '90%', 'stop-color': 'rgb(0, 0, 255)'});
 
     this.harpoonersView.render();
     this.whaleView.render();
@@ -38,17 +44,27 @@ Portfolio.Views.Game = Backbone.View.extend({
 
   createGame: function() {
     this.lastElapsed = 0;
-    this.START_Y = this.OCEAN_HEIGHT / 2;
     this.oceanWidth = this.$el.width();
-    this.mouse = [this.oceanWidth / 3, this.START_Y * 2];
+    this.oceanHeight = this.$el.height() * (2/3);
+    this.startY = this.$el.height() * (1/3);
+    this.mouse = [this.oceanWidth / 3, this.startY * 2];
 
     this.animInterpolator = d3.scale.linear().domain([0, this.DURATION]).range([1,0]);
-    var dimensions = {width: this.oceanWidth, height: this.OCEAN_HEIGHT, startY: this.START_Y,
-          duration: this.DURATION, numWaves: this.NUM_WAVES};
+    var dimensions = {
+      width: this.oceanWidth,
+      height: this.oceanHeight,
+      startY: this.startY,
+      duration: this.DURATION,
+      numWaves: this.NUM_WAVES
+    };
 
     // Add ocean
     this.$ocean = this.$game.append('g').classed('ocean-container', true);
     this.oceanView.activate(this.$ocean, dimensions);
+
+    // Add splash
+    this.$splashes = this.$ocean.append('g').classed('splashes', true);
+    this.splashView.activate(this.$splashes, dimensions);
 
     // Add harpooners
     this.$harpooners = this.$game.insert('g', ':first-child').attr('class', 'harpooners');
@@ -57,10 +73,6 @@ Portfolio.Views.Game = Backbone.View.extend({
     // Add whale
     this.$whale = this.$game.append('g').attr({class: 'whale'});
     this.whaleView.activate(this.$whale, dimensions);
-
-    // Add splash
-    // this.$splash = this.$game.append('g').classed('splash', true);
-    // this.splashView.activate(this.$splash, dimensions);
 
     this.startMovement();
   },
@@ -72,15 +84,19 @@ Portfolio.Views.Game = Backbone.View.extend({
       elapsed = elapsed + this.lastElapsed;
 
       // Update domain once harpooners finishes going from one end to the other
-      var domain = this.animInterpolator.domain();
-      if (elapsed >= domain[1]) this.animInterpolator.domain([domain[0] + this.DURATION, domain[1] + this.DURATION]);
+      var domain = this.animInterpolator.domain(), props = {};
+      props.duration = 100;
+      if (elapsed >= domain[1]) {
+        this.animInterpolator.domain([domain[0] + this.DURATION, domain[1] + this.DURATION]);
+        props.duration = 0;
+      }
 
-      this.model.trigger('transform', {
-        interpolated: this.animInterpolator(elapsed),
-        elapsed: elapsed,
-        mouse: this.mouse,
-        wave: this.oceanView.$wave
-      });
+      props.interpolated = this.animInterpolator(elapsed);
+      props.elapsed = elapsed;
+      props.mouse = this.mouse;
+      props.wave = this.oceanView.$wave;
+
+      this.model.trigger('transform', props);
     }.bind(this));
   },
 
@@ -95,17 +111,14 @@ Portfolio.Views.Game = Backbone.View.extend({
   },
 
   skipGame: function () {
+    this.model.trigger('teardown');
+    this.teardown();
+
     this.trigger('navigate', 'home');
     return false;
   },
 
   toggleGame: function () {
-    var splashLeft = this.$el.find('.splash-left'),
-        splashRight = this.$el.find('.splash-right');
-
-    splashLeft.children().toggleClass('splashing-left');
-    splashRight.children().toggleClass('splashing-right');
-
     this.togglePlayOrPause = this.togglePlayOrPause ? false: true;
     if (!this.togglePlayOrPause) this.startMovement();
 
@@ -113,6 +126,20 @@ Portfolio.Views.Game = Backbone.View.extend({
         togglePlayOrPause = button.hasClass('fa-pause');
     if (togglePlayOrPause) button.removeClass('fa-pause').addClass('fa-play');
     else button.addClass('fa-pause').removeClass('fa-play');
-  }
+  },
 
+  onKeyDown: function (e) {
+    if (e.keyCode === 32) {
+      e.preventDefault();
+      this.toggleGame();
+    }
+  },
+
+  onResize: function () { this.model.trigger('resize', this.$el.width()); },
+
+  teardown: function () {
+    this.remove();
+    $(window).off('resize', this.boundOnResize);
+    $(window).off('keydown', this.onKeyDown);
+  }
 });
