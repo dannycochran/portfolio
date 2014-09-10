@@ -6,7 +6,7 @@ Portfolio.Router = Backbone.Router.extend({
     'home/:post(/)': 'routePost'
   },
 
-  routeGame: function () { globals.app.renderGame(); },
+  routeGame: function () { globals.app.render('home'); },
 
   routePost: function (postId) {
     this.routeArea('home');
