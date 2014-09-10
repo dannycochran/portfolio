@@ -20,8 +20,6 @@ Portfolio.Views.Game = Backbone.View.extend({
     this.whaleView = new Portfolio.Views.Whale({model: this.model});
 
     this.boundOnResize = _.debounce(this.onResize, globals.duration);
-    $(window).on('keydown', this.onKeyDown.bind(this));
-    $(window).on('resize', this.boundOnResize.bind(this));
   },
 
   render: function() {
@@ -38,6 +36,8 @@ Portfolio.Views.Game = Backbone.View.extend({
     this.harpoonersView.render();
     this.whaleView.render();
 
+    $(window).on('keydown', this.onKeyDown.bind(this));
+    $(window).on('resize', this.boundOnResize.bind(this));
     _.delay(function () { this.createGame(); }.bind(this), 1);
     return this;
   },

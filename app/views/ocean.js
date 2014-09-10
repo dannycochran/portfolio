@@ -42,6 +42,7 @@ Portfolio.Views.Ocean = Backbone.View.extend({
   },
 
   onResize: function (newWidth) {
+    if (!this.waves) return;
     this.oceanWidth = newWidth;
     for (var i = 1; i < this.numWaves; i++) this.waves[i][0] = newWidth / this.numWaves * i;
     this.waves[this.waves.length - 1][0] = this.oceanWidth + this.WAVE_BUFFER;
