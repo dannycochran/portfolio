@@ -2,6 +2,9 @@ var iso = d3.time.format.utc("%Y-%m-%dT%H:%M:%S.%LZ").parse;
 globals = {
   duration: 400,
   isMobile: $.os.phone || $.os.tablet,
+  formatTime: function (time) {
+    return time.slice(0, 10);
+  },
   timeFormat: _.wrap(iso, function (format, number) {
     var date = new Date(number);
     if (!date.getYear()) {

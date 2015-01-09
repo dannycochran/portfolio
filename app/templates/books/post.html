@@ -1,7 +1,9 @@
 <script id="post-template" type="text/template">
   <a class="post-title" href="<%= 'home/' + post.get('id') %>">
     <span class="title"><%= post.get('title') %></span>
-    <span class="date"><%= globals.timeFormat(post.get('date')) %></span>
+    <span class="date">
+      <span class="date-content"><%= globals.formatTime(post.get('date')) %></span>
+    </span>
   </a>
   <div class="post-body"><%= post.get('body') %></div>
 </script>

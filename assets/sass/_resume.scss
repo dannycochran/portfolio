@@ -4,6 +4,7 @@ div.resume {
   overflow-x: hidden;
   position: relative;
   -webkit-overflow-scrolling: touch;
+  background-color: $foreground;
   @include flex;
   @include transition(height $animation, transform $animation);
   &.closed { @include transform(translateX(-100%)); }
@@ -13,11 +14,10 @@ div.resume {
     display: none;
   }
   div.wrapper {
-    height: auto;
+    height: 100%;
     max-width: $majorGridWidth * 11;
-    background-color: $foreground;
+    background-color: transparent;
     padding: 0px $elementPadding / 2;
-    @include box-shadow(inset -1px 0 $elementPadding / 2 $shadowColor);
     div.section {
       width: 100%;
       max-height: $majorGridWidth * 7;

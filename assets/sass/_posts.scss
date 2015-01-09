@@ -16,34 +16,43 @@ ol.posts {
       cursor: pointer;
       position: relative;
       text-decoration: none;
-      display: block;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-flow: row nowrap;
+      flex-flow: row nowrap;
       &:hover {
         span.title { color: $actionColor; }
       }
       span.title {
-        max-width: calc(100% - #{$majorGridWidth*2} + #{$elementPadding * 2});
         padding: $elementPadding;
-        font-size: $brand * 1.5;
+        font-size: $brand;
         font-weight: $bodyTitleWeight;
         line-height: $headerHeight;
         display: inline-block;
         text-align: left;
         color: inherit;
+        -webkit-flex: 1 auto;
+        flex: 1 auto;
         @include transition(color $animation);
       }
       span.date {
-        width: $majorGridWidth * 2;
+        top: 0;
+        min-width: $majorGridWidth / 1.25;
+        height: auto;
+        -webkit-flex: 1 auto;
+        flex: 1 auto;
         text-align: right;
-        float: right;
-        position: absolute;
         font-family: $secondary;
-        height: 12px;
         color: inherit;
         display: inline-block;
-        position: absolute; margin: auto;
-        padding: 0 $elementPadding;
-        top: 0; bottom: 0; right: 0;
+        position: relative;
         font-size: $bodySmall;
+        span.date-content {
+          width: auto;
+          height: 12px;
+          padding-right: $elementPadding/2;
+          @include center(true, true);
+        }
       }
     }
     div.post-body {
@@ -56,12 +65,16 @@ ol.posts {
       letter-spacing: 0.5px;
       @include box-shadow(inset -1px 0 $elementPadding / 2 $shadowColor);
       img {
-        width: 90%;
+        max-width: 90%;
         height: auto;
         align: center !important;
         clear: both !important;
         left: 5%;
         position: relative;
+      }
+      ol, ul {
+        list-style-type: initial;
+        margin-left: $majorGridWidth/2;
       }
       p {
         padding: $elementPadding / 2 0;
