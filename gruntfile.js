@@ -1,30 +1,33 @@
 // order here determines dependency (must manually add all vendor JS here)
-var vendorJavascripts = ['vendor/js/zepto.js', 'vendor/js/underscore.js', 'vendor/js/backbone.js',
-'vendor/js/d3.v3.js', 'vendor/js/headroom.js'];
-
-var componentHTML = {
-  header: 'app/templates/bookends/header.html',
-  footer: 'app/templates/bookends/footer.html'
-};
 
 module.exports = function (grunt) {
 
-  var mode = typeof(grunt.option('offline')) === 'undefined' ? 'online' : 'offline';
+  var mode = typeof(grunt.option('offline')) === 'undefined' ? 'online' : 'offline',
+      portfolio = grunt.option('portfolio') || 'dcochran';
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    copy: {
+      common: {
+        expand: true,
+        cwd: 'common/assets/fonts',
+        src: '**',
+        dest: 'dist/fonts'
+      },
+      app: {
+        expand: true,
+        cwd: portfolio + '/img',
+        src: '**',
+        dest: 'dist/assets/img'
+      },
+    },
+    shell: {
+      js: {command: 'duo ' + portfolio + '/build/build.js --output=dist/'},
+      sass: {command: 'sass ' + portfolio + '/build/build.scss dist/build.css'},
+    },
     concat: {
-      js: {
-        options: {separator: ';'}, // to prevent zepto's non-colon ending from destroying everything
-        src: [vendorJavascripts, 'app/**/*.js'],
-        dest: 'dist/build.js',
-      },
-      html: {
-        src: [componentHTML.header, 'app/templates/books/*.html', componentHTML.footer],
-        dest: 'index.html'
-      },
       css: {
-        src: mode === 'offline' ? ['vendor/css/dev-fonts.css', 'dist/build.css'] : ['dist/build.css'],
+        src: mode === 'offline' ? ['assets/css/_dev-fonts.css', 'dist/build.css'] : ['dist/build.css'],
         dest: 'dist/build.css'
       }
     },
@@ -40,39 +43,42 @@ module.exports = function (grunt) {
     preprocess: {
       index: {
         src: 'index.html',
-        dest: 'index.html'
+        dest: 'dist/index.html'
       }
     },
     env: {
       dev: {
         NODE_ENV: 'dev',
-        MODE: mode
+        MODE: mode,
+        PORTFOLIO: portfolio
       },
       prod: {
         NODE_ENV: 'prod',
-        MODE: mode
-      }
-    },
-    sass: {
-      dist: {
-        files: {'dist/build.css': 'assets/sass/custom.scss'}
+        MODE: mode,
+        PORTFOLIO: portfolio
       }
     },
     watch: {
-      js: {files: 'app/**/*.js', tasks: ['concat:js']},
-      css: {files: 'assets/sass/*.scss', tasks: ['sass', 'concat:css']},
+      js: {
+        files: ['common/modules/**/*.js', 'common/modules/**/*.html',
+        'common/extensions/*.js', portfolio + '/modules/**/*.js', portfolio + '/modules/**/*.html', portfolio + '/build/build.js'],
+        tasks: ['shell:js']
+      },
+      css: {
+        files: ['common/modules/**/*.scss', portfolio + '/modules/**/*.scss', 'common/vendor/css/*'],
+        tasks: ['shell:sass', 'concat:css']
+      },
       html: {
-        files: ['app/templates/**/*.html'],
-        tasks: ['concat:html']
+        files: ['index.html'],
+        tasks: ['preprocess:index']
       }
     },
-    sloc: {js: {files: {'./': ['server.js', 'app/**.js']}}},
     nodemon: {
       dev: {
         options: {
           file: 'server.js',
           nodeArgs: ['--debug'],
-          ignoredFiles: ['node_modules/**', 'app/**/*.js', 'assets/**'],
+          ignoredFiles: ['node_modules/**', portfolio + '/modules/**/*.js', 'assets/**'],
           watchExtensions: ['js'],
           env: {PORT: '3000'}
         }
@@ -93,15 +99,17 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-preprocess');
+  grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('rebuild', ['env:prod', 'sass', 'concat', 'uglify']);
-  grunt.registerTask('app', ['env:dev', 'sass', 'concat', 'preprocess:index', 'concurrent:app']);
-  grunt.registerTask('app-prod', ['env:prod', 'sass', 'concat', 'uglify', 'preprocess:index', 'nodemon:prod']);
+  var build = ['copy:common', 'copy:app', 'shell', 'concat', 'preprocess:index'];
+  grunt.registerTask('rebuild', ['env:prod'].concat(build).concat(['cssmin', 'uglify']));
+  grunt.registerTask('app', ['env:dev'].concat(build).concat(['concurrent:app']));
+  grunt.registerTask('app-prod', ['env:prod'].concat(build).concat(['cssmin', 'uglify', 'concurrent:app']));
 };

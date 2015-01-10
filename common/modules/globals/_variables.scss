@@ -1,0 +1,97 @@
+/* SIZES */
+$unit: 16px !default;
+$unit-major: 6.25rem !default;
+$unit-minor: 0.3125rem !default;
+
+$height-slidePanel: $unit-major * 2.8;
+$height-header: $unit-major * 0.5 !default;
+
+$width-maxBody: $unit-major * 14;
+$width-action: $unit-minor * 6 !default;
+$width-minimumPanel: $unit-minor * 42 !default;
+$width-panel: 15rem;
+
+$offset: $unit-minor * 4 !default;
+
+/* DEVICE CONSTANTS */
+$MOBILE_WIDTH: $unit-major * 7.68;
+$MOBILE_WIDTH_LANDSCAPE: $unit-major * 4.8;
+
+/* RESPONSIVE THRESHOLDS */
+$FIRST_RESPONSE: $MOBILE_WIDTH + $unit-major * 1.6;
+$SECOND_RESPONSE: $MOBILE_WIDTH;
+$THIRD_RESPONSE: $MOBILE_WIDTH_LANDSCAPE + $unit-major;
+
+/* FONTS */
+$fontSize-brand: 1.5rem !default;
+$fontSize-larger: 1.33rem !default;
+$fontSize-large: 1rem !default;
+$fontSize-medium: 0.9rem !default;
+$fontSize-normal: 0.833rem !default;
+$fontSize-small: 0.75rem !default;
+
+$fontSize-icon: 1rem !default;
+
+$font-head: "Gotham SSm A", "Gotham SSm B", "Century Gothic", "Helvetica Neue", "Arial", "sans-serif" !default;
+$font-body: "TisaPro", "Tisa", "Times New Roman";
+
+$fontWeight-bold: 700 !default; // medium for Archer, same as bold
+$fontWeight-logo: 500 !default; // medium
+$fontWeight-nav: 400 !default; // book, same as normal
+$fontWeight-title: 300 !default; // light
+$fontWeight-body: 200 !default; // extra light
+
+/* OPACITY */
+$opacity: 0.9 !default;
+
+/* COLORS */
+$color-panel: rgb(248, 248, 248) !default;
+$color-panel-alt: rgba(0, 0, 0, 0.02) !default;
+$color-background: rgb(255, 255, 255) !default;
+$color-background-alt: scale-color($color-panel, $lightness: -4.2%);
+
+$color-darkTheme: rgba(71,71,71, 0.9) !default;
+$color-panelText: $color-background !default;
+$color-backgroundText: $color-panel !default;
+$color-subText: mix($color-panel, $color-background, 50%) !default;
+
+$color-active: rgb(75, 181, 103) !default;
+$color-active-alt: lighten(transparentize($color-active, 0.8), 10) !default;
+$color-warning: rgb(191, 22, 22) !default;
+$color-warning-alt: lighten(transparentize($color-warning, 0.8), 25) !default;
+$color-warningMinor: #eedc94 !default;
+
+$color-highlight: rgb(56, 194, 240) !default;
+$color-shadow: darken($color-background, 2) !default;
+
+$color-ayasdi: #f7961d !default;
+$color-icon: rgb(120, 120, 120) !default;
+$color-button: rgb(56, 194, 240) !default;
+$color-navBorder: darken($color-panel, 15) !default;
+
+$color-stanford: #820000;
+$color-twitter: #55ACEE;
+$color-linkedin: #4875B4;
+$color-whale: #8ECEA4;
+
+$palette-rdylbu: #d73027,#f46d43,#fdae61,#fee090,#e0f3f8,#abd9e9,#74add1,#4575b4;
+$palette-reds: #fff5f0,#fee0d2,#fcbba1,#fc9272,#fb6a4a,#ef3b2c,#cb181d,#99000d;
+$palette-spectral: #d53e4f,#f46d43,#fdae61,#fee08b,#e6f598,#abdda4,#66c2a5,#3288bd;
+$palette-gnbu: #f7fcf0, #e0f3db, #ccebc5, #a8ddb5, #7bccc4, #4eb3d3, #2b8cbe, #08589e;
+$palette-grey: #ffffff, #f0f0f0, #d9d9d9, #bdbdbd, #969696, #737373, #525252, #252525;
+$palette-ylgn: #ffffe5, #f7fcb9, #d9f0a3, #addd8e, #78c679, #41ab5d, #238443, #005a32;
+
+/* ANIMATIONS */
+$animation: 0.4s ease !default;
+$animation-long: 0.8s ease !default;
+$animation-network: 1s ease !default;
+
+/* BORDERS */
+$border: 1px solid !default;
+$border-table: 1px solid rgba(0, 0, 0, 0.1);
+
+/* LAYERS */
+$layers: controller, panel, nav !default;
+
+@function z($element, $rank: 0) { @return #{10 * index($layers, $element) + $rank}; }
+

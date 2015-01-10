@@ -1,5 +1,3 @@
-// Ayasdi Inc. Copyright 2014 - all rights reserved.
-
 var http = require('http'),
     express = require('express'),
     request = require('request'),
@@ -7,9 +5,9 @@ var http = require('http'),
     twitter = require('twitter'),
     util = require('util'),
     config = require('./configuration.json'),
-    resume = require('./assets/data/resume.json'),
-    projects = require('./assets/data/projects.json'),
-    about = require('./assets/data/about.json'),
+    resume = require('./dcochran/data/resume.json'),
+    projects = require('./dcochran/data/projects.json'),
+    about = require('./dcochran/data/about.json'),
     nodemailer = require('nodemailer');
     port = config.port;
 
@@ -40,7 +38,7 @@ app.configure(function () {
   app.use(express.urlencoded());
   app.use(express.cookieParser());
   app.use(express.session({secret: config.secret}));
-  app.use(express.static(__dirname));
+  app.use(express.static(__dirname + '/dist'));
   app.use(app.router);
 });
 
@@ -61,7 +59,7 @@ app.get('/louie/tweets', function (req, res) {
 app.get('/louie/resume', function (req, res) { res.send(resume); });
 app.get('/louie/projects', function (req, res) { res.send(projects); });
 app.get('/louie/about', function (req, res) { res.send(about); });
-app.get('*', function (req, res) { res.redirect('/#' + req.path); });
+app.get('*', function (req, res) { res.sendfile('dist/index.html'); });
 
 app.post('/email', function (req, res) {
   var mailOptions = {
