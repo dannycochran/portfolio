@@ -20,7 +20,7 @@ DC.Views.App = module.exports = Backbone.View.extend({
   },
 
   renderGame: function () {
-    this.game.build().render();
+    this.game.build().render().start();
   },
 
   refreshHeadroom: function (el) {
