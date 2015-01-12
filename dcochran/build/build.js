@@ -1,6 +1,5 @@
 require('../modules/globals/globals.js');
-require('../modules/app/appView.js');
-require('../modules/app/appModel.js');
+require('../modules/app/app.js');
 
 var initialize = require('../../common/modules/globals/initialize.js');
-initialize(DC.Models.App, DC.Views.App, DC);
+initialize(DC.Views.App, DC);

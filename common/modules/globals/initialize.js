@@ -1,8 +1,5 @@
 require('./globals.js');
 
-var Interactions = require('../interactions/interactionsModel.js'),
-    Router = require('../router/router.js');
-
 var onReady = function () {
   // check browser
   var safari = !!$.browser.safari, ie = !!$.browser.ie, chrome = !!$.browser.chrome,
@@ -51,7 +48,7 @@ function setupNames (namespace) {
   });
 }
 
-function initialize (model, view, namespace) {
+function initialize (view, namespace) {
   if (typeof(mixpanel) === 'undefined') {
     mixpanel = {
       track: function (action, metadata, callback) { if (callback) callback(); },
@@ -65,10 +62,8 @@ function initialize (model, view, namespace) {
     setupNames(Portfolio);
     setupNames(namespace);
 
-    Portfolio.interactions = new Interactions();
-    Portfolio.app = new view({model: new model()});
-    Portfolio.router = new Router({model: Portfolio.app.model, app: Portfolio.app});
-    if (!Backbone.history.start({pushState: true})) Portfolio.router.notFound();
+    Portfolio.app = new view();
+    if (!Backbone.history.start({pushState: true})) Portfolio.app.router.notFound();
   });
 }
 

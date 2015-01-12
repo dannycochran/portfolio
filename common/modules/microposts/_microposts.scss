@@ -1,0 +1,52 @@
+ol.microposts {
+  height: 100%; left: calc(100% - #{$width-panel});
+  width: $width-panel;
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: transparent;
+  @include transition(width $animation, left $animation);
+  li.micropost {
+    position: relative;
+    margin: $offset;
+    font-family: $font-body;
+    font-size: $fontSize-normal;
+    overflow-x: hidden;
+    letter-spacing: 0.5px;
+    line-height: $offset * 1.25;
+    cursor: pointer;
+    &:hover, &:active, &:focus {
+      span.content { background-color: lighten($color-highlight, 40); }
+    }
+    a.background-link {
+      width: 100%; height: 100%;
+      position: absolute;
+    }
+    span {
+      display: inline-block; position: relative;
+      pointer-events: none;
+      a {
+        pointer-events: auto;
+        &:hover { text-decoration: underline; }
+      }
+    }
+    span.content {
+      width: 100%;
+      padding: $offset / 2;
+      background-color: lighten($color-background, 10);
+      padding-bottom: $offset / 2;
+      white-space: normal;
+      @include box-shadow(0px $unit-minor / 3 $unit-minor / 4 0px transparentize($color-foreground, 0.75));
+      img { 
+        width: 100%; height: auto;
+      }
+      @include transition(background-color $animation);
+    }
+    span.date {
+      width: 100%;
+      color: $color-icon;
+      font-size: $fontSize-small;
+      text-align: right;
+    }
+  }
+}

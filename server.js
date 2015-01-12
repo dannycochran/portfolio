@@ -5,9 +5,6 @@ var http = require('http'),
     twitter = require('twitter'),
     util = require('util'),
     config = require('./configuration.json'),
-    resume = require('./dcochran/data/resume.json'),
-    projects = require('./dcochran/data/projects.json'),
-    about = require('./dcochran/data/about.json'),
     nodemailer = require('nodemailer');
     port = config.port;
 
@@ -49,16 +46,15 @@ app.get('/louie/posts', function (req, res) {
   });
 });
 
-app.get('/louie/tweets', function (req, res) {
+app.get('/louie/microposts', function (req, res) {
+  console.log('hihihi', req, res);
   tweets.get('/statuses/user_timeline.json', {include_entities:true}, function(data, error) {
+    console.log('inside', data);
     if (error) throw new Error(error);
     else res.send(data);
   });
 });
 
-app.get('/louie/resume', function (req, res) { res.send(resume); });
-app.get('/louie/projects', function (req, res) { res.send(projects); });
-app.get('/louie/about', function (req, res) { res.send(about); });
 app.get('*', function (req, res) { res.sendfile('dist/index.html'); });
 
 app.post('/email', function (req, res) {

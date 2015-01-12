@@ -20,13 +20,11 @@ html {
 }
 
 body {
-  width: 100%;
+  width: 100%; height: 100%;
   min-width: $unit-major * 3.2;
-  height: calc(100% - #{$height-header});
-  margin: $height-header 0 0;
   line-height: 1.428571429;
-  background-color: $color-background;
-  color: $color-background;
+  background-color: darken($color-background, 10);
+  color: $color-foreground;
   font-family: $font-head;
   font-weight: $fontWeight-body;
   font-size: $fontSize-normal;
@@ -43,7 +41,7 @@ div, ol, ul { -webkit-overflow-scrolling: touch; }
 ol, ul, header { @include noSelect; }
 ol, ul {
   -ms-overflow-style: none; // IE bedevilment
-  list-style-type: none !important;
+  list-style-type: none;
   margin: 0; padding: 0;
   font-size: 0px; // removes weird horizontal spacing built into lists
 }
@@ -69,11 +67,15 @@ div.spinner {
   width: 5 * $fontSize-larger;
   height: 5 * $fontSize-larger;
   @include center(true, true);
+  span {
+    display: inline-block;
+    margin-bottom: $offset/2;
+  }
   i {
     width: inherit; height: inherit;
     line-height: 5 * $fontSize-larger;
     font-size: 5 * $fontSize-larger;
-    color: $color-backgroundText;
+    color: $color-icon;
     text-align: center;
   }
 }

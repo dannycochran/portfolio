@@ -1,0 +1,42 @@
+div.home {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  @include transition(transform $animation);
+  &.closed { @include transform(translateX(-100%)); }
+  div.toggle {
+    z-index: 100;
+    width: $offset * 1.5;
+    height: $offset * 4;
+    display: inline-block;
+    visibility: hidden; pointer-events: none;
+    color: $color-icon;
+    right: 0;
+    cursor: pointer;
+    background-color: $color-background;
+    border-top-left-radius: $unit-minor;
+    border-bottom-left-radius: $unit-minor;
+    position: absolute;
+    @include transform(translateY(150%));
+    @include box-shadow(-$unit-minor / 3 0px $unit-minor / 3 0px lighten($color-shadow, 50));
+    @include transition(color $animation, right $animation, background-color $animation);
+    &.open {
+      background-color: darken($color-background, 10);
+      right: $width-panel;
+      i { color: $color-highlight; }
+    }
+    &.open ~ ol.microposts {
+      left: calc(100% - #{$width-panel}) !important;
+      @include box-shadow(-$unit-minor / 4 0px $unit-minor / 2 0px lighten($color-shadow, 50));
+    }
+    i {
+      width: $fontSize-icon / 1.5; height: $fontSize-icon / 1.5;
+      font-size: $fontSize-icon / 1.5;
+      opacity: inherit;
+      color: inherit;
+      @include center(true, true);
+    }
+    &:hover { color: $color-highlight; }
+  }
+}

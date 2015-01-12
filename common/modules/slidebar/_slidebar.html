@@ -1,0 +1,4 @@
+<div id="selector"><span></span></div>
+<% _.each(sections, function (section) { %>
+  <a id="<%= section %>" href="/<%= section %>"><span><%= section %></span></a>
+<% }); %>

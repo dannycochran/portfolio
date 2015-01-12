@@ -3,13 +3,13 @@ $unit: 16px !default;
 $unit-major: 6.25rem !default;
 $unit-minor: 0.3125rem !default;
 
-$height-slidePanel: $unit-major * 2.8;
 $height-header: $unit-major * 0.5 !default;
+$height-slideBar: $height-header * 1.34;
 
-$width-maxBody: $unit-major * 14;
+$width-maxBody: $unit-major * 11;
 $width-action: $unit-minor * 6 !default;
 $width-minimumPanel: $unit-minor * 42 !default;
-$width-panel: 15rem;
+$width-panel: 18rem;
 
 $offset: $unit-minor * 4 !default;
 
@@ -49,6 +49,7 @@ $color-panel: rgb(248, 248, 248) !default;
 $color-panel-alt: rgba(0, 0, 0, 0.02) !default;
 $color-background: rgb(255, 255, 255) !default;
 $color-background-alt: scale-color($color-panel, $lightness: -4.2%);
+$color-foreground: rgb(51, 51, 51);
 
 $color-darkTheme: rgba(71,71,71, 0.9) !default;
 $color-panelText: $color-background !default;
@@ -62,7 +63,7 @@ $color-warning-alt: lighten(transparentize($color-warning, 0.8), 25) !default;
 $color-warningMinor: #eedc94 !default;
 
 $color-highlight: rgb(56, 194, 240) !default;
-$color-shadow: darken($color-background, 2) !default;
+$color-shadow: darken($color-darkTheme, 2) !default;
 
 $color-ayasdi: #f7961d !default;
 $color-icon: rgb(120, 120, 120) !default;

@@ -1,9 +1,0 @@
-<script id="tweets-template" type="text/template">
-  <% _.each(tweets, function (tweet) { %>
-    <li class="small-post" data-id="<%= tweet.get('id_str') %>">
-      <a class="background-link" href="<%= 'http://twitter.com/dannycochran/status/' + tweet.get('id_str') %>" target="_blank"></a>
-      <span class="content"><%= tweet.get('text') %></span>
-      <span class="date"><%= globals.timeFormat(tweet.get('created_at')) %></span>
-    </li>
-  <% }); %>
-</script>

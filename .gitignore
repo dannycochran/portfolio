@@ -5,7 +5,6 @@
 /hooks/
 /hooks/post-receive
 hooks/post-receive
-index.html
 .DS_STORE
 configuration.json
 

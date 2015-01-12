@@ -1,0 +1,88 @@
+ol.posts {
+  height: 100%;
+  width: calc(100% - #{$width-panel});
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  @include transition(width $animation);
+  li.post {
+    margin: $offset;
+    background-color: $color-background;
+    border: $border darken($color-panel, 10);
+    @include box-shadow(0px $unit-minor / 3 $unit-minor / 4 0px transparentize($color-foreground, 0.75));
+    a.post-title {
+      min-height: $height-header;
+      border-bottom: $border darken($color-panel, 10);
+      color: $color-icon;
+      cursor: pointer;
+      position: relative;
+      text-decoration: none;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-flex-flow: row nowrap;
+      flex-flow: row nowrap;
+      &:hover span.title { color: $color-highlight; }
+      span.title {
+        padding: $offset;
+        font-size: $fontSize-larger;
+        font-weight: $fontWeight-body;
+        line-height: $height-header;
+        display: inline-block;
+        text-align: left;
+        color: inherit;
+        -webkit-flex: 1 auto;
+        flex: 1 auto;
+        white-space: normal;
+        @include transition(color $animation);
+      }
+      span.date {
+        top: 0;
+        min-width: $unit-major / 1.25;
+        height: auto;
+        -webkit-flex: 1 auto;
+        flex: 1 auto;
+        text-align: right;
+        font-family: $font-body;
+        color: inherit;
+        display: inline-block;
+        position: relative;
+        font-size: $fontSize-small;
+        span.date-content {
+          width: auto;
+          height: $fontSize-large;
+          padding-right: $offset/2;
+          @include center(true, true);
+        }
+      }
+    }
+    div.post-body {
+      height: auto;
+      position: relative;
+      background-color: $color-background;
+      padding: $offset;
+      font-family: $font-body;
+      color: $color-foreground;
+      font-size: $fontSize-normal;
+      letter-spacing: 0.5px;
+      img {
+        max-width: 90%;
+        height: auto;
+        align: center !important;
+        clear: both !important;
+        left: 5%;
+        position: relative;
+      }
+      p {
+        padding: $offset / 2 0;
+        overflow-x: hidden;
+      }
+      p, li { line-height: $offset * 1.25; }
+      ul > li { text-indent: $unit-minor * 2; }
+      ol, ul {
+        font-size: $fontSize-normal;
+        list-style-type: initial;
+        margin-left: $unit-major/2;
+      }
+    }
+  }
+}
