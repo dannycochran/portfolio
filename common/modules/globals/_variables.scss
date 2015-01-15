@@ -29,11 +29,13 @@ $fontSize-large: 1rem !default;
 $fontSize-medium: 0.9rem !default;
 $fontSize-normal: 0.833rem !default;
 $fontSize-small: 0.75rem !default;
+$fontSize-code: 0.625rem !default;
 
 $fontSize-icon: 1rem !default;
 
 $font-head: "Gotham SSm A", "Gotham SSm B", "Century Gothic", "Helvetica Neue", "Arial", "sans-serif" !default;
 $font-body: "TisaPro", "Tisa", "Times New Roman";
+$font-code: "Monaco", "Consolas", "Andale Mono", "DejaVu Sans Mono", "monospace";
 
 $fontWeight-bold: 700 !default; // medium for Archer, same as bold
 $fontWeight-logo: 500 !default; // medium
@@ -69,6 +71,7 @@ $color-ayasdi: #f7961d !default;
 $color-icon: rgb(120, 120, 120) !default;
 $color-button: rgb(56, 194, 240) !default;
 $color-navBorder: darken($color-panel, 15) !default;
+$color-code: #fdfae7;
 
 $color-stanford: #820000;
 $color-twitter: #55ACEE;

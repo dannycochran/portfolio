@@ -12,7 +12,7 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
 
     var randomUserId = null;
     if (!localStorage.getItem('randomUserId')) {
-      randomUserId = getUniqueId();
+      randomUserId = Portfolio.getUniqueId();
       localStorage.setItem('randomUserId', randomUserId);
     } else randomUserId = localStorage.getItem('randomUserId');
 

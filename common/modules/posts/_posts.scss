@@ -4,6 +4,7 @@ ol.posts {
   position: absolute;
   overflow-y: auto;
   overflow-x: hidden;
+  @include allowSelect;
   @include transition(width $animation);
   li.post {
     margin: $offset;
@@ -82,6 +83,18 @@ ol.posts {
         font-size: $fontSize-normal;
         list-style-type: initial;
         margin-left: $unit-major/2;
+      }
+      blockquote.code-block {
+        width: auto;
+        background-color: $color-code;
+        padding: 0 $offset;
+        *:not(blockquote) {
+          font-size: $fontSize-code;
+          font-family: $font-code;
+          line-height: 1;
+          padding-top: $unit-minor;
+          padding-bottom: $unit-minor;
+        }
       }
     }
   }
