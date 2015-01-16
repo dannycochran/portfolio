@@ -22,7 +22,9 @@ Portfolio.Views.Portfolio = module.exports = Backbone.View.extend({
     this.slidebar.onResize();
   },
 
-  onScroll: function (e) { if (e.currentTarget !== this.navbar.headroom.scroller) this.navbar.updateScroller(e.currentTarget); },
+  onScroll: function (e) {
+    if (e.currentTarget !== this.navbar.headroom.scroller) this.navbar.updateScroller(e.currentTarget);
+  },
 
   mount: function () {
     $(window).resize(this.onResize.bind(this));
@@ -40,7 +42,7 @@ Portfolio.Views.Portfolio = module.exports = Backbone.View.extend({
   },
 
   render: function () {
-    this.$container.find('div.spinner').remove();
+    this.$el.find('div.spinner').remove();
     this.currentView.render();
 
     _.defer(function () { this.currentView.$el.removeClass('closed'); }.bind(this));
@@ -65,7 +67,7 @@ Portfolio.Views.Portfolio = module.exports = Backbone.View.extend({
       return Portfolio.RESOLVE;
     } else {
       this.slidebar.changeSection(section);
-      this.$container.append(Portfolio.spinner({message: 'Loading ' + section}));
+      this.$el.append(Portfolio.spinner({message: 'Loading ' + section}));
 
       return currentView.build().then(function () {
         var doRender = function () {

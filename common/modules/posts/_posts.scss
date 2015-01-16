@@ -76,6 +76,7 @@ ol.posts {
       p {
         padding: $offset / 2 0;
         overflow-x: hidden;
+        span { white-space: normal; }
       }
       p, li { line-height: $offset * 1.25; }
       ul > li { text-indent: $unit-minor * 2; }

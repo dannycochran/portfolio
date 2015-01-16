@@ -46,8 +46,13 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
 
   onInteractionSelectedPost: function () {
     if (!this.selectedPost()) {
+      this.posts.$el.one(Portfolio.transitionend, function () {
+        this.scrollToPost(this.selectedPost.previous());
+      }.bind(this));
+
       this.posts.$el.find('li').show();
     } else {
+      this.posts.$el.scrollTop(0);
       this.posts.$el.find('li').hide();
       this.posts.$el.find('li[data-id="' + this.selectedPost() + '"]').show();
     }
@@ -61,6 +66,14 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
   onToggleMicroposts: function (e) { this.toggleMicroposts(!this.toggleMicroposts()); },
 
   onResize: function (e) { this.toggleMicroposts(false); },
+
+  scrollToPost: function (postId) {
+    var $post = this.posts.$el.find('li[data-id="' + postId + '"]'),
+        margin = Number($post.css('margin-top').replace('px', '')),
+        scrollTop = $post.offset().top - this.posts.$el.offset().top - margin;
+    if (!Portfolio.isMobile) this.posts.$el.scroll({scrollTop: scrollTop}, Portfolio.ANIMATION_DURATION);
+    else this.posts.$el.scrollTop(scrollTop);
+  },
 
   build: function () {
     return CaughtPromise.all([this.posts.model.hydrate(), this.microposts.model.hydrate()]);

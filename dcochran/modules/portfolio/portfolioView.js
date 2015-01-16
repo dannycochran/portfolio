@@ -18,7 +18,6 @@ DC.Views.Portfolio = module.exports = Portfolio.extend({
   },
 
   onInteractionSelectedPost: function () {
-    this.sections.home.posts.$el.scrollTop(0);
     this.navbar.$el.addClass('headroom-pinned').removeClass('closed');
     this.$el.toggleClass('single-post', this.sections.home.selectedPost() !== null);
   }

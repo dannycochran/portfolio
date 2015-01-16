@@ -17,6 +17,7 @@ var onReady = function () {
 
   if (safari && version < 6.1) complain('Safari', version, '6.1');
   else if (ie && version < 10) complain('Internet Explorer', version, '10.0');
+  else if (chrome && version < 26) Portfolio.transitionend = 'webkitTransitionEnd';
 };
 
 function setupNames (namespace) {
