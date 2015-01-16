@@ -47,9 +47,7 @@ app.get('/louie/posts', function (req, res) {
 });
 
 app.get('/louie/microposts', function (req, res) {
-  console.log('hihihi', req, res);
   tweets.get('/statuses/user_timeline.json', {include_entities:true}, function(data, error) {
-    console.log('inside', data);
     if (error) throw new Error(error);
     else res.send(data);
   });

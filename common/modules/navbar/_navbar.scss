@@ -13,7 +13,6 @@ header.navbar {
     height: calc(100% - #{$height-slideBar});
     top: 0;
   }
-  @extend %single-post;
   div#friendlies {
     position: absolute;
     z-index: 50;

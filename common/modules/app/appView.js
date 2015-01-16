@@ -29,7 +29,7 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
     if (!this.portfolio.mounted) {
       this.$el.empty();
       this.$el.append(this.portfolio.el);
-      this.portfolio.mount();
+      this.portfolio.mount().mounted = true;
     }
 
     return this.portfolio.routeSection(section);

@@ -50,7 +50,7 @@ ol.posts {
         span.date-content {
           width: auto;
           height: $fontSize-large;
-          padding-right: $offset/2;
+          padding-right: $offset;
           @include center(true, true);
         }
       }

@@ -10,9 +10,7 @@ Portfolio.Views.Portfolio = module.exports = Backbone.View.extend({
   currentView: null,
   template: require('./_portfolio.html'),
 
-  events: {
-    'mousewheel div, ul, ol': 'onScroll'
-  },
+  events: {'mousewheel div.home > ul, div.home > ol': 'onScroll'},
 
   initialize: function() {
     this.navbar = new Navbar({model: this.model});
@@ -24,10 +22,7 @@ Portfolio.Views.Portfolio = module.exports = Backbone.View.extend({
     this.slidebar.onResize();
   },
 
-  onScroll: function (e) {
-    if (e.currentTarget !== this.scrollTarget) this.navbar.refreshHeadroom(e.currentTarget);
-    this.scrollTarget = e.currentTarget;
-  },
+  onScroll: function (e) { if (e.currentTarget !== this.navbar.headroom.scroller) this.navbar.updateScroller(e.currentTarget); },
 
   mount: function () {
     $(window).resize(this.onResize.bind(this));
@@ -64,26 +59,32 @@ Portfolio.Views.Portfolio = module.exports = Backbone.View.extend({
   build: function (section) {
     var previousView = this.currentView,
         currentView = this.sections[section];
-    this.slidebar.changeSection(section);
 
-    this.$container.append(Portfolio.spinner({message: 'Loading ' + section}));
-    return currentView.build().then(function () {
-      var doRender = function () {
-        mixpanel.track('Viewing ' + section);
-        if (this.$container.children().indexOf(currentView.el) < 0) this.$container.append(this.currentView.el);
-        else currentView.$el.show();
+    if (previousView === currentView) {
+      currentView.render();
+      return Portfolio.RESOLVE;
+    } else {
+      this.slidebar.changeSection(section);
+      this.$container.append(Portfolio.spinner({message: 'Loading ' + section}));
 
-        if (this.previousView) this.previousView.$el.hide();
+      return currentView.build().then(function () {
+        var doRender = function () {
+          mixpanel.track('Viewing ' + section);
+          if (this.$container.children().indexOf(currentView.el) < 0) this.$container.append(this.currentView.el);
+          else currentView.$el.show();
 
-        _.defer(this.render.bind(this));
-      }.bind(this);
+          if (this.previousView) this.previousView.$el.hide();
 
-      this.currentView = currentView;
-      this.previousView = previousView;
-      if (previousView && previousView.cid !== currentView.cid)
-        return CaughtPromise.resolve(previousView.teardown()).then(doRender); // cast teardown to promise
-      else doRender();
-    }.bind(this));
+          this.render();
+        }.bind(this);
+
+        this.currentView = currentView;
+        this.previousView = previousView;
+        if (previousView && previousView.cid !== currentView.cid)
+          return CaughtPromise.resolve(previousView.teardown()).then(doRender); // cast teardown to promise
+        else doRender();
+      }.bind(this));
+    }
   },
 
   teardown: function () {

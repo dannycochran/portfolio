@@ -14,15 +14,12 @@ DC.Views.Portfolio = module.exports = Portfolio.extend({
 
   initialize: function() {
     Portfolio.prototype.initialize.apply(this, arguments);
-    // this.listenTo(this.model, 'show:posts', this.onShowPosts);
+    this.listenTo(this.sections.home, 'interaction:selectedPost', this.onInteractionSelectedPost.bind(this));
   },
 
-  // onShowPosts: function (showPosts) {
-  //   this.slidebar.$el.toggleClass('closed', !showPosts);
-  //   this.navbar.$el
-  //     .toggleClass('single-post', !showPosts)
-  //     .addClass('headroom-pinned')
-  //     .removeClass('closed');
-  //   this.home.social.posts.showPosts(showPosts);
-  // },
+  onInteractionSelectedPost: function () {
+    this.sections.home.posts.$el.scrollTop(0);
+    this.navbar.$el.addClass('headroom-pinned').removeClass('closed');
+    this.$el.toggleClass('single-post', this.sections.home.selectedPost() !== null);
+  }
 });

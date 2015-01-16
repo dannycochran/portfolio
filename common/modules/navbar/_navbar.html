@@ -5,11 +5,13 @@
     </a>
   <% }); %>
 </div>
-<header id="portfolio-name">
-  <span id="mini"><%= mini %></span>
-  <span id="truncated"><%= truncated %></span>
-  <span id="full"><%= full %></span>
-</header>
+<a href='/'>
+  <header id="portfolio-name">
+    <span id="mini"><%= mini %></span>
+    <span id="truncated"><%= truncated %></span>
+    <span id="full"><%= full %></span>
+  </header>
+</a>
 <div id="descriptors">
   <% _.each(descriptors, function (descriptor) { %>
     <a href="<%= descriptor.url %>">

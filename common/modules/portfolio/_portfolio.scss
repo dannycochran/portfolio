@@ -6,14 +6,41 @@ div.portfolio {
   background-color: darken($color-background, 10);
   overflow: hidden;
   @include box-shadow(1px 0 $offset / 2 lighten($color-shadow, 50));
+  @include transition(top $animation, height $animation);
   & > div.content-container {
     width: 100%;
-    height: calc(100% - #{$height-header * 2});
+    height: 100%;
     top: $height-header * 2;
     position: absolute; margin: auto; left: 0; right: 0;
     @include transition(top $animation);
   }
-  @include transition(top $animation, height $animation);
+  &.single-post {
+    div.content-container {
+      height: 100% !important;
+      top: $height-header;
+      ol.posts { width: 100% !important; }
+      ol.microposts { left: 100%; width: 0 !important; }
+      div.toggle { display: none; }
+    }
+    header.navbar {
+      top: 0 !important;
+      height: $height-header;
+      div#friendlies i { line-height: $height-header !important; }
+      header#portfolio-name {
+        span {
+          width: 100% !important;
+          display: inline-block;
+          text-align: right;
+          line-height: $height-header !important;
+        }
+      }
+      div#descriptors {
+        max-width: 0 !important;
+        padding: 0 !important;
+      }
+    }
+    div.slidebar { @extend div.slidebar.closed; }
+  }
 }
 
 @include responsiveWidth($THIRD_RESPONSE) {

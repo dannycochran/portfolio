@@ -292,38 +292,3 @@
   background: white;
   border: $border $color-navBorder;
 }
-
-%single-post {
-  &.single-post + div.home {
-    top: $height-header !important;
-    height: calc(100% - #{$height-header});
-    div.social {
-      ol.posts { width: 100% !important; }
-      ol.small-posts {
-        width: $width-panel !important;
-        left: 100% !important;
-      }
-      div.toggle {
-        visibility: hidden !important; pointer-events: none !important;
-      }
-    }
-  }
-  &.single-post {
-    height: $height-header !important;
-    &.closed { top: -$height-header !important; }
-    &.closed + div.home { height: 100% !important; }
-    div#friendlies i { line-height: $height-header !important; }
-    header#portfolio-name {
-      span {
-        width: 100% !important;
-        display: inline-block;
-        text-align: right;
-        line-height: $height-header !important;
-      }
-    }
-    div#descriptors {
-      max-width: 0 !important;
-      padding: 0 !important;
-    }
-  }
-}

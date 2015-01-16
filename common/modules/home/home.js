@@ -11,7 +11,10 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
   events: {'click div.toggle': 'onToggleMicroposts'},
 
   initialize: function () {
-    this.interactions.add(this, 'selectedPost', {callback: this.onInteractionSelectedPost.bind(this)});
+    this.interactions.add(this, 'selectedPost', {
+      callback: this.onInteractionSelectedPost.bind(this),
+      initialValue: null
+    });
     this.interactions.add(this, 'toggleMicroposts', {callback: this.onInteractionToggleMicroposts.bind(this)});
 
     this.$el.html(this.template());
@@ -22,6 +25,8 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
   },
 
   render: function () {
+    this.selectedPost(null);
+
     if (!this.posts.rendered) {
       this.posts.render().rendered = true;
       this.$el.append(this.posts.el);
@@ -40,11 +45,13 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
   },
 
   onInteractionSelectedPost: function () {
-    if (!this.selectedPost()) this.$posts.$el.find('li').show();
-    else this.posts.$el.find('li:not(#' + this.selectedPost()).hide();
-
+    if (!this.selectedPost()) {
+      this.posts.$el.find('li').show();
+    } else {
+      this.posts.$el.find('li').hide();
+      this.posts.$el.find('li[data-id="' + this.selectedPost() + '"]').show();
+    }
   },
-
 
   onInteractionToggleMicroposts: function () {
     this.$toggler.toggleClass('open', this.toggleMicroposts());
@@ -56,9 +63,7 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
   onResize: function (e) { this.toggleMicroposts(false); },
 
   build: function () {
-    return this.posts.model.hydrate().then(function () {
-      return this.microposts.model.hydrate();
-    }.bind(this));
+    return CaughtPromise.all([this.posts.model.hydrate(), this.microposts.model.hydrate()]);
   },
 
   teardown: function () {
