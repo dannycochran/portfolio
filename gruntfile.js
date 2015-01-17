@@ -31,6 +31,11 @@ module.exports = function (grunt) {
         dest: 'dist/build.css'
       }
     },
+    cssmin: {
+      combine: {
+        files: {'dist/build.css': ['dist/build.css']}
+      }
+    },
     uglify: {
       options: {
         mangle: true,
@@ -104,6 +109,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-env');
   grunt.loadNpmTasks('grunt-preprocess');
   grunt.loadNpmTasks('grunt-shell');
