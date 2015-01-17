@@ -2,7 +2,7 @@ var Model = require('./projectsModel.js');
 
 Portfolio.Views.Projects = module.exports = Backbone.View.extend({
   tagName: 'ol',
-  className: 'projects closed',
+  className: 'projects',
   template: _.template(require('./_project.html')),
   model: new Model(),
 
@@ -18,12 +18,5 @@ Portfolio.Views.Projects = module.exports = Backbone.View.extend({
     return this;
   },
 
-  build: function () { return Portfolio.RESOLVE; },
-
-  teardown: function () {
-    return new CaughtPromise(function (resolve, reject) {
-      if (this.$el.hasClass('closed')) resolve();
-      else this.$el.addClass('closed').one(Portfolio.transitionend, resolve);
-    }.bind(this));
-  }
+  build: function () { return Portfolio.RESOLVE; }
 });

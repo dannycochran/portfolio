@@ -5,7 +5,7 @@ var Interactions = require('../interactions/interactions.js'),
 Portfolio.Views.Home = module.exports = Backbone.View.extend({
   model: new Backbone.Model(),
   interactions: new Interactions(),
-  className: 'home closed',
+  className: 'home',
 
   template: _.template(require('./_home.html')),
   events: {'click div.toggle': 'onToggleMicroposts'},
@@ -25,12 +25,12 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
   },
 
   render: function () {
-    this.selectedPost(null);
-
     if (!this.posts.rendered) {
       this.posts.render().rendered = true;
       this.$el.append(this.posts.el);
     }
+    this.selectedPost(this.postId ? this.postId : null);
+
     if (!this.microposts.rendered) {
       this.microposts.render().rendered = true;
       this.$el.append(this.microposts.el);
@@ -39,19 +39,14 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
     return this;
   },
 
-  renderSubSection: function (modelId) {
-    if (this.posts.model.get(modelId)) this.selectedPost(modelId);
-    if (modelId) this.toggleMicroposts(false);
-  },
-
   onInteractionSelectedPost: function () {
-    if (!this.selectedPost()) {
+    if (!this.selectedPost() && this.selectedPost.previous()) {
       this.posts.$el.one(Portfolio.transitionend, function () {
         this.scrollToPost(this.selectedPost.previous());
       }.bind(this));
 
       this.posts.$el.find('li').show();
-    } else {
+    } else if (this.selectedPost()) {
       this.posts.$el.scrollTop(0);
       this.posts.$el.find('li').hide();
       this.posts.$el.find('li[data-id="' + this.selectedPost() + '"]').show();
@@ -75,15 +70,8 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
     else this.posts.$el.scrollTop(scrollTop);
   },
 
-  build: function () {
+  build: function (postId) {
+    this.postId = postId;
     return CaughtPromise.all([this.posts.model.hydrate(), this.microposts.model.hydrate()]);
-  },
-
-  teardown: function () {
-    this.stopListening();
-    return new CaughtPromise(function (resolve, reject) {
-      if (this.$el.hasClass('closed')) resolve();
-      else this.$el.addClass('closed').one(Portfolio.transitionend, resolve);
-    }.bind(this));
   }
 });

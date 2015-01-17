@@ -1,7 +1,8 @@
 
 Portfolio.Utilities.Router = module.exports = Backbone.Router.extend({
   routes: {'*notFound': 'notFound'},
-  template: require('./_404.html'),
+
+  initialize: function (notFoundCallback) { this.notFoundCallback = notFoundCallback; },
 
   promise: function () {
     return new Promise(function (resolve, reject) { // start listening after the current stack
@@ -9,5 +10,5 @@ Portfolio.Utilities.Router = module.exports = Backbone.Router.extend({
     }.bind(this));
   },
 
-  notFound: function () { $('body').html(this.template); }
+  notFound: function () { this.notFoundCallback(); }
 });

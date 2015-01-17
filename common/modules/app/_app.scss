@@ -13,13 +13,17 @@ div.portfolio {
     top: $height-header * 2;
     position: absolute; margin: auto; left: 0; right: 0;
     @include transition(top $animation);
+    & > div, & > ol {
+      &.closed-left { @include transform(translateX(-100%)); }
+      &.closed-right { @include transform(translateX(100%)); }
+    }
   }
   &.single-post {
     div.content-container {
       height: 100% !important;
       top: $height-header;
       ol.posts { width: 100% !important; }
-      ol.microposts { left: 100%; width: 0 !important; }
+      ol.microposts { display: none; }
       div.toggle { display: none; }
     }
     header.navbar {

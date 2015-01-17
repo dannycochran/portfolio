@@ -6,7 +6,7 @@
 @import "../../common/modules/globals/variables";
 @import "../../common/modules/globals/mixins";
 @import "../../common/modules/globals/globals";
-@import "../../common/modules/portfolio/portfolio";
+@import "../../common/modules/app/app";
 @import "../../common/modules/navbar/navbar";
 @import "../../common/modules/slidebar/slidebar";
 @import "../../common/modules/home/home";
@@ -14,16 +14,9 @@
 @import "../../common/modules/posts/posts";
 @import "../../common/modules/projects/projects";
 @import "../../common/modules/resume/resume";
+@import "../../common/modules/about/about";
 
 // App-specific
 @import "../../components/dannycochran-mobydick@master/modules/game/build";
-@import "../modules/portfolio/portfolio";
+@import "../modules/app/app";
 @import "../modules/navbar/navbar";
-// @import "social";
-// @import "posts";
-// @import "tweets";
-// @import "resume";
-// @import "projects";
-// @import "about";
-// @import "alert";
-// @import "custom-icons";

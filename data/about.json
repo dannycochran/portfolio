@@ -1,31 +1,27 @@
 {
-  "things": [
+  "images": [
   {
-    "image": "/assets/img/ayasdi.jpg",
-    "description": "I am a frontend developer at Ayasdi. But I also enjoy other things."
+    "src": "/assets/img/ayasdi.jpg",
+    "description": "I am a frontend developer at Ayasdi."
   },
   {
-    "image": "/assets/img/roma.jpg",
-    "description": "Like traveling, for instance."
+    "src": "/assets/img/roma.jpg",
+    "description": "I've lived in Paris, Mexico City, Singapore, and now Palo Alto."
   },
   {
-    "image": "/assets/img/trinity.jpg",
-    "description": "Or backpacking in various California wildernesses (Trinity Alps)."
+    "src": "/assets/img/lostcoast.jpg",
+    "description": "California's Lost Coast is one of many reasons I'll keep put here."
   },
   {
-    "image": "/assets/img/lostcoast.jpg",
-    "description": "The Lost Coast..."
+    "src": "/assets/img/trinity.jpg",
+    "description": "I like photography, surfing and backpacking. (Trinity Alps)."
   },
   {
-    "image": "/assets/img/ptreyes.jpg",
-    "description": "Point Reyes: lovely, dark & deep"
-  },
-  {
-    "image": "/assets/img/friends.jpg",
+    "src": "/assets/img/friends.jpg",
     "description": "These are what my friends look like in silhoutte form."
   },
   {
-    "image": "/assets/img/jake.jpg",
+    "src": "/assets/img/jake.jpg",
     "description": "Not sure how to end this, but it's the internet so here's my old cat Jake looking at a turtle."
   }
   ]

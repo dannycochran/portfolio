@@ -8,7 +8,6 @@ ol.resume {
   font-size: $fontSize-normal;
   @include allowSelect;
   @include transition(height $animation, transform $animation);
-  &.closed { @include transform(translateX(100%)); }
   div.wrapper {
     max-width: $unit-major * 8;
     height: 100%;

@@ -9,9 +9,6 @@ ol.projects {
   &:hover {
     li.project { opacity: 0.6; }
   }
-  &.closed {
-    @include transform(translateX(-100%));
-  }
   li.project {
     width: 30%;
     min-width: $unit-major * 3 !important;

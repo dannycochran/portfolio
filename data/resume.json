@@ -8,13 +8,13 @@
       "title": "M.A",
       "name": "Stanford University",
       "details": ["Education: Learning, Design & Technology", "Final project: http:www.strummify.com"],
-      "date_range": ["8.1.2012", "8.1.2013"]
+      "date_range": ["8.2012", "8.2013"]
     },
     {
       "title": "B.A",
       "name": "Lewis & Clark College",
       "details": ["Major: Political Science", "Minor: Economics"],
-      "date_range": ["8.1.2005", "5.1.2009"]
+      "date_range": ["8.2005", "5.2009"]
     }]
    },
   "professional": {
@@ -23,31 +23,31 @@
       "name": "Ayasdi",
       "title": "Frontend engineer",
       "details": ["Creating web application for interactive data visualization","Designing and implementing new features and products"],
-      "date_range": ["8.1.2013", "present"]
+      "date_range": ["8.2013", "present"]
     },
     {
       "name": "Stanford University",
       "title": "Product designer",
       "details": ["Designed mobile application for distribution in schools"],
-      "date_range": ["1.1.2013", "5.1.2013"]
+      "date_range": ["1.2013", "5.2013"]
     },
     {
       "name": "Yogiplay",
       "title": "User experience designer",
       "details": ["Designed HTML5 web application for mobile and tablet devices"],
-      "date_range": ["4.1.2012", "4.1.2013"]
+      "date_range": ["1.2012", "1.2013"]
     },
     {
       "name": "Ympyra",
       "title": "Project manager",
       "details": ["Led development of mobile learning project for 5th graders"],
-      "date_range": ["10.1.2010", "3.1.2012"]
+      "date_range": ["12.2010", "1.2012"]
     },
     {
       "name": "Americorps",
       "title": "Site lead",
       "details": ["Taught and led afterschool program in South San Jose"],
-      "date_range": ["12.1.2009", "8.1.2010"]
+      "date_range": ["12.2009", "12.2010"]
     }]
   },
   "skills": [
