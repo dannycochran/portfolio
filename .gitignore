@@ -1,6 +1,3 @@
-/assets/fonts/Gotham/
-/assets/fonts/Tisa/
-assets/fonts/Archer/
 /node_modules/
 /.sass-cache/
 /dist/
@@ -8,6 +5,12 @@ assets/fonts/Archer/
 /hooks/
 /hooks/post-receive
 hooks/post-receive
-index.html
 .DS_STORE
 configuration.json
+
+/.nodemonignore
+/common/assets/fonts/Gotham/
+/common/assets/fonts/Archer/
+/common/assets/css/dev-fonts.css
+/components/
+/.grunt/

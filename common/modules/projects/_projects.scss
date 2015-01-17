@@ -1,0 +1,71 @@
+ol.projects {
+  width: auto; height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+  @include flex;
+  @include transition(transform $animation);
+  &:hover {
+    li.project { opacity: 0.6; }
+  }
+  li.project {
+    width: 30%;
+    min-width: $unit-major * 3 !important;
+    height: auto;
+    background-color: $color-background;
+    margin: $offset;
+    @include transition(opacity $animation);
+    @include box-shadow(0px $unit-minor / 3 $unit-minor / 4 0px transparentize($color-foreground, 0.75));
+    &:nth-of-type(1), &:nth-of-type(2) { width: calc(50% - #{$offset * 3}); }
+    &:hover { opacity: 1 !important; }
+    div.wrapper {
+      width: 100%;
+      height: auto;
+      display: inline-block;
+      padding: $offset;
+      a.image-wrapper {
+        width: 100%;
+        height: auto;
+        display: inline-block;
+        padding: $offset 0;
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+      header.title {
+        width: 100%;
+        height: auto;
+        font-weight: $fontWeight-body;
+        font-size: $fontSize-brand;
+        text-align: center;
+        text-transform: lowercase;
+      }
+      div.description {
+        span {
+          width: 100%;
+          height: auto;
+          display: inline-block;
+          line-height: 1.25;
+          padding: $offset/2 0;
+          line-height: $offset * 1.25;
+          font-size: $fontSize-normal;
+          white-space: normal;
+          a {
+            text-decoration: underline;
+            color: $color-highlight;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include responsiveWidth($SECOND_RESPONSE) {
+  ol.projects {
+    li.project {
+      width: calc(100% - #{$offset * 2}) !important;
+    }
+  }
+}

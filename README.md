@@ -3,10 +3,11 @@
 
 **Install Grunt & Node Dependencies**
 
-```sh
-$ node -v
-$ v0.10.22
-$ gem install sass
-$ npm install -g grunt-cli
-$ npm install
+```
+  node -v
+  v0.10.22
+  gem install sass
+  npm install -g duo@0.8.10
+  npm install -g grunt-cli
+  npm install
 ```
