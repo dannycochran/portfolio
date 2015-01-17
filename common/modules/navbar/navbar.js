@@ -5,8 +5,6 @@ Portfolio.Views.Navbar = module.exports = Backbone.View.extend({
   className: 'navbar',
   template: _.template(require('./_navbar.html')),
 
-  events: {'click a': 'onTrackOutboundNavigation'},
-
   initialize: function () {
     this.$el.html(this.template(this.model));
 
@@ -17,14 +15,5 @@ Portfolio.Views.Navbar = module.exports = Backbone.View.extend({
     }).init();
   },
 
-  updateScroller: function (view) { this.headroom.updateScroller(view); },
-
-  resetNavbar: function () {
-    this.$el.removeClass('closed');
-    this.$el.addClass('headroom--pinned');
-  },
-
-  onTrackOutboundNavigation: function (e) {
-    mixpanel.track('Navigating to ' + $(e.currentTarget).attr('href'));
-  }
+  updateScroller: function (view) { this.headroom.updateScroller(view); }
 });

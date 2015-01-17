@@ -51,7 +51,7 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
     if (href.indexOf('.') < 0 || href.indexOf('http') < 0) { // external links
       this.router.navigate(href, {trigger: true});
       return false;
-    }
+    } else mixpanel.track('Navigating to ' + href);
   },
 
   build: function (view, data) {
