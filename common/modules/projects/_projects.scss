@@ -14,24 +14,24 @@ ol.projects {
   }
   li.project {
     width: 30%;
-    min-width: $majorGridWidth * 3 !important;
+    min-width: $unit-major * 3 !important;
     height: auto;
-    background-color: $foreground;
-    margin: $elementPadding;
+    background-color: $color-background;
+    margin: $offset;
     @include transition(opacity $animation);
-    @include box-shadow(inset -1px 0 $elementPadding / 2 $shadowColor);
-    &:nth-of-type(1), &:nth-of-type(2) { width: calc(50% - #{$elementPadding * 3}); }
+    @include box-shadow(0px $unit-minor / 3 $unit-minor / 4 0px transparentize($color-foreground, 0.75));
+    &:nth-of-type(1), &:nth-of-type(2) { width: calc(50% - #{$offset * 3}); }
     &:hover { opacity: 1 !important; }
     div.wrapper {
       width: 100%;
       height: auto;
       display: inline-block;
-      padding: $elementPadding;
+      padding: $offset;
       a.image-wrapper {
         width: 100%;
         height: auto;
         display: inline-block;
-        padding: $elementPadding 0;
+        padding: $offset 0;
         img {
           width: 100%;
           height: auto;
@@ -40,8 +40,8 @@ ol.projects {
       header.title {
         width: 100%;
         height: auto;
-        font-weight: $bodyContentWeight;
-        font-size: $brand * 1.5;;
+        font-weight: $fontWeight-body;
+        font-size: $fontSize-brand;
         text-align: center;
         text-transform: lowercase;
       }
@@ -50,11 +50,14 @@ ol.projects {
           width: 100%;
           height: auto;
           display: inline-block;
-          line-height: $elementPadding * 1.25;
-          padding: $elementPadding / 1.5 0;
+          line-height: 1.25;
+          padding: $offset/2 0;
+          line-height: $offset * 1.25;
+          font-size: $fontSize-normal;
+          white-space: normal;
           a {
             text-decoration: underline;
-            color: $actionColor;
+            color: $color-highlight;
           }
         }
       }
@@ -62,10 +65,10 @@ ol.projects {
   }
 }
 
-@include mobile($SECOND_RESPONSE) {
+@include responsiveWidth($SECOND_RESPONSE) {
   ol.projects {
     li.project {
-      width: calc(100% - #{$elementPadding * 2}) !important;
+      width: calc(100% - #{$offset * 2}) !important;
     }
   }
 }

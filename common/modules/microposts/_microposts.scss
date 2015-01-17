@@ -4,7 +4,7 @@ ol.microposts {
   position: absolute;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: transparent;
+  background-color: darken($color-background, 10);
   @include transition(width $animation, left $animation);
   li.micropost {
     position: relative;

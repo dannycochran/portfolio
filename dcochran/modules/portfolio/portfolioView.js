@@ -1,14 +1,14 @@
 var Portfolio = require('../../../common/modules/portfolio/portfolioView.js'),
-    Home = require('../../../common/modules/home/home.js');
-    // Projects = require('../projects/projectsView.js'),
-    // Resume = require('../resume/resumeView.js'),
+    Home = require('../../../common/modules/home/home.js'),
+    Projects = require('../../../common/modules/projects/projectsView.js'),
+    Resume = require('../../../common/modules/resume/resumeView.js');
     // About = require('../about/aboutView.js'),
 
 DC.Views.Portfolio = module.exports = Portfolio.extend({
   sections: {
     home: new Home(),
-    projects: null, // new Projects(),
-    resume: null, //new Resume(),
+    projects: new Projects(),
+    resume: new Resume(),
     about: null //new About()
   },
 

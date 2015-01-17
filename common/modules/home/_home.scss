@@ -6,19 +6,18 @@ div.home {
   @include transition(transform $animation);
   &.closed { @include transform(translateX(-100%)); }
   div.toggle {
-    z-index: 100;
-    width: $offset * 1.5;
+    z-index: z(panel);
+    width: $offset * 1.7;
     height: $offset * 4;
     display: inline-block;
     visibility: hidden; pointer-events: none;
     color: $color-icon;
-    right: 0;
+    right: 0; top: 0; bottom: 0; margin: auto;
     cursor: pointer;
     background-color: $color-background;
     border-top-left-radius: $unit-minor;
     border-bottom-left-radius: $unit-minor;
-    position: absolute;
-    @include transform(translateY(150%));
+    position: fixed;
     @include box-shadow(-$unit-minor / 3 0px $unit-minor / 3 0px lighten($color-shadow, 50));
     @include transition(color $animation, right $animation, background-color $animation);
     &.open {

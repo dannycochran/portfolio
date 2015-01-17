@@ -10,7 +10,9 @@ Portfolio.Views.Portfolio = module.exports = Backbone.View.extend({
   currentView: null,
   template: require('./_portfolio.html'),
 
-  events: {'mousewheel div.home > ul, div.home > ol': 'onScroll'},
+  events: {
+    'mousewheel div.content-container > ol, div.content-container > div > ol': 'onScroll',
+  },
 
   initialize: function() {
     this.navbar = new Navbar({model: this.model});
@@ -18,12 +20,13 @@ Portfolio.Views.Portfolio = module.exports = Backbone.View.extend({
   },
 
   onResize: function () {
-    if (this.currentView) this.currentView.onResize();
+    if (this.currentView && this.currentView.onResize) this.currentView.onResize();
     this.slidebar.onResize();
   },
 
   onScroll: function (e) {
-    if (e.currentTarget !== this.navbar.headroom.scroller) this.navbar.updateScroller(e.currentTarget);
+    var blocked = e.currentTarget.getAttribute('data-scroller') === '-1';
+    if (!blocked && e.currentTarget !== this.navbar.headroom.scroller) this.navbar.updateScroller(e.currentTarget);
   },
 
   mount: function () {

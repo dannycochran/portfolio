@@ -1,0 +1,1 @@
+Portfolio.Models.Projects = module.exports = Backbone.Model.extend(require('../../../data/projects.json'));
