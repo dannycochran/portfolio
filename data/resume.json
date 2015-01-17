@@ -1,0 +1,69 @@
+{
+  "website": "dcochran.com",
+  "name": "Daniel Cochran",
+  "education": {
+    "name": "education",
+    "positions": [{
+      "title": "M.A",
+      "name": "Stanford University",
+      "details": ["Education: Learning, Design & Technology", "Final project: http:www.strummify.com"],
+      "date_range": ["8.2012", "8.2013"]
+    },
+    {
+      "title": "B.A",
+      "name": "Lewis & Clark College",
+      "details": ["Major: Political Science", "Minor: Economics"],
+      "date_range": ["8.2005", "5.2009"]
+    }]
+   },
+  "professional": {
+    "name": "professional",
+    "positions": [{
+      "name": "Ayasdi",
+      "title": "Frontend engineer",
+      "details": ["Creating web application for interactive data visualization","Designing and implementing new features and products"],
+      "date_range": ["8.2013", "present"]
+    },
+    {
+      "name": "Stanford University",
+      "title": "Product designer",
+      "details": ["Designed mobile application for distribution in schools"],
+      "date_range": ["1.2013", "5.2013"]
+    },
+    {
+      "name": "Yogiplay",
+      "title": "User experience designer",
+      "details": ["Designed HTML5 web application for mobile and tablet devices"],
+      "date_range": ["1.2012", "1.2013"]
+    },
+    {
+      "name": "Ympyra",
+      "title": "Project manager",
+      "details": ["Led development of mobile learning project for 5th graders"],
+      "date_range": ["12.2010", "1.2012"]
+    },
+    {
+      "name": "Americorps",
+      "title": "Site lead",
+      "details": ["Taught and led afterschool program in South San Jose"],
+      "date_range": ["12.2009", "12.2010"]
+    }]
+  },
+  "skills": [
+    {
+      "title": "Programming Languages",
+      "details": ["Javascript", "Ruby on Rails", "Python", "R", "Java", "HTML", "CSS3"]
+    },
+    {
+      "title": "Package Specialties",
+      "details": ["Backbone", "D3", "Underscore", "Zepto", "Crossfilter", "Paper", "Node", "Grunt", "Nginx", "Varnish"]
+    },
+    {
+      "title": "Design Tools",
+      "details": ["Adobe Photoshop & Illustrator", "Omnigraffle", "Pixelmator"]
+    },
+    {
+      "title": "Professional Interests",
+      "details": ["data visualization", "interactive web applications", "digital education", "photography"]
+    }]
+}

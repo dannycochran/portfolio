@@ -1,0 +1,81 @@
+*{ margin: 0; padding: 0}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+  font-size: $unit;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  overflow: hidden;
+}
+
+body {
+  width: 100%; height: 100%;
+  min-width: $unit-major * 3.2;
+  line-height: 1.428571429;
+  background-color: darken($color-background, 8);
+  color: $color-foreground;
+  font-family: $font-head;
+  font-weight: $fontWeight-body;
+  font-size: $fontSize-normal;
+  overflow: auto;
+  @include fontSmoothing(off); // default is dark text on light background
+}
+
+header {
+  cursor: default;
+  @include noSelect;
+}
+/* LISTS */
+div, ol, ul { -webkit-overflow-scrolling: touch; }
+ol, ul, header { @include noSelect; }
+ol, ul {
+  -ms-overflow-style: none; // IE bedevilment
+  list-style-type: none;
+  margin: 0; padding: 0;
+  font-size: 0px; // removes weird horizontal spacing built into lists
+}
+
+/* TEXT FIELD INHERITANCE */
+input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  cursor: pointer;
+  @include placeholder { letter-spacing: 0.5px; };
+  &:focus, &:active { cursor: text; outline: none; }
+}
+
+span { @include text-overflow; }
+a { text-decoration: none; @include transition(color $animation); }
+
+/* ICONS */
+i { color: $color-icon; }
+
+/* SPINNER */
+div.spinner {
+  width: 5 * $fontSize-larger;
+  height: 5 * $fontSize-larger;
+  @include center(true, true);
+  span {
+    display: inline-block;
+    margin-bottom: $offset/2;
+  }
+  i {
+    width: inherit; height: inherit;
+    line-height: 5 * $fontSize-larger;
+    font-size: 5 * $fontSize-larger;
+    color: $color-icon;
+    text-align: center;
+  }
+}

@@ -1,0 +1,1 @@
+Portfolio.Models.About = module.exports = Backbone.Model.extend(require('../../../data/about.json'));

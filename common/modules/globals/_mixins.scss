@@ -1,0 +1,294 @@
+/* MIXINS */
+@mixin inline-flex ($strict) {
+  @if $strict {
+    display: -webkit-inline-flex !important;
+    display: -moz-inline-flex !important;
+    display: -ms-inline-flex !important;
+    display: inline-flex !important;
+  } else {
+      display: -webkit-inline-flex;
+      display: -moz-inline-flex;
+      display: -ms-inline-flex;
+      display: inline-flex;
+  }
+}
+
+@mixin flex () {
+  display: -webkit-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  justify-content: center;
+}
+
+/* COLORS */
+@function dark-alt-color($color) { @return scale-color($color, $lightness: -20%) }
+@function light-alt-color($color) { @return scale-color($color, $lightness: 5%) }
+
+/* MIXINS */
+@mixin center ($vertical, $horizontal) {
+  margin: auto;
+  position: absolute;
+  @if $vertical { top: 0; bottom: 0; }
+  @if $horizontal { left: 0; right: 0; }
+}
+
+@mixin palette($colors, $params...) {
+  @for $i from 1 through length($colors) {
+    &.swatch-#{$i} { 
+      @each $param in $params { #{$param} : nth($colors, $i); }
+    }
+  }
+}
+
+@mixin responsiveWidth($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+@mixin blends($colors, $params...) {
+  @for $i from 1 through length($colors) - 1 {
+    @for $j from $i + 1 through length($colors) {
+      &.swatch-#{$i}-#{$j} {
+        @each $param in $params { #{$param} : mix(nth($colors, $i), nth($colors, $j)); }
+      }
+    }
+  }
+}
+
+@mixin box-shadow ($b...) {
+  -webkit-box-shadow: $b;
+  -moz-box-shadow: $b;
+  box-shadow: $b;
+}
+
+@mixin transition ($t...) {
+  @for $i from 1 through length($t) {
+    $transition: nth($t, $i);
+    @if nth($transition, 1) == transform {
+      -webkit-transition: -webkit-transform nth($transition, 2);
+    } else {
+      -webkit-transition: $transition;
+    }
+  }
+  transition: $t;
+}
+
+@mixin fontSmoothing($value: on) {
+  @if $value == on {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  } @else {
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: auto;
+  }
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder { @content; }
+  &::-moz-placholder { @content; }
+  &:-ms-input-placeholder { @content; }
+}
+
+@mixin transform ($t...) {
+  -webkit-transform: $t;
+  -ms-transform: $t;
+  transform: $t;
+}
+
+@mixin appearance ($a...) {
+  -webkit-appearance: $a;
+  -moz-appearance: $a;
+  appearance: $a;
+}
+
+@mixin collapsible-list ($strict: false) {
+  max-height: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  @include transition(max-height $animation-long);
+  &.closed { border-bottom: none; }
+  @if $strict { &.closed { max-height: 0 !important; } }
+  @else { &.closed { max-height: 0; } }
+}
+
+@mixin text-overflow {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin disabled {
+  display: none;
+  pointer-events: none;
+}
+
+@mixin disabled-transparent {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@mixin disabled-transparent-override {
+  opacity: 1;
+  pointer-events: all;
+}
+
+@mixin noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@mixin allowSelect {
+  -webkit-touch-callout: initial;
+  -webkit-user-select: initial;
+  -khtml-user-select: initial;
+  -moz-user-select: initial;
+  -ms-user-select: initial;
+  user-select: initial;
+}
+
+@mixin grab {
+  cursor: grab;
+  cursor: -webkit-grab;
+  cursor: -moz-grab;
+}
+
+@mixin grabbing {
+  cursor: grabbing !important;
+  cursor: -webkit-grabbing !important;
+  cursor: -moz-grabbing !important;
+}
+
+/* SASS CLASSES */
+%fa-spin {
+  i.fa {
+    @extend .fa-spin;
+    &:before { @extend .fa-spinner:before; }
+  }
+}
+
+%interactive {
+  cursor: pointer;
+  outline: none;
+  i.fa, i[class^=icon] {
+    @include transition(color $animation);
+    outline: none;
+  }
+  &:hover, &:focus, &:active, &.active {
+    & > i.fa, i[class^=icon] { color: $color-active; }
+    & > a, & > li { i.fa, i[class^=icon] { color: $color-active; } }
+    & > i.icon-delete, & > i.fa-trash, & > i.fa-trash-o { color: $color-warning; }
+  }
+  &.disabled {
+    cursor: default;
+    i.fa, i[class^=icon] { color: lighten($color-icon, 30); }
+    &:hover, &:focus, &:active {
+      i.fa, i[class^=icon] { color: lighten($color-icon, 30) !important; }
+    }
+  }
+}
+
+%dropdown {
+  header {
+    width: 100%;
+    height: $height-header;
+    font-weight: $fontWeight-body;
+    font-size: $fontSize-large;
+    border-bottom: $border darken($color-panel, 15);
+    color: $color-panelText;
+    position: relative;
+    @extend %interactive;
+    &:hover span, &.active span { font-weight: $fontWeight-title; }
+    a {
+      width: 100%;
+      height: $height-header;
+      display: inline-block;
+      position: relative;
+      span {
+        max-width: 100%;
+        height: 100%;
+        display: inline-block;
+        line-height: $height-header;
+        padding: 0px $offset / 2;
+        float: right;
+        text-transform: uppercase;
+      }
+      i {
+        line-height: $height-header;
+        position: absolute;
+        left: $offset / 2;
+        color: $color-icon;
+      }
+    }
+  }
+  & > ol {
+    top: 0; margin: 0; padding: 0;
+    @include collapsible-list;
+    @include box-shadow(inset -1px 0 $offset / 2 lighten($color-shadow, 60));
+  }
+}
+
+%button {
+  width: 100%;
+  height: $height-header;
+  border: none;
+  cursor: pointer;
+  background-color: $color-button;
+  color: $color-panel;
+  font-family: $font-head;
+  font-weight: $fontWeight-body;
+  font-size: $fontSize-larger;
+  text-align: center;
+  @include transition(background-color $animation);
+  &:hover { background-color: lighten($color-button, 10); }
+  &:focus {
+    outline: none;
+    box-shadow: none !important;
+  }
+  &:disabled {
+    cursor: default !important;
+    background-color: lighten($color-button, 10);
+  }
+}
+
+%form-input-text {
+  width: 100%;
+  height: 100%;
+  padding: 0 $offset;
+  border: $border transparent;
+  border-radius: 0;
+  background-color: white;
+  line-height: $height-header / 2;
+  font-weight: $fontWeight-body;
+  color: inherit;
+  overflow: hidden;
+  @include placeholder { color: inherit; }
+  @include box-shadow(inset 0 0px 0px rgba(0, 0, 0, 0.075));
+  @include transition(width $animation, border-color ease-in-out .15s, box-shadow ease-in-out .15s);
+  &:focus {
+    border-color: $color-active;
+    @include box-shadow(inset 0 0px 2px rgba(0, 0, 0, .075), 0 0px $offset/2 $color-active);
+  }
+}
+
+%form-select {
+  width: 100%;
+  display: block;
+  height: $fontSize-large * 2;
+  font-size: $fontSize-medium;
+  background: white;
+  border: $border $color-navBorder;
+}

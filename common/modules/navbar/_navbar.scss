@@ -1,0 +1,120 @@
+header.navbar {
+  width: 100%;
+  height: $height-header * 2;
+  position: absolute;
+  top: 0;
+  background-color: $color-background;
+  z-index: z(nav);
+  transform: translateY(0px);
+  @include transition(top $animation, height $animation);
+  @include box-shadow(0px $unit-minor / 4 $unit-minor / 2 0px lighten($color-darkTheme, 50));
+  &.closed { top: -$height-header * 2; }
+  &.closed ~ div.content-container {
+    height: calc(100% - #{$height-slideBar});
+    top: 0;
+  }
+  div#friendlies {
+    position: absolute;
+    z-index: 50;
+    padding-left: $offset;
+    a {
+      color: $color-icon;
+      padding: 0 $offset;
+      cursor: pointer !important;
+      @include transition(color $animation, padding $animation);
+      i {
+        color: inherit;
+        line-height: $height-header * 2;
+        height: $fontSize-icon * 1.5;
+        font-size: $fontSize-icon * 1.5;
+        @include transition(line-height $animation);
+      }
+      &:hover { color: black; }
+    }
+    a#twitter-special:hover { color: $color-twitter; }
+    a#linkedin-special:hover { color: $color-linkedin; }
+  }
+  header#portfolio-name {
+    // set width in JS for proper transitions
+    height: auto;
+    text-align: center;
+    @include center(true, true);
+    @include transition(left $animation, right $animation);
+    span {
+      color: $color-icon;
+      line-height: $height-header * 2;
+      letter-spacing: 1px;
+      font-size: $fontSize-brand * 2;
+      padding: 0px $offset;
+      cursor: pointer;
+      -webkit-justify-content: flex-end;
+      -moz-justify-content: flex-end;
+      -ms-justify-content: flex-end;
+      justify-content: flex-end;
+      &:hover, &:active, &:focus { color: $color-highlight; }
+      @include inline-flex(false);
+      @include transition(line-height $animation, width $animation, color $animation);
+    }
+    span#mini { width: 127px; }
+    span#truncated { width: 388px; }
+    span#full { width: 545px; }
+    span#mini, span#truncated { display: none; }
+  }
+  div#descriptors {
+    max-height: $height-header;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; margin: auto;
+    max-width: $unit-major * 3;
+    padding-right: $offset;
+    overflow-x: hidden;
+    @include transition(color $animation, max-width $animation, padding $animation);
+    a {
+      display: block;
+      white-space: nowrap;
+      color: $color-icon;
+      font-family: $font-body;
+      padding-right: $offset;
+      text-align: right;
+      &:nth-of-type(1) {
+        &:hover {
+          color: $color-stanford;
+        }
+      }
+      &:nth-of-type(2) {
+        &:hover {
+          color: $color-ayasdi;
+        }
+      }
+      span {
+        height: $height-header / 2;
+        display: inline-block;
+      }
+    }
+  }
+}
+
+@include responsiveWidth($FIRST_RESPONSE) {
+  div#friendlies a { padding: 0 $unit-minor * 2 !important; }
+  span#truncated { @include inline-flex(true); }
+  span#full { display: none !important; }
+}
+
+@include responsiveWidth($SECOND_RESPONSE) {
+  span#truncated { display: none !important; }
+  span#mini { @include inline-flex(true); }
+}
+
+@include responsiveWidth($THIRD_RESPONSE) {
+  header.navbar {
+    height: $height-header !important;
+    div#friendlies i { line-height: $height-header !important; }
+    header#portfolio-name span {
+      width: 100% !important;
+      line-height: $height-header !important;
+    }
+    div#descriptors {
+      max-width: 0 !important;
+      padding: 0 !important;
+    }
+  }
+}

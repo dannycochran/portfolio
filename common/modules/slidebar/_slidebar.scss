@@ -1,0 +1,67 @@
+div.slidebar {
+  width: 100%;
+  height: $height-slideBar;
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  background-color: $color-background;
+  z-index: 1;
+  cursor: pointer !important;
+  display: flex;
+  @include noSelect;
+  @include transition(height $animation);
+  @include box-shadow(0px $unit-minor / -4 $unit-minor / 2 0px lighten($color-shadow, 50));
+  &.closed { height: 0px; }
+  a {
+    height: 100%;
+    padding: 0; margin: 0;
+    float: left;
+    display: inline-block;
+    text-align: center;
+    width: 25%;
+    height: 100%;
+    color: $color-icon;
+    cursor: pointer;
+    z-index: z(controller);
+    position: relative;
+    font-size: $fontSize-large;
+    @include noSelect;
+    &.active {
+      span {
+        font-weight: $fontWeight-nav;
+        color: $color-background;
+      }
+    }
+    &:hover:not(.active) {
+      color: $color-foreground;
+      span { background-color: lighten($color-highlight, 38); }
+    }
+    span {
+      width: 100%;
+      display: inline-block;
+      height: 100%;
+      line-height: $height-slideBar;
+      @include transition(background-color $animation);
+    }
+  }
+  div#selector {
+    width: 25%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    text-align: center;
+    pointer: cursor;
+    @include transition(left $animation);
+    span {
+      width: 100%;
+      display: inline-block;
+      height: 100%;
+      line-height: $height-slideBar;
+      background-color: $color-highlight;
+    }
+  }
+  @include responsiveWidth($THIRD_RESPONSE) {
+    height: $height-header;
+    div.selector > span, a > span { line-height: $height-header; }
+  }
+}

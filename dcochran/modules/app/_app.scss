@@ -1,0 +1,50 @@
+@include responsiveWidth($FIRST_RESPONSE) {
+  div.portfolio {
+    div.home {
+      div.toggle {
+        visibility: visible !important; pointer-events: all !important;
+      }
+      ol.posts {
+        width: calc(100% - #{$offset}) !important;
+      }
+      ol.microposts {
+        width: $width-panel;
+        left: 100%;
+      }
+    }
+  }
+}
+
+@include responsiveWidth($SECOND_RESPONSE) {
+  div.home ol.posts {
+    li.post {
+      span.title {
+        font-size: $fontSize-large !important;
+        line-height: $height-header / 1.5 !important;
+      }
+    }
+  }
+}
+
+@include responsiveWidth($THIRD_RESPONSE) {
+  div.portfolio {
+    top: 0;
+    div.home {
+      ol.posts {
+        width: 100% !important;
+        li.post {
+          margin: $offset/2 0px !important;
+          span.title {
+            max-width: calc(100% - #{$unit-major} + #{$offset}) !important;
+          }
+          span.date {
+            width: $unit-major !important;
+            bottom: $unit-minor * 8 !important;
+          }
+        }
+      }
+      div.toggle { display: none; }
+      ol.microposts { display: none; }
+    }
+  }
+}
