@@ -23,15 +23,6 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
     this.slidebar = new Slidebar({sections: _.keys(this.sections)});
 
     this.createRoutes();
-
-    var randomUserId = null;
-    if (!localStorage.getItem('randomUserId')) {
-      randomUserId = Portfolio.getUniqueId();
-      localStorage.setItem('randomUserId', randomUserId);
-    } else randomUserId = localStorage.getItem('randomUserId');
-
-    if (randomUserId === null) mixpanel.identify();
-    else mixpanel.identify(randomUserId);
   },
 
   createRoutes: function () {

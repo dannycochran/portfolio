@@ -49,6 +49,17 @@ function setupNames (namespace) {
   });
 }
 
+function mixPanelUser () {
+  var randomUserId = null;
+  if (!localStorage.getItem('randomUserId')) {
+    randomUserId = Portfolio.getUniqueId();
+    localStorage.setItem('randomUserId', randomUserId);
+  } else randomUserId = localStorage.getItem('randomUserId');
+
+  if (randomUserId === null) mixpanel.identify();
+  else mixpanel.identify(randomUserId);
+}
+
 function initialize (view, namespace) {
   if (typeof(mixpanel) === 'undefined') {
     mixpanel = {
@@ -59,7 +70,8 @@ function initialize (view, namespace) {
 
   $(document).ready(function () {
     onReady();
-    
+    mixPanelUser();
+
     setupNames(Portfolio);
     setupNames(namespace);
 
