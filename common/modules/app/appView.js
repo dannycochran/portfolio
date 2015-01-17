@@ -18,7 +18,7 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
   },
 
   initialize: function() {
-    this.router = new Router(this.routeSection.bind(this));
+    this.router = new Router();
     this.navbar = new Navbar({model: this.model});
     this.slidebar = new Slidebar({sections: _.keys(this.sections)});
 

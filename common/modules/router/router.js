@@ -1,6 +1,6 @@
 
 Portfolio.Utilities.Router = module.exports = Backbone.Router.extend({
-  initialize: function (notFoundCallback) { this.notFoundCallback = notFoundCallback; },
+  // initialize: function (notFoundCallback) { this.notFoundCallback = notFoundCallback; },
 
   promise: function () {
     return new Promise(function (resolve, reject) { // start listening after the current stack
@@ -8,5 +8,6 @@ Portfolio.Utilities.Router = module.exports = Backbone.Router.extend({
     }.bind(this));
   },
 
-  notFound: function () { this.notFoundCallback(); }
+  // commenting these out until fonts live on different server
+  // notFound: function () { this.notFoundCallback(); }
 });
