@@ -12,7 +12,7 @@ module.exports = function (grunt) {
         expand: true,
         cwd: 'common/assets/fonts',
         src: '**',
-        dest: 'dist/fonts'
+        dest: 'dist/assets/fonts'
       },
       app: {
         expand: true,
@@ -27,7 +27,7 @@ module.exports = function (grunt) {
     },
     concat: {
       css: {
-        src: mode === 'offline' ? ['assets/css/_dev-fonts.css', 'dist/build.css'] : ['dist/build.css'],
+        src: mode === 'offline' ? ['common/assets/css/dev-fonts.css', 'dist/build.css'] : ['dist/build.css'],
         dest: 'dist/build.css'
       }
     },
