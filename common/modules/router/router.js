@@ -1,7 +1,5 @@
 
 Portfolio.Utilities.Router = module.exports = Backbone.Router.extend({
-  routes: {'*notFound': 'notFound'},
-
   initialize: function (notFoundCallback) { this.notFoundCallback = notFoundCallback; },
 
   promise: function () {
