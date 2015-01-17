@@ -76,7 +76,7 @@ function initialize (view, namespace) {
     setupNames(namespace);
 
     Portfolio.app = new view();
-    Backbone.history.start({pushState: true});
+    if (!Backbone.history.start({pushState: true})) Portfolio.app.router.notFound();
   });
 }
 
