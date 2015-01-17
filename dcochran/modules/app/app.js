@@ -41,7 +41,10 @@ DC.Views.App = module.exports = AppView.extend({
       if (!postsModel.get(paramPostId)) {
         this.build(this.sections.home);
         this.router.navigate(this.sections.home.name, {trigger: false, replace: true});
-      } else this.build(this.sections.home, paramPostId);
+      } else {
+        mixpanel.track('Viewing single post' + paramPostId);
+        this.build(this.sections.home, paramPostId);
+      }
     }.bind(this));
   },
 
