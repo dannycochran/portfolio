@@ -45,11 +45,11 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
         this.scrollToPost(this.selectedPost.previous());
       }.bind(this));
 
-      this.posts.$el.find('li').show();
+      this.posts.$el.find('li.post').show();
     } else if (this.selectedPost()) {
       this.posts.$el.scrollTop(0);
-      this.posts.$el.find('li').hide();
-      this.posts.$el.find('li[data-id="' + this.selectedPost() + '"]').show();
+      this.posts.$el.find('li.post').hide();
+      this.posts.$el.find('li.post[data-id="' + this.selectedPost() + '"]').show();
     }
   },
 
