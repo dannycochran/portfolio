@@ -20,8 +20,8 @@ div.portfolio {
   }
   &.single-post {
     div.content-container {
-      height: 100% !important;
-      top: $height-header;
+      height: calc(100% - #{$height-header}) !important;
+      top: $height-header !important;
       ol.posts { width: 100% !important; }
       ol.microposts { display: none; }
       div.toggle { display: none; }
