@@ -76,6 +76,7 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
 
   teardownView: function (view, direction) {
     return new CaughtPromise(function (resolve, reject) {
+      if (view.teardown) view.teardown();
       if (view.$el.hasClass('closed-' + direction)) resolve();
       else view.$el.addClass('closed-' + direction).one(Portfolio.transitionend, resolve);
     }.bind(this));

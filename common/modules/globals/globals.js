@@ -1,4 +1,5 @@
 require('ayasdi/base');
+require('../../vendor/js/unveil.js');
 Portfolio = Ayasdi;
 require('./hydrate.js');
 

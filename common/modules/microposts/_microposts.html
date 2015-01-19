@@ -1,7 +1,5 @@
-<% _.each(microposts, function (tweet) { %>
-  <li class="micropost" data-id="<%= tweet.get('id_str') %>">
-    <a class="background-link" href="<%= 'http://twitter.com/dannycochran/status/' + tweet.get('id_str') %>" target="_blank"></a>
-    <span class="content"><%= tweet.get('linkedText') %></span>
-    <span class="date"><%= Portfolio.timeFormat(tweet.get('created_at')) %></span>
-  </li>
-<% }); %>
+<li class="micropost" data-id="<%= micropost.get('id_str') %>">
+  <a class="background-link" href="<%= 'http://twitter.com/dannycochran/status/' + micropost.get('id_str') %>" target="_blank"></a>
+  <span class="content"><%= micropost.get('linkedText') %></span>
+  <span class="date"><%= Portfolio.timeFormat(micropost.get('created_at')) %></span>
+</li>

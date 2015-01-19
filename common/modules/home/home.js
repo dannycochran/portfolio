@@ -35,7 +35,6 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
       this.microposts.render().rendered = true;
       this.$el.append(this.microposts.el);
     }
-
     return this;
   },
 
@@ -44,11 +43,11 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
       this.posts.$el.one(Portfolio.transitionend, function () {
         this.scrollToPost(this.selectedPost.previous());
       }.bind(this));
-      this.posts.$el.find('li').show();
+      this.posts.$el.find('li.post').data('display', null);
     } else if (this.selectedPost()) {
       this.posts.$el.scrollTop(0);
-      this.posts.$el.find('li.post').hide();
-      this.posts.$el.find('li.post[data-id="' + this.selectedPost() + '"]').show();
+      this.posts.$el.find('li.post').data('display', 'none');
+      this.posts.$el.find('li.post[data-id="' + this.selectedPost() + '"]').data('display', null);
     }
   },
 
@@ -71,6 +70,11 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
 
   build: function (postId) {
     this.postId = postId;
-    return CaughtPromise.all([this.posts.model.hydrate(), this.microposts.model.hydrate()]);
+    return CaughtPromise.all([this.posts.build(), this.microposts.build()]);
+  },
+
+  teardown: function () {
+    this.posts.teardown();
+    this.microposts.teardown();
   }
 });

@@ -23,7 +23,10 @@ div.portfolio {
       height: calc(100% - #{$height-header}) !important;
       top: $height-header !important;
       ol.posts { width: 100% !important; }
-      ol.microposts { display: none; }
+      ol.microposts {
+        display: none;
+        img { display: none; } // for lazy loading of images
+      }
       div.toggle { display: none; }
     }
     header.navbar {
