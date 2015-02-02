@@ -67,7 +67,7 @@ ol.posts {
       padding: $offset;
       font-family: $font-body;
       color: $color-foreground;
-      font-size: $fontSize-normal;
+      font-size: $fontSize-medium;
       letter-spacing: 0.5px;
       img {
         max-width: 90%;
@@ -89,7 +89,7 @@ ol.posts {
         list-style-type: initial;
         margin-left: $unit-major/2;
       }
-      blockquote.code-block {
+      blockquote.code-block, pre {
         width: auto;
         background-color: $color-code;
         padding: 0 $offset;

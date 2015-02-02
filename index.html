@@ -37,8 +37,6 @@
 for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
 mixpanel.init("fd360dfba4474fdc12d82ab8cbbd1364");
     </script>
-    <script type="text/javascript" src="//use.typekit.net/lqu6oza.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <!-- @endif -->
 
   </head>
@@ -63,13 +61,15 @@ mixpanel.init("fd360dfba4474fdc12d82ab8cbbd1364");
         link.onabort = removeClass;
         setTimeout(removeClass, 5000);
 
-        document.getElementsByTagName('head')[0].appendChild(link)
+        document.getElementsByTagName('head')[0].appendChild(link);
       }
       var raf = requestAnimationFrame || mozRequestAnimationFrame ||
                 webkitRequestAnimationFrame || msRequestAnimationFrame;
       if (raf) raf(loadFonts);
       else window.addEventListener('load', loadFonts);
     </script>
+    <script type="text/javascript" src="//use.typekit.net/lqu6oza.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <!-- @endif -->
   </body>
 </html>
