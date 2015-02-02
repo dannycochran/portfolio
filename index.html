@@ -32,10 +32,6 @@
       and (orientation: landscape)
       and (-webkit-device-pixel-ratio: 2)">
 
-    <!-- @if MODE == 'online' -->
-    <link rel="stylesheet" type="text/css" href="//cloud.typography.com/7703312/799124/css/fonts.css" />
-    <!-- @endif -->
-
     <!-- @if NODE_ENV == 'prod' -->
     <script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
 for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
@@ -49,5 +45,31 @@ mixpanel.init("fd360dfba4474fdc12d82ab8cbbd1364");
 
   <body>
     <script type="text/javascript" src="/build.js"></script>
+    <!-- @if MODE == 'online' -->
+    <script type="text/javascript">
+      function loadFonts () {
+        var body = document.getElementsByTagName('body')[0];
+        body.className = body.className + ' loading-css';
+
+        var link = document.createElement('link');
+        link.href = '//cloud.typography.com/7703312/799124/css/fonts.css';
+        link.type = 'text/css';
+        link.rel = 'stylesheet';
+        link.media = 'screen,print';
+
+        function removeClass () { body.className = body.className.replace('loading-css', ''); }
+        link.onload = removeClass;
+        link.onerror = removeClass;
+        link.onabort = removeClass;
+        setTimeout(removeClass, 5000);
+
+        document.getElementsByTagName('head')[0].appendChild(link)
+      }
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+                webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(loadFonts);
+      else window.addEventListener('load', loadFonts);
+    </script>
+    <!-- @endif -->
   </body>
 </html>

@@ -5,6 +5,7 @@ Portfolio.Views.Slidebar = module.exports = Backbone.View.extend({
   initialize: function (options) {
     this.$el.html(this.template({sections: options.sections}));
     this.$selector = this.$('#selector');
+    this.$selectedTarget = this.$el.find('a').first();
   },
 
   render: function () { this.moveSelector(); },

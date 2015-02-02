@@ -19,6 +19,12 @@
       "description": ["This static visualization (click above for complete image) was created for the Beauty of Health Data contest that took place in Summer of 2014. My entry won the category for Best Data Exploration."]
     },
     {
+      "title": "Climate Change Comes Home",
+      "image": "/assets/img/climate.jpg",
+      "url": "http://climatechange.herokuapp.com/",
+      "description": ["This article was a small side project designed & hosted for the Stanford Peninsula Press."]
+    },
+    {
       "title": "Yogiplay UX & UI",
       "image": "/assets/img/yogiplay.jpg",
       "url": "http://yogiplay.com/",

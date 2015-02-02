@@ -23,6 +23,7 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
     this.slidebar = new Slidebar({sections: _.keys(this.sections)});
 
     this.createRoutes();
+    this.mount().mounted = true;
   },
 
   createRoutes: function () {
@@ -83,7 +84,6 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
   },
 
   render: function () {
-    if (!this.mounted) this.mount().mounted = true;
     this.update();
     return this;
   },
@@ -106,6 +106,8 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
     $(window).resize(this.onResize.bind(this));
 
     this.$el.html(this.template);
+    this.$el.append(Portfolio.spinner({message: 'Loading dcochran'}));
+
     this.$portfolio = this.$('div.portfolio');
     this.$container = this.$('div.content-container');
 

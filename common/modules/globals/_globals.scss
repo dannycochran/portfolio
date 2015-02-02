@@ -30,6 +30,9 @@ body {
   font-size: $fontSize-normal;
   overflow: auto;
   @include fontSmoothing(off); // default is dark text on light background
+  &.loading-css {
+    * { font-size: 0px !important; }
+  }
 }
 
 header {
@@ -64,8 +67,9 @@ i { color: $color-icon; }
 
 /* SPINNER */
 div.spinner {
-  width: 5 * $fontSize-larger;
+  width: 7 * $fontSize-larger;
   height: 5 * $fontSize-larger;
+  text-align: center;
   @include center(true, true);
   span {
     display: inline-block;

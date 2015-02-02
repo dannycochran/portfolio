@@ -10,14 +10,13 @@ ol.projects {
     li.project { opacity: 0.6; }
   }
   li.project {
-    width: 30%;
+    width: calc(50% - #{$offset * 3});
     min-width: $unit-major * 3 !important;
     height: auto;
     background-color: $color-background;
     margin: $offset;
     @include transition(opacity $animation);
     @include box-shadow(0px $unit-minor / 3 $unit-minor / 4 0px transparentize($color-foreground, 0.75));
-    &:nth-of-type(1), &:nth-of-type(2) { width: calc(50% - #{$offset * 3}); }
     &:hover { opacity: 1 !important; }
     div.wrapper {
       width: 100%;
