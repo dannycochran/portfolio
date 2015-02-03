@@ -65,7 +65,7 @@ module.exports = function (grunt) {
     },
     watch: {
       js: {
-        files: ['common/modules/**/*.js', 'common/modules/**/*.html',
+        files: ['common/modules/**/*.js', 'common/modules/**/*.html', 'common/vendor/js/*.js',
         'common/extensions/*.js', portfolio + '/modules/**/*.js', portfolio + '/modules/**/*.html', portfolio + '/build/build.js'],
         tasks: ['shell:js']
       },

@@ -13,7 +13,7 @@ ol.posts {
     @include box-shadow(0px $unit-minor / 3 $unit-minor / 4 0px transparentize($color-foreground, 0.75));
     &[data-display="none"] {
       display: none;
-      img { display: none; } // for lazy loading of images
+      img, object { display: none; } // for lazy loading of images
     }
     a.post-title {
       min-height: $height-header;

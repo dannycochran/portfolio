@@ -7,13 +7,16 @@ Portfolio.Views.Microposts = module.exports = Backbone.View.extend({
 
   template: _.template(require('./_microposts.html')),
 
+  events: {'scroll': 'onScroll'},
+
   render: function () {
     this.model.each(this.renderMicropost.bind(this));
 
     this.lazyImageLoader = this.$el.find('img').unveil(0, function () {}, this.$el);
     this.lazyImageLoader.replaceDataSrc().start();
 
-    _.defer(function () { this.lazyImageLoader.unveil(); }.bind(this));
+    this.boundOnScroll = _.debounce(this.lazyImageLoader.unveil.bind(this.lazyImageLoader), Portfolio.ANIMATION_DURATION);
+    this.boundOnScroll();
     return this;
   },
 
@@ -21,6 +24,8 @@ Portfolio.Views.Microposts = module.exports = Backbone.View.extend({
     this.model.findLinks(model);
     this.$el.append(this.template({micropost: model}));
   },
+
+  onScroll: function () { this.boundOnScroll(); },
 
   build: function () {
     return this.model.hydrate().then(function () {

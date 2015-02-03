@@ -11,12 +11,11 @@
 ;(function($) {
   $.fn.unveil = function(threshold, callback, $target) {
     var $w = $(window),
-        $trg = $target || $w,
+        $container = $target || $w,
         th = threshold || 0,
         retina = window.devicePixelRatio > 1,
         attrib = retina? 'data-src-retina' : 'data-src',
         images = this,
-        loaded,
         loading = '';
 
     function onUnveil() {
@@ -30,19 +29,21 @@
 
     function unveil() {
       var inview = images.filter(function() {
-        var $e = $(this);
-        if ($e.css('display') === 'none') return;
+        var $img = $(this);
+        if ($img.css('display') === 'none') return;
         else {
-          var et = $e.offset().top,
-            eb = et + $e.height(),
-            wt = $trg.scrollTop(),
-            wb = wt + $trg.height();
-          return eb >= wt - th && et <= wb + th;
+          var imageTop = $img.offset().top,
+              imageBottom = imageTop + $img.height(),
+              containerTop = $container.scrollTop(),
+              containerBottom = containerTop + $container.height() - $container.offset().top;
+          return imageBottom >= containerTop - th && imageTop <= containerBottom + th;
         }
       });
-
-      loaded = inview.trigger('unveil');
-      images = images.not(loaded);
+      // load just one image at a time and then check for more after load is finished
+      var $first = $(inview[0]);
+      $first.trigger('unveil');
+      $first.one('load', function () { unveil(); });
+      images = images.not($first);
     }
 
     return {
@@ -58,12 +59,12 @@
       unveil: function () { unveil(); },
       start: function () {
         images.one('unveil', onUnveil);
-        $trg.on('scroll', unveil);
+        $container.on('scroll', unveil);
         $w.resize(unveil);
       },
       stop: function ($target) {
         images.off('unveil', onUnveil);
-        $trg.off('scroll', unveil);
+        $container.off('scroll', unveil);
         $w.off('resize', unveil);
       }
     };
