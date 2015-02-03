@@ -10,8 +10,10 @@ Portfolio.Models.Post = module.exports = Backbone.Model.extend({
         body += img + caption;
       }.bind(this));
 
-      var caption = this.get('caption'), start = caption.indexOf('blockquote') + 15;
-      if (start <= 14) start = caption.indexOf('target') + 15;
+      var caption = this.get('caption').replace(/(\r\n|\n|\r)/gm,""), // remove all line breaks
+          locator = '<blockquote><p>',
+          start = caption.indexOf(locator) + locator.length;
+      if (start <= 14) start = caption.indexOf('target') + locator.length;
 
       var photoTitle = caption.substring(start, caption.indexOf('</', start));
       this.set('title', photoTitle);
