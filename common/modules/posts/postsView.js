@@ -8,15 +8,12 @@ Portfolio.Views.Posts = module.exports = Backbone.View.extend({
   className: 'posts',
   name: 'posts',
 
-  events: {'scroll': 'onScroll'},
-
   render: function () {
     this.model.each(this.renderPost.bind(this));
     this.lazyImageLoader = this.$el.find('img, param').unveil(0, function () {}, this.$el);
     this.lazyImageLoader.replaceDataSrc().start();
 
-    this.boundOnScroll = _.debounce(this.lazyImageLoader.unveil.bind(this.lazyImageLoader), Portfolio.ANIMATION_DURATION);
-    this.boundOnScroll();
+    _.defer(function () { this.lazyImageLoader.unveil(); }.bind(this));
     return this;
   },
 
@@ -25,8 +22,6 @@ Portfolio.Views.Posts = module.exports = Backbone.View.extend({
     this.$el.append(post.el);
     post.render();
   },
-
-  onScroll: function () { this.boundOnScroll(); },
 
   build: function () {
     return this.model.hydrate().then(function () {

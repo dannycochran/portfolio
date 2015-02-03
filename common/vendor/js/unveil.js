@@ -34,9 +34,9 @@
         else {
           var imageTop = $img.offset().top,
               imageBottom = imageTop + $img.height(),
-              containerTop = $container.scrollTop(),
-              containerBottom = containerTop + $container.height() - $container.offset().top;
-          return imageBottom >= containerTop - th && imageTop <= containerBottom + th;
+              containerTop = $container.offset().top,
+              containerBottom = $container.height();
+          return imageTop >= containerTop - th && imageBottom <= containerBottom + th;
         }
       });
       // load just one image at a time and then check for more after load is finished
