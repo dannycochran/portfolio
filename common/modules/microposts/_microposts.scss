@@ -48,5 +48,13 @@ ol.microposts {
       font-size: $fontSize-small;
       text-align: right;
     }
+    img {
+      opacity: 1;
+      @include transition(opacity $animation);
+      &.loading {
+        @include transition(left $animation);
+        opacity: 0;
+      }
+    }
   }
 }

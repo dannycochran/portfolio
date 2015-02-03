@@ -17,6 +17,13 @@ Portfolio = _.extend(Portfolio, {
     else return this.days[date.getDay()] + ', ' + this.months[date.getMonth()] +
     ' ' + date.getDate() + ' ' + year;
   }),
+  loadImageStyle: function () {
+    var $el = $(this);
+    $el.addClass('loading');
+    $el.one('load', function () {
+      _.delay(function () { $el.removeClass('loading'); }, Portfolio.ANIMATION_DURATION);
+    });
+  },
   week: 604800000,
   days: {
     '0': 'Sunday',

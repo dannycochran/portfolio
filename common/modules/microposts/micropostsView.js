@@ -10,7 +10,7 @@ Portfolio.Views.Microposts = module.exports = Backbone.View.extend({
   render: function () {
     this.model.each(this.renderMicropost.bind(this));
 
-    this.lazyImageLoader = this.$el.find('img').unveil(0, function () {}, this.$el);
+    this.lazyImageLoader = this.$el.find('img').unveil(0, Portfolio.loadImageStyle, this.$el);
     this.lazyImageLoader.replaceDataSrc().start();
 
     _.defer(function () { this.lazyImageLoader.unveil(); }.bind(this));
@@ -28,7 +28,5 @@ Portfolio.Views.Microposts = module.exports = Backbone.View.extend({
     });
   },
 
-  teardown: function () {
-    this.lazyImageLoader.stop();
-  }
+  teardown: function () { this.lazyImageLoader.stop(); }
 });
