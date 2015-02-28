@@ -25,7 +25,7 @@ Portfolio.Views.Microposts = module.exports = Backbone.View.extend({
   build: function () {
     return this.model.hydrate().then(function () {
       if (this.lazyImageLoader) this.lazyImageLoader.start();
-    });
+    }.bind(this));
   },
 
   teardown: function () { this.lazyImageLoader.stop(); }
