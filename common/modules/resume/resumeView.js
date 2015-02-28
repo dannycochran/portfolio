@@ -7,7 +7,7 @@ Portfolio.Views.Resume = module.exports = Backbone.View.extend({
   model: new Model(),
 
   render: function () {
-    if (this.$sections) return;
+    if (this.$sections) return this;
 
     this.$el.html(this.template({resume: this.model}));
     this.$sections = this.$el.find('div.section');

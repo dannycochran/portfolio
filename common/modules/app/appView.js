@@ -60,12 +60,10 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
     this.previousView = this.currentView;
     this.currentView = view;
 
-    var doBuild = function () {
-      this.currentView.build(data).then(this.onBuildSuccess.bind(this));
-    }.bind(this);
+    var doBuild = function () { this.currentView.build(data).then(this.onBuildSuccess.bind(this)); }.bind(this);
 
     if (this.previousView && this.currentView !== this.previousView) {
-      this.$el.append(Portfolio.spinner({message: 'Loading ' + view.name}));
+      if (!this.currentView.rendered) this.$el.append(Portfolio.spinner({message: 'Loading ' + view.name}));
       return CaughtPromise.resolve(this.teardownView(this.previousView, this.slidebar.direction)).then(doBuild);
     } else doBuild();
   },
@@ -75,30 +73,25 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
     _.defer(this.render.bind(this));
   },
 
-  teardownView: function (view, direction) {
+  teardownView: function (view, position) {
     return new CaughtPromise(function (resolve, reject) {
       if (view.teardown) view.teardown();
-      if (view.$el.hasClass('closed-' + direction)) resolve();
-      else view.$el.addClass('closed-' + direction).one(Portfolio.transitionend, resolve);
+      view.$el.data('position', position);
+      _.delay(resolve, Portfolio.ANIMATION_DURATION);
     }.bind(this));
   },
 
   render: function () {
-    this.update();
-    return this;
-  },
+    this.currentView.$el.data('position', this.slidebar.opposite);
 
-  update: function () {
-    this.$el.find('div.spinner').remove();
+    this.$container.html(this.currentView.el);
+    this.currentView.render().rendered = true;
 
-    if (this.previousView) this.previousView.$el.hide();
+    _.delay(function () {
+      this.$el.find('div.spinner').remove();
+      this.currentView.$el.data('position', null);
+    }.bind(this), Portfolio.ANIMATION_DURATION/10);
 
-    if (this.$container.children().indexOf(this.currentView.el) < 0) this.$container.append(this.currentView.el);
-    else this.currentView.$el.show();
-
-    this.currentView.render();
-
-    _.defer(function () { this.currentView.$el.removeClass('closed-right closed-left'); }.bind(this));
     return this;
   },
 
