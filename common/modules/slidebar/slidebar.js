@@ -8,16 +8,23 @@ Portfolio.Views.Slidebar = module.exports = Backbone.View.extend({
     this.$selectedTarget = this.$el.find('a').first();
   },
 
-  render: function () { this.moveSelector(); },
-
-  changeSection: function (section) {
+  render: function (section) {
+    if (!section) section = this.$selectedTarget.attr('id');
     this.$('.active').removeClass('active');
     this.$selectedTarget = this.$el.find('a#' + section).addClass('active');
 
+    this.selectorHidden = false;
     this.moveSelector();
   },
 
+  hideSelector: function () {
+    this.selectorHidden = true;
+    this.$selectedTarget.removeClass('active');
+    this.$selector.css('left', -this.$selector.width());
+  },
+
   moveSelector: function () {
+    if (this.selectorHidden) return;
     var previousLeft = Number(this.$selector.css('left').replace('px', '')),
         newLeft = this.$selectedTarget.offset().left - this.$el.offset().left;
 

@@ -35,7 +35,6 @@ DC.Views.App = module.exports = AppView.extend({
 
   routePostId: function (paramPostId) {
     var postsModel = this.sections.home.posts.model;
-    this.$el.append(Portfolio.spinner({message: 'Loading post'}));
 
     postsModel.hydrate().then(function () {
       if (!postsModel.get(paramPostId)) {
@@ -44,6 +43,7 @@ DC.Views.App = module.exports = AppView.extend({
       } else {
         mixpanel.track('Viewing single post' + paramPostId);
         this.build(this.sections.home, paramPostId);
+        this.slidebar.hideSelector();
       }
     }.bind(this));
   },

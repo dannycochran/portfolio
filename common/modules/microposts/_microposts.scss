@@ -33,7 +33,7 @@ ol.microposts {
     span.content {
       width: 100%;
       padding: $offset / 2;
-      background-color: lighten($color-background, 10);
+      background-color: $color-background;
       padding-bottom: $offset / 2;
       white-space: normal;
       @include box-shadow(0px $unit-minor / 3 $unit-minor / 4 0px transparentize($color-foreground, 0.75));

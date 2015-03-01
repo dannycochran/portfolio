@@ -56,7 +56,7 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
   },
 
   build: function (view, data) {
-    this.slidebar.changeSection(view.name);
+    this.slidebar.render(view.name);
     this.previousView = this.currentView;
     this.currentView = view;
 
@@ -99,7 +99,7 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
     $(window).resize(this.onResize.bind(this));
 
     this.$el.html(this.template);
-    this.$el.append(Portfolio.spinner({message: 'Loading dcochran'}));
+    this.$el.append(Portfolio.spinner({message: 'Loading'}));
 
     this.$portfolio = this.$('div.portfolio');
     this.$container = this.$('div.content-container');

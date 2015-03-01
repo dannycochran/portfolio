@@ -96,6 +96,5 @@ $border-table: 1px solid rgba(0, 0, 0, 0.1);
 
 /* LAYERS */
 $layers: controller, panel, nav !default;
-
 @function z($element, $rank: 0) { @return #{10 * index($layers, $element) + $rank}; }
 

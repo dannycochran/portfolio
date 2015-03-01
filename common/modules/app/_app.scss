@@ -20,7 +20,7 @@ div.portfolio {
   }
   &.single-post {
     div.content-container {
-      height: calc(100% - #{$height-header}) !important;
+      height: calc(100% - #{$height-header} - #{$height-slideBar}) !important;
       top: $height-header !important;
       ol.posts { width: 100% !important; }
       ol.microposts {
@@ -46,7 +46,7 @@ div.portfolio {
         padding: 0 !important;
       }
     }
-    div.slidebar { @extend div.slidebar.closed; }
+    // div.slidebar { @extend div.slidebar.closed; }
   }
 }
 

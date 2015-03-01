@@ -9,7 +9,7 @@ ol.posts {
     margin: $offset;
     background-color: $color-background;
     border: $border darken($color-panel, 10);
-    @include box-shadow(0px $unit-minor / 3 $unit-minor / 4 0px transparentize($color-foreground, 0.75));
+    @include box-shadow(0px 2px 2px transparentize($color-foreground, 0.75));
     &[data-display="none"] {
       display: none;
       img, object { display: none; } // for lazy loading of images
@@ -62,7 +62,6 @@ ol.posts {
     div.post-body {
       height: auto;
       position: relative;
-      background-color: $color-background;
       padding: $offset;
       font-family: $font-body;
       color: $color-foreground;

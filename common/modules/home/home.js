@@ -1,21 +1,20 @@
-var Interactions = require('../interactions/interactions.js'),
+var Interactions = require('../interactions/interactionsManager.js'),
     Microposts = require('../microposts/micropostsView.js');
     Posts = require('../posts/postsView.js');
 
 Portfolio.Views.Home = module.exports = Backbone.View.extend({
   model: new Backbone.Model(),
-  interactions: new Interactions(),
   className: 'home',
 
   template: _.template(require('./_home.html')),
   events: {'click div.toggle': 'onToggleMicroposts'},
 
   initialize: function () {
-    this.interactions.add(this, 'selectedPost', {
+    Interactions.add(this, 'selectedPost', {
       callback: this.onInteractionSelectedPost.bind(this),
       initialValue: null
     });
-    this.interactions.add(this, 'toggleMicroposts', {callback: this.onInteractionToggleMicroposts.bind(this)});
+    Interactions.add(this, 'toggleMicroposts', {callback: this.onInteractionToggleMicroposts.bind(this)});
 
     this.$el.html(this.template());
     this.$toggler = this.$('div.toggle');
@@ -40,9 +39,7 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
 
   onInteractionSelectedPost: function () {
     if (!this.selectedPost() && this.selectedPost.previous()) {
-      this.posts.$el.one(Portfolio.transitionend, function () {
-        this.scrollToPost(this.selectedPost.previous());
-      }.bind(this));
+      _.defer(function () { this.scrollToPost(this.selectedPost.previous()); }.bind(this));
       this.posts.$el.find('li.post').data('display', null);
     } else if (this.selectedPost()) {
       this.posts.$el.scrollTop(0);

@@ -4,13 +4,13 @@ div.slidebar {
   margin: auto;
   position: absolute;
   bottom: 0;
-  background-color: $color-background;
   z-index: 1;
   cursor: pointer !important;
   display: flex;
+  background-color: $color-background;
   @include noSelect;
   @include transition(height $animation);
-  @include box-shadow(0px $unit-minor / -4 $unit-minor / 2 0px lighten($color-shadow, 50));
+  @include box-shadow(0px -2px 4px lighten($color-darkTheme, 50));
   &.closed { height: 0px; }
   a {
     height: 100%;
@@ -26,16 +26,15 @@ div.slidebar {
     position: relative;
     font-size: $fontSize-large;
     @include noSelect;
+    @include transition(background-color $animation);
+    &:not(:last-of-type) { border-right: $border transparentize($color-foreground, 0.85); }
     &.active {
       span {
         font-weight: $fontWeight-nav;
         color: $color-background;
       }
     }
-    &:hover:not(.active) {
-      color: $color-foreground;
-      span { background-color: lighten($color-highlight, 38); }
-    }
+    &:hover:not(.active) > span { background-color: lighten($color-highlight, 25); }
     span {
       width: 100%;
       display: inline-block;
