@@ -76,6 +76,7 @@ ol.posts {
         position: relative;
         opacity: 1;
         @include transition(opacity $animation);
+        &[data-src] { height: 1px !important; } // for unveil purposes
         &.loading {
           @include transition(left $animation);
           opacity: 0;
