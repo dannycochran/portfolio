@@ -1,5 +1,5 @@
 require('ayasdi/base');
-require('../../vendor/js/unveil.js');
+require('dannycochran/unveil@master');
 Portfolio = Ayasdi;
 require('./hydrate.js');
 
