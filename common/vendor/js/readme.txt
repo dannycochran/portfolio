@@ -1,1 +1,0 @@
-- Headroom.js is modified from lines 127-161 to allow for updating the headroom scroller.

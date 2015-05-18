@@ -15,5 +15,5 @@ Portfolio.Views.Resume = module.exports = Backbone.View.extend({
     return this;
   },
 
-  build: function (callback) { return Ayasdi.RESOLVE; }
+  build: function (callback) { return Portfolio.RESOLVE; }
 });
