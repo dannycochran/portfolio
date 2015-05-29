@@ -21,24 +21,24 @@
     "positions": [{
       "name": "Ayasdi",
       "title": "Frontend engineer",
-      "details": ["Creating web application for interactive data visualization","Designing and implementing new features and products"],
+      "details": ["Creating web application for interactive data analysis","Designing features from wireframe to implementation"],
       "date_range": ["8.2013", "present"]
     },
     {
       "name": "Stanford University",
-      "title": "Product designer",
+      "title": "Frontend engineer",
       "details": ["Designed mobile application for distribution in schools"],
       "date_range": ["1.2013", "5.2013"]
     },
     {
       "name": "Yogiplay",
-      "title": "User experience designer",
+      "title": "UX Designer",
       "details": ["Designed HTML5 web application for mobile and tablet devices"],
       "date_range": ["1.2012", "1.2013"]
     },
     {
       "name": "Ympyra",
-      "title": "Project manager",
+      "title": "UX Designer",
       "details": ["Led development of mobile learning project for 5th graders"],
       "date_range": ["12.2010", "1.2012"]
     },
