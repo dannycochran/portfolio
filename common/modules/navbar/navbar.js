@@ -1,5 +1,3 @@
-var HeadroomJS = require('../../vendor/js/headroom.js');
-
 Portfolio.Views.Navbar = module.exports = Backbone.View.extend({
   tagName: 'header',
   className: 'navbar',

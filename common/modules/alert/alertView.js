@@ -15,7 +15,7 @@ Portfolio.Views.Alert = module.exports = Backbone.View.extend({
   showAlert: function (alert) {
     this.$content.html(alert);
     this.$el.removeClass('closed');
-    _.delay(function () { this.closeAlert(); }.bind(this), Ayasdi.READ_DURATION);
+    _.delay(function () { this.closeAlert(); }.bind(this), Portfolio.READ_DURATION);
   },
 
   closeAlert: function () { this.$el.addClass('closed'); }
