@@ -1,5 +1,4 @@
-var AppView = require('../../../common/modules/app/appView.js'),
-    MobyDick = require('dannycochran/mobydick');
+var AppView = require('../../../common/modules/app/appView.js');
 
 var Home = require('../../../common/modules/home/home.js'),
     Projects = require('../../../common/modules/projects/projectsView.js'),
@@ -7,7 +6,6 @@ var Home = require('../../../common/modules/home/home.js'),
     About = require('../../../common/modules/about/aboutView.js');
 
 DC.Views.App = module.exports = AppView.extend({
-  game: new MobyDick(),
 
   sections: {
     home: new Home(),
@@ -23,14 +21,7 @@ DC.Views.App = module.exports = AppView.extend({
 
   createRoutes: function () {
     AppView.prototype.createRoutes.apply(this, arguments);
-    this.router.route('game', 'game', this.routeGame.bind(this));
     this.router.route('home/:postId("/")', 'postId', this.routePostId.bind(this));
-  },
-
-  routeGame: function () {
-    this.$el.empty();
-    this.game.teardown().build().render().start();
-    this.mounted = false;
   },
 
   routePostId: function (paramPostId) {

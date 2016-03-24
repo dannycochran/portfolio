@@ -3,6 +3,12 @@
   "description": "portfolio!",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "monitor": "nodemon server.js",
+    "deploy": "npm install; grunt rebuild; gcloud preview app deploy app.yaml",
+    "lint": "jshint --exclude-path=.gitignore ."
+  },
   "dependencies": {
     "express": "3.x",
     "request": "2.x",
@@ -11,16 +17,21 @@
     "nodemailer": "1.0.3"
   },
   "devDependencies": {
+    "browserify": "^13.0.0",
     "grunt": "~0.4.2",
     "grunt-concurrent": "~0.4.2",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-cssmin": "~0.9.0",
     "grunt-contrib-uglify": "~0.2.7",
     "grunt-contrib-watch": "~0.5.3",
+    "grunt-duojs": "^0.1.2",
     "grunt-env": "^0.4.1",
     "grunt-nodemon": "~0.1.2",
     "grunt-preprocess": "^4.0.0",
-    "grunt-shell": "^1.1.1",
-    "grunt-contrib-cssmin": "~0.9.0"
+    "grunt-shell": "^1.1.1"
+  },
+  "engines": {
+    "node": ">=0.12.7"
   }
 }
