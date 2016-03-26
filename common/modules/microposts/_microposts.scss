@@ -51,6 +51,10 @@ ol.microposts {
     img {
       opacity: 1;
       @include transition(opacity $animation);
+      &[data-src], &[data-src-retina] {  // for unveil purposes
+        height: 1px !important;
+        visibility: hidden;
+      }
       &.loading {
         @include transition(left $animation);
         opacity: 0;

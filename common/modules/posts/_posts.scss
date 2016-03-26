@@ -69,14 +69,16 @@ ol.posts {
       letter-spacing: 0.5px;
       img {
         max-width: 90%;
-        height: auto;
         align: center !important;
         clear: both !important;
         left: 5%;
         position: relative;
         opacity: 1;
         @include transition(opacity $animation);
-        &[data-src] { height: 1px !important; } // for unveil purposes
+        &[data-src], &[data-src-retina] {  // for unveil purposes
+          height: 1px !important;
+          visibility: hidden;
+        }
         &.loading {
           @include transition(left $animation);
           opacity: 0;
