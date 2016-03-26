@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "monitor": "nodemon server.js",
-    "deploy": "gcloud preview app deploy app.yaml",
+    "deploy": "grunt rebuild; gcloud preview app deploy app.yaml",
     "lint": "jshint --exclude-path=.gitignore ."
   },
   "dependencies": {
