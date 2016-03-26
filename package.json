@@ -6,12 +6,11 @@
   "scripts": {
     "start": "node server.js",
     "monitor": "nodemon server.js",
-    "deploy": "npm install; grunt rebuild; gcloud preview app deploy app.yaml",
+    "deploy": "gcloud preview app deploy app.yaml",
     "lint": "jshint --exclude-path=.gitignore ."
   },
   "dependencies": {
-    "express": "3.x",
-    "request": "2.x",
+    "express": "3.21.2",
     "tumblr": "0.4.1",
     "twitter": "0.2.9",
     "nodemailer": "1.0.3"
@@ -32,6 +31,6 @@
     "grunt-shell": "^1.1.1"
   },
   "engines": {
-    "node": ">=0.12.7"
+    "node": "4.4.1"
   }
 }

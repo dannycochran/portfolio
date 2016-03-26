@@ -60,7 +60,9 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
     this.previousView = this.currentView;
     this.currentView = view;
 
-    var doBuild = function () { this.currentView.build(data).then(this.onBuildSuccess.bind(this)); }.bind(this);
+    var doBuild = function () {
+      this.currentView.build(data).then(this.onBuildSuccess.bind(this));
+    }.bind(this);
 
     if (this.previousView && this.currentView !== this.previousView) {
       if (!this.currentView.rendered) this.$el.append(Portfolio.spinner({message: 'Loading ' + view.name}));

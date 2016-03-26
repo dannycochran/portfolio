@@ -1,27 +1,27 @@
 {
   "images": [
   {
-    "src": "/assets/img/ayasdi.jpg",
-    "description": "I am a frontend developer at Ayasdi."
+    "src": "dist/assets/img/google.jpg",
+    "description": "I am a frontend developer at Google."
   },
   {
-    "src": "/assets/img/roma.jpg",
+    "src": "dist/assets/img/roma.jpg",
     "description": "I've lived in Paris, Mexico City, Singapore, and now Palo Alto."
   },
   {
-    "src": "/assets/img/lostcoast.jpg",
+    "src": "dist//assets/img/lostcoast.jpg",
     "description": "California's Lost Coast is one of many reasons I'll keep put here."
   },
   {
-    "src": "/assets/img/trinity.jpg",
+    "src": "dist/assets/img/trinity.jpg",
     "description": "I like photography, surfing and backpacking. (Trinity Alps)."
   },
   {
-    "src": "/assets/img/friends.jpg",
+    "src": "dist/assets/img/friends.jpg",
     "description": "These are what my friends look like in silhoutte form."
   },
   {
-    "src": "/assets/img/jake.jpg",
+    "src": "dist/assets/img/jake.jpg",
     "description": "Not sure how to end this, but it's the internet so here's my old cat Jake looking at a turtle."
   }
   ]

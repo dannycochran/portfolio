@@ -2,49 +2,49 @@
   "projects": [
     {
       "title": "Ayasdi Core",
-      "image": "/assets/img/core.jpg",
+      "image": "dist/assets/img/core.jpg",
       "url": "https://core.ayasdi.com",
       "description": ["Ayasdi Core is what I spend most of time working on as a frontend engineer for Ayasdi.", "Core is the first of several applications Ayasdi is building to help industries explore large, complex data sets with digestible visualizations. It is built with minimal dependencies (Backbone, D3, Zepto), and with a design framework we have created that extends across all of our applications."]
     },
     {
       "title": "Strummify",
-      "image": "/assets/img/strummify.jpg",
+      "image": "dist/assets/img/strummify.jpg",
       "url": "http://www.strummify.com/",
       "description": ["Strummify is a web application for learning guitar. I taught myself how to code using sites like Udacity & Codeacademy, and figured that the same approach could be taken for musical instruments. The goal was to provide real time, interactive feedback on your guitar playing. Employing the help of some friends, we created a prototype that included polyphonic pitch detection and a simple user interface.", "Unfortunately, Strummify has not had much love and support since I finished my Masters program at Stanford. The pitch detection needs significant improvement and the backend, created somewhat hastily towards the end of the quarter, is in need of repairs."]
     },
     {
       "title": "Visualizing New York Hospital Data",
-      "image": "/assets/img/nyhealth.jpg",
+      "image": "dist/assets/img/nyhealth.jpg",
       "url": "http://thebeautyofhealthdata.org/?p=348",
       "description": ["This static visualization (click above for complete image) was created for the Beauty of Health Data contest that took place in Summer of 2014. My entry won the category for Best Data Exploration."]
     },
     {
       "title": "Climate Change Comes Home",
-      "image": "/assets/img/climate.jpg",
+      "image": "dist/assets/img/climate.jpg",
       "url": "http://climatechange.herokuapp.com/",
       "description": ["This article was a small side project designed & hosted for the Stanford Peninsula Press."]
     },
     {
       "title": "Yogiplay UX & UI",
-      "image": "/assets/img/yogiplay.jpg",
+      "image": "dist/assets/img/yogiplay.jpg",
       "url": "http://yogiplay.com/",
       "description": ["Yogiplay was a mobile app startup designed to help parents pick quality educational applications for their kids.", "We had a common, but still unsolved challenge in that we wanted to target all mobile devices using HTML5. This was my first introduction to responsive design, and as I was purely on the design side of this project (and not on engineering), I now sympathize greatly with the <a href='http://www.marcosiglesias.com/home'>sole frontend engineer</a> on the project."]
     },
     {
       "title": "Disgo",
-      "image": "/assets/img/disgo.jpg",
+      "image": "dist/assets/img/disgo.jpg",
       "url": "",
       "description": ["Disgo was a Jquery-mobile application I built with two other students for CS147: Human Computer Interaction. Our goal was to create an application where people started conversations regarding specific places of interest.", "At its peak, Disgo had upwards of 20 users. Unfortunately, Stanford discontinued my personal student directory once I graduated, and Disgo is now disgone."]
     },
     {
       "title": "Twitter Activity & Hurricane Sandy",
-      "image": "assets/img/sandy.jpg",
+      "image": "dist/assets/img/sandy.jpg",
       "url": "http://bl.ocks.org/dannycochran/raw/5689222/",
       "description": ["This data visualization was my final project for CS448B: Data Visualization. Myself and three other students wanted to reimagine text visualizations, which mostly consist of word clouds today.", "By providing context on the sentiment of the word and its frequency over time, we hoped to let people dig deeper into text analysis."]
     },
     {
       "title": "Costs of Living",
-      "image": "assets/img/costs.jpg",
+      "image": "dist/assets/img/costs.jpg",
       "url": "http://bl.ocks.org/dannycochran/raw/4349896/",
       "description": ["My first endeavor with creating a D3.js visualization, I can still remember agonizing over what, at the time, seemed like an obscure and unintelligble D3 api. That agony has subsised significantly two years later."]
     }

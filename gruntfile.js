@@ -22,7 +22,7 @@ module.exports = function (grunt) {
       },
     },
     shell: {
-      js: {command: 'duo ' + portfolio + '/build/build.js > dist/build.js'},
+      js: {command: 'duo ' + portfolio + '/build/build.js --output dist/; mv dist/dcochran/build/build.js dist/build.js; rm -rf dist/dcochran'},
       sass: {command: 'sass ' + portfolio + '/build/build.scss dist/build.css'},
     },
     concat: {

@@ -1,51 +1,49 @@
-var http = require('http'),
-    express = require('express'),
-    request = require('request'),
-    tumblr = require('tumblr'),
-    twitter = require('twitter'),
-    util = require('util'),
-    config = require('./configuration.json'),
-    port = config.port;
+'use strict';
 
-var oauth = {
+const express = require('express');
+const tumblr = require('tumblr');
+const twitter = require('twitter');
+const app = express();
+const config = require('./configuration.json');
+const port = config.port;
+
+const blog = new tumblr.Blog(config.tumblr.url, {
   consumer_key: config.tumblr.key,
   consumer_secret: config.tumblr.secret
-};
-
-var app = express(),
-    blog = new tumblr.Blog(config.tumblr.url, oauth),
-    tweets = new twitter({
-      consumer_key: config.twitter.key,
-      consumer_secret: config.twitter.secret,
-      access_token_key: config.twitter.tokenKey,
-      access_token_secret: config.twitter.tokenSecret
-    });
-
-app.configure(function () {
-  app.use(express.compress());
-  app.use(express.urlencoded());
-  app.use(express.cookieParser());
-  app.use(express.session({secret: config.secret}));
-  app.use(express.static(__dirname + '/dist'));
-  app.use(app.router);
+});
+const tweets = new twitter({
+  consumer_key: config.twitter.key,
+  consumer_secret: config.twitter.secret,
+  access_token_key: config.twitter.tokenKey,
+  access_token_secret: config.twitter.tokenSecret
 });
 
-app.get('/louie/posts', function (req, res) {
+const sendIndex = (req, res) => { res.status(200).sendfile('dist/index.html'); };
+
+// Serve static assets.
+app.use('/dist', express.static('dist'));
+app.use(express.compress());
+app.use(express.urlencoded());
+
+// Handlers.
+app.get('/louie/posts', (req, res) => {
   blog.posts({limit: 25}, function(error, data) {
     if (error) throw new Error(error);
     else res.send(data.posts);
   });
 });
 
-app.get('/louie/microposts', function (req, res) {
+app.get('/louie/microposts', (req, res) => {
   tweets.get('/statuses/user_timeline.json', {include_entities:true}, function(data, error) {
     if (error) throw new Error(error);
     else res.send(data);
   });
 });
 
-app.get('*', function (req, res) { res.sendfile('dist/index.html'); });
+app.get('/', sendIndex);
+app.get('/*', sendIndex);
 
-var httpServer = http.createServer(app).listen(port, function () {
-  console.log('Portfolio web server listening on port ' + port);
+// Start the server
+const server = app.listen(port, () => {
+  console.log('App listening at http://%s:%s', server.address().address, port);
 });
