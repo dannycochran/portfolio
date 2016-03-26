@@ -68,7 +68,7 @@ header.navbar {
     top: 0; right: 0; bottom: 0; margin: auto;
     max-width: $unit-major * 3;
     padding-right: $offset;
-    overflow-x: hidden;
+    overflow: hidden;
     @include transition(color $animation, max-width $animation, padding $animation);
     a {
       display: block;

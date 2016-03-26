@@ -7,6 +7,11 @@
 hooks/post-receive
 .DS_STORE
 configuration.json
+Dockerfile
+.dockerignore
+.nodemonignore
+source-context.json
+source-contexts.json
 
 /.nodemonignore
 /common/assets/fonts/Gotham/
