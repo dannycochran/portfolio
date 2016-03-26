@@ -10,7 +10,7 @@ d3 = require('mbostock/d3@v3.4.13');
 
 // forked vendor libraries
 require('dannycochran/headroom.js@master');
-require('dannycochran/unveil@master');
+require('dannycochran/unveil@1.4.0');
 
 require('./hydrate.js');
 Portfolio = {Models: {}, Views: {}, Collections: {}, Utilities: {}}; // Namespace for model/view classes
