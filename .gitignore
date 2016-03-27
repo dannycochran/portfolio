@@ -12,6 +12,7 @@ Dockerfile
 .nodemonignore
 source-context.json
 source-contexts.json
+npm-debug.log
 
 /.nodemonignore
 /common/assets/fonts/Gotham/

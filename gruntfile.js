@@ -2,8 +2,7 @@
 
 module.exports = function (grunt) {
 
-  var mode = typeof(grunt.option('offline')) === 'undefined' ? 'online' : 'offline',
-      portfolio = grunt.option('portfolio') || 'dcochran';
+  var portfolio = grunt.option('portfolio') || 'dcochran';
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -24,12 +23,6 @@ module.exports = function (grunt) {
     shell: {
       js: {command: 'duo ' + portfolio + '/build/build.js --output dist/; mv dist/dcochran/build/build.js dist/build.js; rm -rf dist/dcochran'},
       sass: {command: 'sass ' + portfolio + '/build/build.scss dist/build.css'},
-    },
-    concat: {
-      css: {
-        src: mode === 'offline' ? ['common/assets/css/dev-fonts.css', 'dist/build.css'] : ['dist/build.css'],
-        dest: 'dist/build.css'
-      }
     },
     cssmin: {
       combine: {
@@ -54,12 +47,10 @@ module.exports = function (grunt) {
     env: {
       dev: {
         NODE_ENV: 'dev',
-        MODE: mode,
         PORTFOLIO: portfolio
       },
       prod: {
         NODE_ENV: 'prod',
-        MODE: mode,
         PORTFOLIO: portfolio
       }
     },
@@ -71,7 +62,7 @@ module.exports = function (grunt) {
       },
       css: {
         files: ['common/modules/**/*.scss', portfolio + '/modules/**/*.scss', 'common/vendor/css/*'],
-        tasks: ['shell:sass', 'concat:css']
+        tasks: ['shell:sass']
       },
       html: {
         files: ['index.html'],
@@ -105,7 +96,6 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -114,7 +104,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-preprocess');
   grunt.loadNpmTasks('grunt-shell');
 
-  var build = ['copy:common', 'copy:app', 'shell', 'concat', 'preprocess:index'];
+  var build = ['copy:common', 'copy:app', 'shell', 'preprocess:index'];
   grunt.registerTask('rebuild', ['env:prod'].concat(build).concat(['cssmin', 'uglify']));
   grunt.registerTask('app', ['env:dev'].concat(build).concat(['concurrent:app']));
   grunt.registerTask('app-prod', ['env:prod'].concat(build).concat(['cssmin', 'uglify', 'concurrent:app']));
