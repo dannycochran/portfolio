@@ -1,5 +1,3 @@
-// order here determines dependency (must manually add all vendor JS here)
-
 module.exports = function (grunt) {
 
   var portfolio = grunt.option('portfolio') || 'dcochran';

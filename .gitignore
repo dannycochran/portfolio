@@ -15,9 +15,5 @@ source-contexts.json
 npm-debug.log
 
 /.nodemonignore
-/common/assets/fonts/Gotham/
-/common/assets/fonts/Archer/
-/common/assets/fonts/Tisa/
-/common/assets/css/dev-fonts.css
 /components/
 /.grunt/
