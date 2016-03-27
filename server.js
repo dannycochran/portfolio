@@ -6,11 +6,13 @@ const twitter = require('twitter');
 const app = express();
 const config = require('./configuration.json');
 const port = config.port;
+const compression = require('compression');
 
 const blog = new tumblr.Blog(config.tumblr.url, {
   consumer_key: config.tumblr.key,
   consumer_secret: config.tumblr.secret
 });
+
 const tweets = new twitter({
   consumer_key: config.twitter.key,
   consumer_secret: config.twitter.secret,
@@ -21,9 +23,9 @@ const tweets = new twitter({
 const sendIndex = (req, res) => { res.status(200).sendfile('dist/index.html'); };
 
 // Serve static assets.
-app.use('/dist', express.static('dist'));
 app.use(express.compress());
 app.use(express.urlencoded());
+app.use('/dist', express.static('dist'));
 
 // Handlers.
 app.get('/louie/posts', (req, res) => {
