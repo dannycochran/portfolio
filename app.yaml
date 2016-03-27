@@ -23,6 +23,8 @@ skip_files:
  - ^dcochran$
  - ^common$
  - ^data$
+ - ^.sass-cache$
+ - gruntfile.js
 
 manual_scaling:
   instances: 1
