@@ -6,7 +6,6 @@ const twitter = require('twitter');
 const app = express();
 const config = require('./configuration.json');
 const port = config.port;
-const compression = require('compression');
 
 const blog = new tumblr.Blog(config.tumblr.url, {
   consumer_key: config.tumblr.key,
