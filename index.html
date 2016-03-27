@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="utf-8">
     <title>danny cochran</title>
-    <meta name="description" content="Personal website and blog of Danny Cochran. Frontend Engineer at Ayasdi; Stanford LDT Alumni (MA, 2013)" />
-    <meta name="keywords" content="Danny Cochran, google, cochran, lewis, clark, UX, UI, engineering, frontend, web development, designer, backbone, d3.js, design, ayasdi, stanford, education, learning, software" />
+    <meta name="description" content="Personal website and blog of Danny Cochran. Frontend Engineer at Google; Stanford LDT Alumni (MA, 2013)" />
+    <meta name="keywords" content="Danny Cochran, google, cochran, lewis, clark, UX, UI, engineering, frontend, web development, designer, backbone, react, react.js, mithril, mithril.js, d3.js, design, ayasdi, stanford, education, learning, software" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
+
+
     <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
     <link rel='stylesheet' href="/dist/build.css" />
 
@@ -16,13 +20,10 @@ mixpanel.init("fd360dfba4474fdc12d82ab8cbbd1364");
     </script>
     <!-- @endif -->
 
-  </head>
-
-  <body>
-    <script type="text/javascript" src="/dist/build.js"></script>
+    <script type="text/javascript" defer src="/dist/build.js"></script>
     <!-- @if MODE == 'online' -->
-    <script type="text/javascript" src="//use.typekit.net/lqu6oza.js"></script>
-    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script type="text/javascript" defer src="//use.typekit.net/lqu6oza.js"></script>
+    <script type="text/javascript" defer>try{Typekit.load();}catch(e){}</script>
     <!-- @endif -->
-  </body>
+  </head>
 </html>
