@@ -19,26 +19,54 @@ const tweets = new twitter({
   access_token_secret: config.twitter.tokenSecret
 });
 
-const sendIndex = (req, res) => { res.status(200).sendfile('dist/index.html'); };
+const sendIndex = (req, res) => res.status(200).sendfile('dist/index.html');
 
 // Serve static assets.
 app.use(express.compress());
 app.use(express.urlencoded());
 app.use('/dist', express.static('dist'));
 
+// Daily caching of data.
+const oneDay = 24 * 60 * 60 * 1000;
+const lastFetched = new Date().getTime();
+const shouldRefresh = () => lastFetched + oneDay < new Date().getTime();
+
+// These data will be cached for up to one day.
+let posts;
+let microposts;
+
+const getMicroposts = function(shouldRefresh) {
+  function fetchMicroposts() {
+    return new Promise((resolve, reject) => {
+      tweets.get('/statuses/user_timeline.json', {include_entities:true}, (data, error) =>
+        resolve(error ? new Error(error) : data));
+    });
+  }
+
+  if (shouldRefresh || !microposts) microposts = fetchMicroposts();
+
+  return microposts;
+};
+
+const getPosts = function(shouldRefresh) {
+  function fetchPosts() {
+    return new Promise((resolve, reject) => {
+      blog.posts({limit: 25}, (error, data) => resolve(error ? new Error(error) : data.posts));
+    });
+  }
+
+  if (shouldRefresh || !posts) posts = fetchPosts();
+
+  return posts;
+};
+
 // Handlers.
 app.get('/louie/posts', (req, res) => {
-  blog.posts({limit: 25}, function(error, data) {
-    if (error) throw new Error(error);
-    else res.send(data.posts);
-  });
+  getPosts(shouldRefresh()).then(results => res.send(results));
 });
 
 app.get('/louie/microposts', (req, res) => {
-  tweets.get('/statuses/user_timeline.json', {include_entities:true}, function(data, error) {
-    if (error) throw new Error(error);
-    else res.send(data);
-  });
+  getMicroposts(shouldRefresh()).then(results => res.send(results));
 });
 
 app.get('/', sendIndex);
