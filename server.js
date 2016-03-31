@@ -27,46 +27,41 @@ app.use(express.urlencoded());
 app.use('/dist', express.static('dist'));
 
 // Daily caching of data.
-const oneDay = 24 * 60 * 60 * 1000;
-const lastFetched = new Date().getTime();
-const shouldRefresh = () => lastFetched + oneDay < new Date().getTime();
+const DAY_MS = 24 * 60 * 60 * 1000;
 
-// These data will be cached for up to one day.
-let posts;
-let microposts;
+const entity = {
+  timestamp: 0,
+  promise: Promise.resolve(),
+  shouldRefresh: function() { return this.timestamp + DAY_MS < new Date().getTime(); },
+  get: function() {
+    if (this.shouldRefresh()) {
+      this.timestamp = new Date().getTime();
+      this.promise = this.fetch();
+    }
+    return this.promise;
+  }
+};
 
-const getMicroposts = function(shouldRefresh) {
-  function fetchMicroposts() {
-    return new Promise((resolve, reject) => {
+const posts = Object.assign({
+  fetch: () => new Promise((resolve, reject) => {
+    blog.posts({limit: 25}, (error, data) => resolve(error ? new Error(error) : data.posts));
+  })
+}, entity);
+
+const microposts = Object.assign({
+  fetch: () => new Promise((resolve, reject) => {
       tweets.get('/statuses/user_timeline.json', {include_entities:true}, (data, error) =>
         resolve(error ? new Error(error) : data));
-    });
-  }
-
-  if (shouldRefresh || !microposts) microposts = fetchMicroposts();
-
-  return microposts;
-};
-
-const getPosts = function(shouldRefresh) {
-  function fetchPosts() {
-    return new Promise((resolve, reject) => {
-      blog.posts({limit: 25}, (error, data) => resolve(error ? new Error(error) : data.posts));
-    });
-  }
-
-  if (shouldRefresh || !posts) posts = fetchPosts();
-
-  return posts;
-};
+  })
+}, entity);
 
 // Handlers.
 app.get('/louie/posts', (req, res) => {
-  getPosts(shouldRefresh()).then(results => res.send(results));
+  posts.get().then(results => res.send(results));
 });
 
 app.get('/louie/microposts', (req, res) => {
-  getMicroposts(shouldRefresh()).then(results => res.send(results));
+  microposts.get().then(results => res.send(results));
 });
 
 app.get('/', sendIndex);
