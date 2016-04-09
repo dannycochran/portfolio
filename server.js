@@ -6,6 +6,8 @@ const twitter = require('twitter');
 const app = express();
 const config = require('./configuration.json');
 const port = config.port;
+const DAY_MS = 24 * 60 * 60 * 1000;
+const CACHE_TIME = DAY_MS * 14;
 
 const blog = new tumblr.Blog(config.tumblr.url, {
   consumer_key: config.tumblr.key,
@@ -19,16 +21,22 @@ const tweets = new twitter({
   access_token_secret: config.twitter.tokenSecret
 });
 
-const sendIndex = (req, res) => res.status(200).sendfile('dist/index.html');
+const sendIndex = (req, res) => {
+  res.status(200).sendfile('dist/index.html');
+};
+
+const cacher = (req, res, next) => {
+  res.setHeader('Cache-Control', `public, max-age=${CACHE_TIME}`);
+  next();
+};
 
 // Serve static assets.
+app.use(cacher);
 app.use(express.compress());
 app.use(express.urlencoded());
-app.use('/dist', express.static('dist'));
+app.use('/dist', express.static('dist', {maxAge: CACHE_TIME}));
 
 // Daily caching of data.
-const DAY_MS = 24 * 60 * 60 * 1000;
-
 const entity = {
   timestamp: 0,
   promise: Promise.resolve(),
