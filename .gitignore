@@ -13,6 +13,7 @@ Dockerfile
 source-context.json
 source-contexts.json
 npm-debug.log
+DEPLOYMENT.md
 
 /.nodemonignore
 /components/
