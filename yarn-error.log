@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/local/bin/node /Users/dannycochran/.npm-global/bin/yarn deploy
+  /usr/local/bin/node /Users/dannycochran/.npm-global/bin/yarn start
 
 PATH: 
-  /Users/dannycochran/google-cloud-sdk/bin:/Users/dannycochran/.npm-global/bin:/Users/dannycochran/depot_tools:/Users/dannycochran/homebrew/bin:/Users/dannycochran/bin:/usr/local/git/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+  /Users/dannycochran/Documents/portfolio/node_modules/.bin:/Users/dannycochran/.config/yarn/link/node_modules/.bin:/Users/dannycochran/Documents/portfolio/node_modules/.bin:/Users/dannycochran/.config/yarn/link/node_modules/.bin:/usr/local/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/lib/node_modules/npm/bin/node-gyp-bin:/usr/local/bin/node_modules/npm/bin/node-gyp-bin:/Users/dannycochran/google-cloud-sdk/bin:/Users/dannycochran/.npm-global/bin:/Users/dannycochran/depot_tools:/Users/dannycochran/homebrew/bin:/Users/dannycochran/bin:/usr/local/git/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
 
 Yarn version: 
   1.5.1
@@ -20,7 +20,8 @@ npm manifest:
     "version": "0.0.1",
     "private": true,
     "scripts": {
-      "start": "concurrently --kill-others-on-fail \"grunt app\" \"node server.js\"",
+      "dev": "concurrently --kill-others-on-fail \"grunt app\" \"heroku local\"",
+      "start": "yarn rebuild && node server.js",
       "build-client": "grunt browserify",
       "build-sass": "grunt sass",
       "build": "grunt rebuild",
@@ -1362,13 +1363,6 @@ Lockfile:
     version "0.1.3"
     resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.1.3.tgz#e734a5c1417fce472d5aef82c381cabb64d1a435"
   
-  cookies@>=0.1.6:
-    version "0.7.1"
-    resolved "https://registry.yarnpkg.com/cookies/-/cookies-0.7.1.tgz#7c8a615f5481c61ab9f16c833731bcb8f663b99b"
-    dependencies:
-      depd "~1.1.1"
-      keygrip "~1.0.2"
-  
   core-js@^2.4.0, core-js@^2.5.0:
     version "2.5.3"
     resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.3.tgz#8acc38345824f16d8365b7c9b4259168e8ed603e"
@@ -1523,7 +1517,7 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/depd/-/depd-1.0.1.tgz#80aec64c9d6d97e65cc2a9caa93c0aa6abf73aaa"
   
-  depd@~1.1.0, depd@~1.1.1:
+  depd@~1.1.0:
     version "1.1.2"
     resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   
@@ -2619,10 +2613,6 @@ Lockfile:
       json-schema "0.2.3"
       verror "1.10.0"
   
-  keygrip@>=0.1.7, keygrip@~1.0.2:
-    version "1.0.2"
-    resolved "https://registry.yarnpkg.com/keygrip/-/keygrip-1.0.2.tgz#ad3297c557069dea8bcfe7a4fa491b75c5ddeb91"
-  
   kind-of@^3.0.2:
     version "3.2.2"
     resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -2859,10 +2849,6 @@ Lockfile:
     dependencies:
       minimist "0.0.8"
   
-  mobile-detect@^1.4.1:
-    version "1.4.1"
-    resolved "https://registry.yarnpkg.com/mobile-detect/-/mobile-detect-1.4.1.tgz#f4b67c49bb84bf0437f72e3067deb1c60ad7b23c"
-  
   module-deps@^4.0.8:
     version "4.1.1"
     resolved "https://registry.yarnpkg.com/module-deps/-/module-deps-4.1.1.tgz#23215833f1da13fd606ccb8087b44852dcb821fd"
@@ -3046,10 +3032,6 @@ Lockfile:
   oauth-sign@~0.8.1, oauth-sign@~0.8.2:
     version "0.8.2"
     resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
-  
-  oauth@>=0.8.4:
-    version "0.9.15"
-    resolved "https://registry.yarnpkg.com/oauth/-/oauth-0.9.15.tgz#bd1fefaf686c96b75475aed5196412ff60cfb9c1"
   
   object-assign@^4.0.1, object-assign@^4.1.0:
     version "4.1.1"
@@ -4073,14 +4055,6 @@ Lockfile:
     version "0.14.5"
     resolved "https://registry.yarnpkg.com/tweetnacl/-/tweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
   
-  twitter@0.2.9:
-    version "0.2.9"
-    resolved "https://registry.yarnpkg.com/twitter/-/twitter-0.2.9.tgz#6706947e151b4a434301e09344abf91a9297b08d"
-    dependencies:
-      cookies ">=0.1.6"
-      keygrip ">=0.1.7"
-      oauth ">=0.8.4"
-  
   type-is@~1.6.10, type-is@~1.6.6:
     version "1.6.16"
     resolved "https://registry.yarnpkg.com/type-is/-/type-is-1.6.16.tgz#f89ce341541c672b25ee7ae3c73dee3b2be50194"
@@ -4304,7 +4278,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c grunt rebuild; git push heroku master
+  Arguments: -c yarn rebuild && node server.js
   Directory: /Users/dannycochran/Documents/portfolio
   Output:
   
