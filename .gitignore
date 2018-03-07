@@ -1,6 +1,5 @@
 /node_modules/
 /.sass-cache/
-/dist/
 /assets/styles/css/custom.css
 /hooks/
 /hooks/post-receive
