@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "concurrently --kill-others-on-fail \"grunt app\" \"heroku local\"",
+    "dev": "concurrently --kill-others-on-fail \"grunt app\" \"heroku local\"",
+    "start": "yarn rebuild && node server.js",
     "build-client": "grunt browserify",
     "build-sass": "grunt sass",
     "build": "grunt rebuild",
