@@ -4,11 +4,11 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "concurrently --kill-others-on-fail \"grunt app\" \"heroku local\"",
-    "start": "yarn build && node server.js",
+    "postinstall": "yarn build",
+    "start": "concurrently --kill-others-on-fail \"grunt app\" \"heroku local\"",
     "build-client": "grunt browserify",
     "build-sass": "grunt sass",
-    "build": "yarn install && grunt rebuild",
+    "build": "grunt rebuild",
     "monitor": "nodemon server.js",
     "deploy": "grunt rebuild; git push heroku master",
     "lint": "jshint --exclude-path=.gitignore ."
