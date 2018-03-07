@@ -1,15 +1,10 @@
 ###### Danny Cochran's  Portfolio v0.0.1
 ----
 
-**Install Grunt & Node Dependencies**
+**Install Dependencies && Run Portfolio**
 
 ```
   yarn install
-```
-
-**Run Portfolio**
-
-```
   yarn start
 ```
 
