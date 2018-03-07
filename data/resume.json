@@ -20,8 +20,8 @@
     "name": "professional",
     "positions": [{
       "name": "Google",
-      "title": "Frontend engineer",
-      "details": ["Creating web application for SMB Revenue Innovations"],
+      "title": "Frontend Tech Lead",
+      "details": ["Co-founder of Grasshopper, an Area120 incubated company inside of Google.", "Creating a mobile app for coding education using React Native, TypeScript, and Firebase"],
       "date_range": ["8.2015", "present"]
     },
     {
