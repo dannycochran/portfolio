@@ -6,7 +6,7 @@ const app = express();
 const config = require('./configuration.json');
 const port = config.port;
 const DAY_MS = 24 * 60 * 60 * 1000;
-const CACHE_TIME = 0; //DAY_MS * 14;
+const CACHE_TIME = DAY_MS * 14;
 
 const blog = new tumblr.Blog(config.tumblr.url, {
   consumer_key: config.tumblr.key,

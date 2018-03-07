@@ -4,20 +4,17 @@
 **Install Grunt & Node Dependencies**
 
 ```
-  node -v
-  v4.5.1
-  gem install sass
-  npm install
+  yarn install
 ```
 
 **Run Portfolio**
 
 ```
-  grunt app
+  yarn start
 ```
 
 **Extending Portfolio**
 
 Portfolio isn't quite plug and play yet, but swapping out your own JSON data in the data folder is a good start.
 
-After that, you'd have to generate some Tumblr / Twitter tokens to get the social feeds going.
+After that, you'd have to generate some Tumblr tokens to get the blog feed going.
