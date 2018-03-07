@@ -14,8 +14,8 @@ div.portfolio {
     position: absolute; margin: auto; left: 0; right: 0;
     @include transition(top $animation);
     & > div, & > ol {
-      &[data-position="left"] { @include transform(translateX(-100%)); }
-      &[data-position="right"] { @include transform(translateX(100%)); }
+      &.left { @include transform(translateX(-100%)); }
+      &.right { @include transform(translateX(100%)); }
     }
   }
   &.single-post {
@@ -23,11 +23,6 @@ div.portfolio {
       height: calc(100% - #{$height-header} - #{$height-slideBar}) !important;
       top: $height-header !important;
       ol.posts { width: 100% !important; }
-      ol.microposts {
-        display: none;
-        img { display: none; } // for lazy loading of images
-      }
-      div.toggle { display: none; }
     }
     header.navbar {
       top: 0 !important;
@@ -52,23 +47,16 @@ div.portfolio {
 
 @include responsiveWidth($FIRST_RESPONSE) {
   div.portfolio {
-    div.home {
-      div.toggle {
-        visibility: visible !important; pointer-events: all !important;
-      }
+    div.blog {
       ol.posts {
         width: calc(100% - #{$offset}) !important;
-      }
-      ol.microposts {
-        width: $width-panel;
-        left: 100%;
       }
     }
   }
 }
 
 @include responsiveWidth($SECOND_RESPONSE) {
-  div.home ol.posts {
+  div.blog ol.posts {
     li.post {
       span.title {
         font-size: $fontSize-large !important;
@@ -82,7 +70,7 @@ div.portfolio {
   div.portfolio {
     top: 0;
     div.content-container { top: $height-header; }
-    div.home {
+    div.blog {
       ol.posts {
         width: 100% !important;
         li.post {
@@ -96,8 +84,6 @@ div.portfolio {
           }
         }
       }
-      div.toggle { display: none; }
-      ol.microposts { display: none; }
     }
   }
 }

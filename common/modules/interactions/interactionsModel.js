@@ -23,7 +23,7 @@ Portfolio.Utilities.Interactions = module.exports = Backbone.Model.extend({
     // object to optionally handle the change with a callback
     this.on('change:' + key, function () {
       var trigger = function () { object.trigger('interaction:' + name, object); };
-      if (options.callback) CaughtPromise.resolve(options.callback(object)).then(trigger);
+      if (options.callback) Promise.resolve(options.callback(object)).then(trigger);
       else trigger();
     });
   }

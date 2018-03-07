@@ -7,8 +7,6 @@
   node -v
   v4.5.1
   gem install sass
-  npm install -g duo@0.8.10
-  npm install -g grunt-cli
   npm install
 ```
 

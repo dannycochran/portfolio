@@ -1,28 +1,8 @@
 require('./globals.js');
 
-var onReady = function () {
-  // check browser
-  var safari = !!$.browser.safari, ie = !!$.browser.ie, chrome = !!$.browser.chrome,
-      version = Infinity,
-      complain = function (browser, oldVersion, requiredVersion) {
-        alert('We currently do not offer support for ' +
-            browser + ' ' + oldVersion + '. Please update to (at least) version ' + requiredVersion + '.');
-        throw {name: 'NotSupported', message: 'This browser is not supported.'};
-      };
-
-  if ($.browser.version.split('.').length - 1 > 1) {
-    version = $.browser.version.split('.');
-    version = parseFloat(version[0] + '.' + version[1] + version[2]);
-  } else version = parseFloat($.browser.version);
-
-  if (safari && version < 6.1) complain('Safari', version, '6.1');
-  else if (ie && version < 10) complain('Internet Explorer', version, '10.0');
-  else if (chrome && version < 26) Portfolio.transitionend = 'webkitTransitionEnd';
-};
-
 function setupNames (namespace) {
   if (!namespace) return;
-  
+
   var nameGroups = ['Views', 'Models', 'Collections'];
   function api (s) {
     var name = '';
@@ -62,14 +42,13 @@ function mixPanelUser () {
 
 function initialize (view, namespace) {
   if (typeof(mixpanel) === 'undefined') {
-    mixpanel = {
+    window.mixpanel = {
       track: function (action, metadata, callback) { if (callback) callback(); },
       identify: function () {}
     };
   }
 
   $(document).ready(function () {
-    onReady();
     mixPanelUser();
 
     setupNames(Portfolio);

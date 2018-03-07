@@ -1,9 +1,11 @@
+import projectHtml from './_project.html';
+
 var Model = require('./projectsModel.js');
 
 Portfolio.Views.Projects = module.exports = Backbone.View.extend({
   tagName: 'ol',
   className: 'projects',
-  template: _.template(require('./_project.html')),
+  template: _.template(projectHtml),
   model: new Model(),
 
   render: function () {
@@ -18,5 +20,5 @@ Portfolio.Views.Projects = module.exports = Backbone.View.extend({
     return this;
   },
 
-  build: function () { return Portfolio.RESOLVE; }
+  build: function () { return Promise.resolve(); }
 });

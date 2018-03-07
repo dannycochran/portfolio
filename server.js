@@ -2,23 +2,15 @@
 
 const express = require('express');
 const tumblr = require('tumblr');
-const twitter = require('twitter');
 const app = express();
 const config = require('./configuration.json');
 const port = config.port;
 const DAY_MS = 24 * 60 * 60 * 1000;
-const CACHE_TIME = DAY_MS * 14;
+const CACHE_TIME = 0; //DAY_MS * 14;
 
 const blog = new tumblr.Blog(config.tumblr.url, {
   consumer_key: config.tumblr.key,
   consumer_secret: config.tumblr.secret
-});
-
-const tweets = new twitter({
-  consumer_key: config.twitter.key,
-  consumer_secret: config.twitter.secret,
-  access_token_key: config.twitter.tokenKey,
-  access_token_secret: config.twitter.tokenSecret
 });
 
 const sendIndex = (req, res) => {
@@ -52,24 +44,15 @@ const entity = {
 
 const posts = Object.assign({
   fetch: () => new Promise((resolve, reject) => {
-    blog.posts({limit: 25}, (error, data) => resolve(error ? new Error(error) : data.posts));
-  })
-}, entity);
-
-const microposts = Object.assign({
-  fetch: () => new Promise((resolve, reject) => {
-      tweets.get('/statuses/user_timeline.json', {include_entities:true}, (data, error) =>
-        resolve(error ? new Error(error) : data));
+    blog.posts({limit: 25}, (error, data) => {
+      resolve(error ? new Error(error) : data.posts);
+    });
   })
 }, entity);
 
 // Handlers.
 app.get('/louie/posts', (req, res) => {
   posts.get().then(results => res.send(results));
-});
-
-app.get('/louie/microposts', (req, res) => {
-  microposts.get().then(results => res.send(results));
 });
 
 app.get('/', sendIndex);

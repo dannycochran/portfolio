@@ -1,9 +1,10 @@
+import resumeHtml from './_resume.html';
 var Model = require('./resumeModel.js');
 
 Portfolio.Views.Resume = module.exports = Backbone.View.extend({
   tagName: 'ol',
   className: 'resume',
-  template: _.template(require('./_resume.html')),
+  template: _.template(resumeHtml),
   model: new Model(),
 
   render: function () {
@@ -15,5 +16,5 @@ Portfolio.Views.Resume = module.exports = Backbone.View.extend({
     return this;
   },
 
-  build: function (callback) { return Portfolio.RESOLVE; }
+  build: function (callback) { return Promise.resolve(); }
 });

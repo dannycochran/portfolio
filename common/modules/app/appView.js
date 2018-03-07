@@ -1,3 +1,5 @@
+import appHtml from './_app.html';
+
 var Router = require('../router/router.js'),
     Navbar = require('../navbar/navbar.js'),
     Slidebar = require('../slidebar/slidebar.js'),
@@ -5,10 +7,10 @@ var Router = require('../router/router.js'),
 
 Portfolio.Views.App = module.exports = Backbone.View.extend({
   model: new Model(),
-  template: require('./_app.html'),
+  template: appHtml,
 
   sections: {},
-  defaultSection: 'home',
+  defaultSection: 'projects',
   currentView: null,
 
   el: 'body',
@@ -66,7 +68,7 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
 
     if (this.previousView && this.currentView !== this.previousView) {
       if (!this.currentView.rendered) this.$el.append(Portfolio.spinner({message: 'Loading ' + view.name}));
-      return CaughtPromise.resolve(this.teardownView(this.previousView, this.slidebar.direction)).then(doBuild);
+      return this.teardownView(this.previousView, this.slidebar.direction).then(doBuild);
     } else doBuild();
   },
 
@@ -76,22 +78,24 @@ Portfolio.Views.App = module.exports = Backbone.View.extend({
   },
 
   teardownView: function (view, position) {
-    return new CaughtPromise(function (resolve, reject) {
+    return new Promise(function (resolve, reject) {
       if (view.teardown) view.teardown();
-      view.$el.data('position', position);
+      view.$el.removeClass('right left');
+      view.$el.addClass(position);
       _.delay(resolve, Portfolio.ANIMATION_DURATION);
     }.bind(this));
   },
 
   render: function () {
-    this.currentView.$el.data('position', this.slidebar.opposite);
+    this.currentView.$el.removeClass('right left');
+    this.currentView.$el.addClass(this.slidebar.opposite);
 
     this.$container.html(this.currentView.el);
     this.currentView.render().rendered = true;
 
     _.delay(function () {
       this.$el.find('div.spinner').remove();
-      this.currentView.$el.data('position', null);
+      this.currentView.$el.removeClass('right left');
     }.bind(this), Portfolio.ANIMATION_DURATION/10);
 
     return this;

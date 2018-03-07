@@ -1,26 +1,20 @@
 var Interactions = require('../interactions/interactionsManager.js'),
-    Microposts = require('../microposts/micropostsView.js');
     Posts = require('../posts/postsView.js');
 
-Portfolio.Views.Home = module.exports = Backbone.View.extend({
+Portfolio.Views.Blog = module.exports = Backbone.View.extend({
   model: new Backbone.Model(),
-  className: 'home',
+  className: 'blog',
 
-  template: _.template(require('./_home.html')),
-  events: {'click div.toggle': 'onToggleMicroposts'},
+  template: _.template(''),
 
   initialize: function () {
     Interactions.add(this, 'selectedPost', {
       callback: this.onInteractionSelectedPost.bind(this),
       initialValue: null
     });
-    Interactions.add(this, 'toggleMicroposts', {callback: this.onInteractionToggleMicroposts.bind(this)});
 
     this.$el.html(this.template());
-    this.$toggler = this.$('div.toggle');
-
     this.posts = new Posts();
-    this.microposts = new Microposts();
   },
 
   render: function () {
@@ -29,11 +23,6 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
       this.$el.append(this.posts.el);
     }
     this.selectedPost(this.postId ? this.postId : null);
-
-    if (!this.microposts.rendered) {
-      this.microposts.render().rendered = true;
-      this.$el.append(this.microposts.el);
-    }
     return this;
   },
 
@@ -48,30 +37,19 @@ Portfolio.Views.Home = module.exports = Backbone.View.extend({
     }
   },
 
-  onInteractionToggleMicroposts: function () {
-    this.$toggler.toggleClass('open', this.toggleMicroposts());
-    mixpanel.track('Microposts sidebar toggled');
-  },
-
-  onToggleMicroposts: function (e) { this.toggleMicroposts(!this.toggleMicroposts()); },
-
-  onResize: function (e) { this.toggleMicroposts(false); },
-
   scrollToPost: function (postId) {
     var $post = this.posts.$el.find('li[data-id="' + postId + '"]'),
         margin = Number($post.css('margin-top').replace('px', '')),
         scrollTop = $post.offset().top - this.posts.$el.offset().top - margin;
-    if (!Portfolio.isMobile) this.posts.$el.scroll({scrollTop: scrollTop}, Portfolio.ANIMATION_DURATION);
-    else this.posts.$el.scrollTop(scrollTop);
+    this.posts.$el.scroll({scrollTop: scrollTop}, Portfolio.ANIMATION_DURATION);
   },
 
   build: function (postId) {
     this.postId = postId;
-    return CaughtPromise.all([this.posts.build(), this.microposts.build()]);
+    return this.posts.build();
   },
 
   teardown: function () {
     this.posts.teardown();
-    this.microposts.teardown();
   }
 });

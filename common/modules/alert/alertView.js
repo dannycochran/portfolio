@@ -1,6 +1,8 @@
+import alertHtml from './_alert.html';
+
 Portfolio.Views.Alert = module.exports = Backbone.View.extend({
   className: 'alert closed',
-  template: _.template(require('./_alert.html')),
+  template: _.template(alertHtml),
 
   events: { 'click i.fa-times': 'closeAlert' },
 

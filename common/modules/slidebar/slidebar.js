@@ -1,6 +1,8 @@
+import slideBarHtml from './_slidebar.html';
+
 Portfolio.Views.Slidebar = module.exports = Backbone.View.extend({
   className: 'slidebar',
-  template: _.template(require('./_slidebar.html')),
+  template: _.template(slideBarHtml),
 
   initialize: function (options) {
     this.$el.html(this.template({sections: options.sections}));
