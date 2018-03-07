@@ -3,10 +3,24 @@
 const express = require('express');
 const tumblr = require('tumblr');
 const app = express();
-const config = require('./configuration.json');
-const port = config.port;
+const port = process.env.PORT || 8080;
 const DAY_MS = 24 * 60 * 60 * 1000;
 const CACHE_TIME = DAY_MS * 14;
+
+let config = {};
+
+try {
+  config = require('./configuration.json');
+} catch(err) {
+  config = {
+    tumblr: {
+      url: process.env.TUMBLR_URL,
+      consumer_key: process.env.TUMBLR_KEY,
+      consumer_secret: process.env.TUMBLR_SECRET
+    }
+  };
+}
+
 
 const blog = new tumblr.Blog(config.tumblr.url, {
   consumer_key: config.tumblr.key,

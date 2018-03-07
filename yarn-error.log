@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /Users/dannycochran/.npm-global/bin/yarn start
+  /usr/local/bin/node /Users/dannycochran/.npm-global/bin/yarn deploy
 
 PATH: 
   /Users/dannycochran/google-cloud-sdk/bin:/Users/dannycochran/.npm-global/bin:/Users/dannycochran/depot_tools:/Users/dannycochran/homebrew/bin:/Users/dannycochran/bin:/usr/local/git/current/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
@@ -25,7 +25,7 @@ npm manifest:
       "build-sass": "grunt sass",
       "build": "grunt rebuild",
       "monitor": "nodemon server.js",
-      "deploy": "grunt rebuild; gcloud preview app deploy app.yaml",
+      "deploy": "grunt rebuild; git push heroku master",
       "lint": "jshint --exclude-path=.gitignore ."
     },
     "dependencies": {
@@ -4304,7 +4304,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: sh
-  Arguments: -c concurrently --kill-others-on-fail "grunt app" "node server.js"
+  Arguments: -c grunt rebuild; git push heroku master
   Directory: /Users/dannycochran/Documents/portfolio
   Output:
   

@@ -9,7 +9,7 @@
     "build-sass": "grunt sass",
     "build": "grunt rebuild",
     "monitor": "nodemon server.js",
-    "deploy": "grunt rebuild; gcloud preview app deploy app.yaml",
+    "deploy": "grunt rebuild; git push heroku master",
     "lint": "jshint --exclude-path=.gitignore ."
   },
   "dependencies": {
