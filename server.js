@@ -7,17 +7,15 @@ const port = process.env.PORT || 8080;
 const DAY_MS = 24 * 60 * 60 * 1000;
 const CACHE_TIME = DAY_MS * 14;
 
-const config = {
-  tumblr: {
-    url: process.env.TUMBLR_URL,
-    consumer_key: process.env.TUMBLR_KEY,
-    consumer_secret: process.env.TUMBLR_SECRET
-  }
+const tumblrConfig = {
+  url: process.env.TUMBLR_URL,
+  key: process.env.TUMBLR_KEY,
+  secret: process.env.TUMBLR_SECRET
 };
 
-const blog = new tumblr.Blog(config.tumblr.url, {
-  consumer_key: config.tumblr.key,
-  consumer_secret: config.tumblr.secret
+const blog = new tumblr.Blog(tumblrConfig.url, {
+  consumer_key: tumblrConfig.key,
+  consumer_secret: tumblrConfig.secret
 });
 
 const sendIndex = (req, res) => {
